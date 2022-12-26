@@ -2,13 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.GridView?>
 
 <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.HomeController">
    <children>
@@ -18,7 +19,7 @@
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" translateX="35.0" translateY="10.0">
                      <image>
-                        <Image url="@../../../image/Logo_MangaEater.png" />
+                        <Image url="@../../../images/Logo_MangaEater.png" />
                      </image>
                   </ImageView>
                </children>
@@ -58,10 +59,14 @@
                </children></HBox>
          </children>
       </HBox>
-      <HBox prefHeight="509.0" prefWidth="617.0">
+      <VBox prefHeight="503.0" prefWidth="810.0" style="-fx-background-color: white;">
          <children>
-            <GridView fx:id="gv" onMouseClicked="#temp" prefHeight="507.0" prefWidth="615.0" />
+            <ScrollPane id="scrollPane" fx:id="scrollPane" prefHeight="520.0" prefWidth="690.0" style="-fx-background-color: white;">
+               <content>
+                  <GridPane fx:id="cardHolder" hgap="20.0" style="-fx-background-color: white;" vgap="20.0" />
+               </content>
+            </ScrollPane>
          </children>
-      </HBox>
+      </VBox>
    </children>
 </VBox>
