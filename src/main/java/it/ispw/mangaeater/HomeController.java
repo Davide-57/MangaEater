@@ -27,22 +27,22 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list.add(new Card(1, "Pawan Ghewande Pawan Ghewande Pawan Ghewande Pawan Ghewande", "96******30", "10/02/2019", "3"));
-        list.add(new Card(2, "Pawan Ghewande", "96******30", "10/02/2019", "4"));
-        list.add(new Card(3, "Pawan Ghewande", "96******30", "10/02/2019", "5"));
-        list.add(new Card(4, "Pawan Ghewande", "96******30", "10/02/2019", "6"));
-        list.add(new Card(5, "Pawan Ghewande", "96******30", "10/02/2019", "7"));
-        list.add(new Card(6, "Pawan Ghewande", "96******30", "10/02/2019", "8"));
-        list.add(new Card(7, "Pawan Ghewande", "96******30", "10/02/2019", "9"));
-        list.add(new Card(8, "Pawan Ghewande", "96******30", "10/02/2019", "10"));
-        list.add(new Card(9, "Pawan Ghewande", "96******30", "10/02/2019", "11"));
-        list.add(new Card(10, "Pawan Ghewande","96******30", "10/02/2019", "12"));
-        list.add(new Card(11, "Pawan Ghewande","96******30", "10/02/2019", "13"));
-        list.add(new Card(12, "Pawan Ghewande","96******30", "10/02/2019", "14"));
-        list.add(new Card(13, "Pawan Ghewande","96******30", "10/02/2019", "15"));
-        list.add(new Card(14, "Pawan Ghewande","96******30", "10/02/2019", "16"));
-        list.add(new Card(15, "Pawan Ghewande","96******30", "10/02/2019", "17"));
-        list.add(new Card(16, "Pawan Ghewande","96******30", "10/02/2019", "17"));
+        list.add(new Card(1, "One-Punch Man Volume 1", "Un bel mangaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 500.0, "3"));
+        list.add(new Card(2, "Pawan Ghewande", "96******30", 500.0, "4"));
+        list.add(new Card(3, "Pawan Ghewande", "96******30", 500.0, "5"));
+        list.add(new Card(4, "Pawan Ghewande", "96******30", 50000.0, "6"));
+        list.add(new Card(5, "Pawan Ghewande", "96******30", 500.0, "7"));
+        list.add(new Card(6, "Pawan Ghewande", "96******30", 500.0, "8"));
+        list.add(new Card(7, "Pawan Ghewande", "96******30", 500.0, "9"));
+        list.add(new Card(8, "Pawan Ghewande", "96******30", 500.0, "10"));
+        list.add(new Card(9, "Pawan Ghewande", "96******30", 500.0, "11"));
+        list.add(new Card(10, "Pawan Ghewande","96******30", 500.0, "12"));
+        list.add(new Card(11, "Pawan Ghewande","96******30", 500.0, "13"));
+        list.add(new Card(12, "Pawan Ghewande","96******30", 500.0, "14"));
+        list.add(new Card(13, "Pawan Ghewande","96******30", 500.0, "15"));
+        list.add(new Card(14, "Pawan Ghewande","96******30", 500.0, "16"));
+        list.add(new Card(15, "Pawan Ghewande","96******30", 500.0, "17"));
+        list.add(new Card(16, "Pawan Ghewande","96******30", 500.0, "17"));
         /*cardHolder.setAlignment(Pos.CENTER);
         cardHolder.setVgap(20.00);
         cardHolder.setHgap(20.00);

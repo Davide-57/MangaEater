@@ -1,35 +1,30 @@
 package it.ispw.mangaeater;
 
-import javafx.scene.paint.Color;
+import javafx.geometry.Pos;
 import javafx.scene.text.*;
-import javafx.scene.shape.*;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
 
 public class Card extends Pane {
 
     protected final ImageView photo;
     protected final Label name;
-    protected final Label mobile;
-    protected final Label label;
-    protected final Label date;
+    protected final Text description;
+    protected final Label labelCost;
+    protected final Label cost;
     protected final Label visites;
     protected final Label label0;
     private int ID;
 
-    public Card(int Id, String Name, String Mobile, String Date, String Vistes) {
+    public Card(int Id, String Name, String Description, Double Cost, String Vistes) {
 
         photo = new ImageView();
         name = new Label();
-        mobile = new Label();
-        label = new Label();
-        date = new Label();
+        labelCost = new Label();
+        description = new Text();
+        cost = new Label();
         visites = new Label();
         label0 = new Label();
 
@@ -56,38 +51,35 @@ public class Card extends Pane {
         name.setAlignment(javafx.geometry.Pos.CENTER);
         name.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
         name.setLayoutX(0);
-        name.setLayoutY(5);
+        name.setLayoutY(0);
         name.setPrefHeight(26.0);
         name.setPrefWidth(385.0);
         name.setText(Name);
         name.setFont(new Font(20));
         name.setStyle("-fx-font-weight: bold;");
 
-        mobile.setAlignment(javafx.geometry.Pos.CENTER);
-        mobile.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
-        mobile.setLayoutX(16.0);
-        mobile.setLayoutY(90.0);
-        mobile.setPrefHeight(19.0);
-        mobile.setPrefWidth(215.0);
-        mobile.setText(Mobile);
-        mobile.setFont(new Font(13.0));
+        labelCost.setAlignment(Pos.TOP_LEFT);
+        labelCost.setLayoutX(260);
+        labelCost.setLayoutY(175);
+        labelCost.setPrefHeight(20);
+        labelCost.setPrefWidth(110);
+        labelCost.setText("Cost:");
+        labelCost.setFont(new Font(13.0));
 
-        label.setAlignment(javafx.geometry.Pos.TOP_RIGHT);
-        label.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
-        label.setLayoutX(39.0);
-        label.setLayoutY(130.0);
-        label.setPrefHeight(19.0);
-        label.setPrefWidth(62.0);
-        label.setText("Date :");
-        label.setFont(new Font(13.0));
+        description.setLayoutX(110);
+        description.setLayoutY(45);
+        description.setWrappingWidth(265);
+        description.setText(Description);
+        description.setFont(new Font(14));
 
-        date.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
-        date.setLayoutX(107.0);
-        date.setLayoutY(130.0);
-        date.setPrefHeight(19.0);
-        date.setPrefWidth(115.0);
-        date.setText(Date);
-        date.setFont(new Font(13.0));
+        cost.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
+        cost.setLayoutX(300);
+        cost.setLayoutY(170);
+        cost.setPrefHeight(19.0);
+        cost.setPrefWidth(115.0);
+        cost.setText(Cost.toString() + "€");
+        cost.setFont(new Font(18.0));
+        cost.setStyle("-fx-font-weight: bold;");
 
         visites.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
         visites.setLayoutX(107.0);
@@ -103,7 +95,7 @@ public class Card extends Pane {
         label0.setLayoutY(160.0);
         label0.setPrefHeight(19.0);
         label0.setPrefWidth(62.0);
-        label0.setText("Visites :");
+        label0.setText("Descrizione da Wikipedia:");
         label0.setFont(new Font(13.0));
 
         /*setOnMouseClicked(e -> {
@@ -116,12 +108,13 @@ public class Card extends Pane {
 
         //setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         //getStylesheets().add(getClass().getResource("CardDesign.css").toExternalForm());
-        setStyle("-fx-background-color:#fff7e6;" +
-                "-fx-border-size:0.5;\n" +
-                "-fx-border-color:  #ffb84d;\n" +
-                "-fx-border-radius: 20;" +
-                "-fx-background-radius: 20;");
-        getChildren().addAll(photo,name,mobile,label,date,visites,label0);
+
+        //#fff7e6 più chiaro
+        setStyle("""
+                -fx-background-color:#FFD699;-fx-border-size:0.5;
+                -fx-border-color:  #ffb84d;
+                -fx-border-radius: 20;-fx-background-radius: 20;""");
+        getChildren().addAll(photo,name, description, labelCost, cost,visites,label0);
 
 
 
