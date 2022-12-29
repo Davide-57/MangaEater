@@ -48,7 +48,7 @@
                </padding></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="188.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField alignment="CENTER" editable="false" style="-fx-background-radius: 20; -fx-background-color: #ffb84d; -fx-text-fill: white;" text="Accedi | Registrati">
+                  <TextField fx:id="loginButton" alignment="CENTER" editable="false" onMouseClicked="#openLogin" style="-fx-background-radius: 20; -fx-background-color: #ffb84d; -fx-text-fill: white;" text="Accedi | Registrati">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

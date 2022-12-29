@@ -2,14 +2,23 @@ package it.ispw.mangaeater;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -20,6 +29,9 @@ public class HomeController implements Initializable {
     private GridPane cardHolder;
 
     @FXML
+    private TextField loginButton;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
@@ -27,26 +39,24 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list.add(new Card(1, "One-Punch Man Volume 1", "Un bel mangaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 500.0, "3"));
-        list.add(new Card(2, "Pawan Ghewande", "96******30", 500.0, "4"));
-        list.add(new Card(3, "Pawan Ghewande", "96******30", 500.0, "5"));
-        list.add(new Card(4, "Pawan Ghewande", "96******30", 50000.0, "6"));
-        list.add(new Card(5, "Pawan Ghewande", "96******30", 500.0, "7"));
-        list.add(new Card(6, "Pawan Ghewande", "96******30", 500.0, "8"));
-        list.add(new Card(7, "Pawan Ghewande", "96******30", 500.0, "9"));
-        list.add(new Card(8, "Pawan Ghewande", "96******30", 500.0, "10"));
-        list.add(new Card(9, "Pawan Ghewande", "96******30", 500.0, "11"));
-        list.add(new Card(10, "Pawan Ghewande","96******30", 500.0, "12"));
-        list.add(new Card(11, "Pawan Ghewande","96******30", 500.0, "13"));
-        list.add(new Card(12, "Pawan Ghewande","96******30", 500.0, "14"));
-        list.add(new Card(13, "Pawan Ghewande","96******30", 500.0, "15"));
-        list.add(new Card(14, "Pawan Ghewande","96******30", 500.0, "16"));
-        list.add(new Card(15, "Pawan Ghewande","96******30", 500.0, "17"));
-        list.add(new Card(16, "Pawan Ghewande","96******30", 500.0, "17"));
-        /*cardHolder.setAlignment(Pos.CENTER);
-        cardHolder.setVgap(20.00);
-        cardHolder.setHgap(20.00);
-        cardHolder.setStyle("-fx-padding:10px;-fx-border-color:transparent");*/
+
+        //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
+        list.add(new Card(1, "One-Punch Man Volume 1", "Un bel mangaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 500.0));
+        list.add(new Card(2, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(3, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(4, "Pawan Ghewande", "96******30", 50000.0));
+        list.add(new Card(5, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(6, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(7, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(8, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(9, "Pawan Ghewande", "96******30", 500.0));
+        list.add(new Card(10, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(11, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(12, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(13, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(14, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(15, "Pawan Ghewande","96******30", 500.0));
+        list.add(new Card(16, "Pawan Ghewande","96******30", 500.0));
         
         int count = 0;
         for (int i = 0; i < 6; i++) {
@@ -56,5 +66,28 @@ public class HomeController implements Initializable {
                 //System.out.println(i + " " + j);
             }
         }
+
+        //FINE INIZIALIZZAZIONE LISTA DI ANNUNCI
+
+
     }
+
+    @FXML
+    void openLogin(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("hello-view.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(fxmlLoader.load(), 450, 450));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

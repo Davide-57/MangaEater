@@ -14,19 +14,16 @@ public class Card extends Pane {
     protected final Text description;
     protected final Label labelCost;
     protected final Label cost;
-    protected final Label visites;
-    protected final Label label0;
+
     private int ID;
 
-    public Card(int Id, String Name, String Description, Double Cost, String Vistes) {
+    public Card(int Id, String Name, String Description, Double Cost) {
 
         photo = new ImageView();
         name = new Label();
         labelCost = new Label();
         description = new Text();
         cost = new Label();
-        visites = new Label();
-        label0 = new Label();
 
         setId(Id + "");
         setPrefHeight(200.0);
@@ -81,23 +78,6 @@ public class Card extends Pane {
         cost.setFont(new Font(18.0));
         cost.setStyle("-fx-font-weight: bold;");
 
-        visites.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
-        visites.setLayoutX(107.0);
-        visites.setLayoutY(160.0);
-        visites.setPrefHeight(19.0);
-        visites.setPrefWidth(115.0);
-        visites.setText(Vistes);
-        visites.setFont(new Font(13.0));
-
-        label0.setAlignment(javafx.geometry.Pos.TOP_RIGHT);
-        label0.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
-        label0.setLayoutX(39.0);
-        label0.setLayoutY(160.0);
-        label0.setPrefHeight(19.0);
-        label0.setPrefWidth(62.0);
-        label0.setText("Descrizione da Wikipedia:");
-        label0.setFont(new Font(13.0));
-
         /*setOnMouseClicked(e -> {
             // Action you want to do
             Alert alert = new Alert(AlertType.ERROR);
@@ -114,7 +94,9 @@ public class Card extends Pane {
                 -fx-background-color:#FFD699;-fx-border-size:0.5;
                 -fx-border-color:  #ffb84d;
                 -fx-border-radius: 20;-fx-background-radius: 20;""");
-        getChildren().addAll(photo,name, description, labelCost, cost,visites,label0);
+
+        //mostra la card creata a schermo
+        getChildren().addAll(photo,name, description, labelCost, cost);
 
 
 
