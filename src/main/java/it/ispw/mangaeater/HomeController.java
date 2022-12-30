@@ -2,18 +2,16 @@ package it.ispw.mangaeater;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -66,7 +64,6 @@ public class HomeController implements Initializable {
                 //System.out.println(i + " " + j);
             }
         }
-
         //FINE INIZIALIZZAZIONE LISTA DI ANNUNCI
 
 
@@ -76,10 +73,13 @@ public class HomeController implements Initializable {
     void openLogin(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("hello-view.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("login.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(fxmlLoader.load(), 450, 450));
+            stage.setTitle("Login - Manga Eater");
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();

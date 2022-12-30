@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.util.Objects;
+
 public class Card extends Pane {
 
     protected final ImageView photo;
@@ -36,7 +38,7 @@ public class Card extends Pane {
         dropShadow.setBlurType(BlurType.TWO_PASS_BOX);
         setEffect(dropShadow);*/
 
-        photo.setImage(new Image("C:\\Users\\Davide\\Desktop\\Università\\ISPW\\Progetto\\trunk\\MangaEater\\src\\main\\resources\\images\\One-Punch_Man.jpg"));
+        photo.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/One-Punch_Man.jpg"))));
         photo.setLayoutX(10);
         photo.setLayoutY(30);
         photo.setFitHeight(140);

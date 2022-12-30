@@ -4,11 +4,13 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.HomeController">
@@ -26,21 +28,35 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="594.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField editable="false" prefHeight="27.0" prefWidth="7.0" style="-fx-border-color: #ffb84d; -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20; -fx-text-fill: #ffb84d;" text="Filtro" HBox.hgrow="ALWAYS">
+                  <TextField editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="7.0" style="-fx-border-color: #ffb84d; -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20; -fx-text-fill: #ffb84d;" text="Filtro" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.7215686440467834" blue="0.3019607961177826" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </TextField>
-                  <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="300.0" promptText="Cerca" style="-fx-border-color: #ffb84d; -fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-text-fill: #ffb84d; -fx-prompt-text-fill: #ffd699;" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="searchBar" focusTraversable="false" prefHeight="25.0" prefWidth="300.0" promptText="Cerca" style="-fx-border-color: #ffb84d; -fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-text-fill: #ffb84d; -fx-prompt-text-fill: #ffd699;" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.7215686440467834" blue="0.3019607961177826" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </TextField>
                </children>
                <padding>
@@ -48,7 +64,7 @@
                </padding></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="188.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField fx:id="loginButton" alignment="CENTER" editable="false" onMouseClicked="#openLogin" style="-fx-background-radius: 20; -fx-background-color: #ffb84d; -fx-text-fill: white;" text="Accedi | Registrati">
+                  <TextField fx:id="loginButton" alignment="CENTER" editable="false" focusTraversable="false" onMouseClicked="#openLogin" style="-fx-background-radius: 20; -fx-background-color: #ffb84d; -fx-text-fill: white;" text="Accedi | Registrati">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
