@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -61,7 +62,6 @@ public class HomeController implements Initializable {
             for (int j = 0; j < 2; j++) {
                 cardHolder.add(list.get(count), j, i);
                 count++;
-                //System.out.println(i + " " + j);
             }
         }
         //FINE INIZIALIZZAZIONE LISTA DI ANNUNCI
@@ -81,8 +81,6 @@ public class HomeController implements Initializable {
             stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node)(event.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
             e.printStackTrace();

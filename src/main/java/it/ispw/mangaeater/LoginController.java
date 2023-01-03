@@ -1,6 +1,5 @@
 package it.ispw.mangaeater;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +33,7 @@ public class LoginController implements Initializable {
     private TextField password;
 
     @FXML
-    void onLoginButtonClick(ActionEvent event) {
+    void onLoginButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("hello-view.fxml"));
@@ -44,8 +43,6 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
             stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node)(event.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
             e.printStackTrace();

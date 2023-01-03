@@ -2,21 +2,34 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.DettaglioAnnuncioController">
    <children>
-      <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="932.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="932.0">
          <children>
-            <Label fx:id="title" style="-fx-text-fill: #ffb84d;" text="Title">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="60.0">
+               <children>
+                  <ImageView fx:id="imgBackHome" fitHeight="22.0" fitWidth="28.0" onMouseClicked="#backHome">
+                     <image>
+                        <Image url="@../../../images/left-arrow-o.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="849.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="title" style="-fx-text-fill: #ffb84d;" text="Title">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </HBox>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="932.0">

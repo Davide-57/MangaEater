@@ -1,12 +1,17 @@
 package it.ispw.mangaeater;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Card extends Pane {
@@ -30,22 +35,12 @@ public class Card extends Pane {
         setId(Id + "");
         setPrefHeight(200.0);
         setPrefWidth(385.0);
-        //setStyle("-fx-background-color:#FFF; -fx-border-radius: 10px; -fx-background-radius: 10px;");
-
-        /*DropShadow dropShadow = new DropShadow();
-        dropShadow.setHeight(3);
-        dropShadow.setWidth(3);
-        dropShadow.setBlurType(BlurType.TWO_PASS_BOX);
-        setEffect(dropShadow);*/
 
         photo.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/One-Punch_Man.jpg"))));
         photo.setLayoutX(10);
-        photo.setLayoutY(30);
+        photo.setLayoutY(40);
         photo.setFitHeight(140);
         photo.setFitWidth(90);
-//        photo.setRadius(45.0);
-//        photo.setStroke(javafx.scene.paint.Color.valueOf("#d7d7d7"));
-//        photo.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
 
         name.setAlignment(javafx.geometry.Pos.CENTER);
         name.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
@@ -54,8 +49,7 @@ public class Card extends Pane {
         name.setPrefHeight(26.0);
         name.setPrefWidth(385.0);
         name.setText(Name);
-        name.setFont(new Font(20));
-        name.setStyle("-fx-font-weight: bold;");
+        name.setStyle("-fx-font-weight: bold; -fx-font-size: 1.9em;");
 
         labelCost.setAlignment(Pos.TOP_LEFT);
         labelCost.setLayoutX(260);
@@ -77,19 +71,25 @@ public class Card extends Pane {
         cost.setPrefHeight(19.0);
         cost.setPrefWidth(115.0);
         cost.setText(Cost.toString() + "€");
-        cost.setFont(new Font(18.0));
-        cost.setStyle("-fx-font-weight: bold;");
+        cost.setStyle("-fx-font-weight: bold; -fx-font-size: 1.5em;");
 
-        /*setOnMouseClicked(e -> {
-            // Action you want to do
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setContentText("Sample Alert");
-            alert.showAndWait();
-        });*/
-
-        //setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-        //getStylesheets().add(getClass().getResource("CardDesign.css").toExternalForm());
+        setOnMouseClicked(e -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("dettaglio-annuncio.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Dettaglio annuncio - Manga Eater");
+                stage.setScene(new Scene(fxmlLoader.load()));
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
+                stage.show();
+                // Hide this current window (if this is what you want)
+                ((Node)(e.getSource())).getScene().getWindow().hide();
+            }
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         //#fff7e6 più chiaro
         setStyle("""
