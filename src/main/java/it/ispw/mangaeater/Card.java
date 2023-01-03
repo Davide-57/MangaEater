@@ -22,9 +22,9 @@ public class Card extends Pane {
     protected final Label labelCost;
     protected final Label cost;
 
-    private int ID;
+    private int id;
 
-    public Card(int Id, String Name, String Description, Double Cost) {
+    public Card(int idIn, String nameIn, String descriptionIn, Double costIn) {
 
         photo = new ImageView();
         name = new Label();
@@ -32,7 +32,7 @@ public class Card extends Pane {
         description = new Text();
         cost = new Label();
 
-        setId(Id + "");
+        setId(idIn + "");
         setPrefHeight(200.0);
         setPrefWidth(385.0);
 
@@ -48,7 +48,7 @@ public class Card extends Pane {
         name.setLayoutY(0);
         name.setPrefHeight(26.0);
         name.setPrefWidth(385.0);
-        name.setText(Name);
+        name.setText(nameIn);
         name.setStyle("-fx-font-weight: bold; -fx-font-size: 1.9em;");
 
         labelCost.setAlignment(Pos.TOP_LEFT);
@@ -62,7 +62,7 @@ public class Card extends Pane {
         description.setLayoutX(110);
         description.setLayoutY(45);
         description.setWrappingWidth(265);
-        description.setText(Description);
+        description.setText(descriptionIn);
         description.setFont(new Font(14));
 
         cost.setContentDisplay(javafx.scene.control.ContentDisplay.CENTER);
@@ -70,7 +70,7 @@ public class Card extends Pane {
         cost.setLayoutY(170);
         cost.setPrefHeight(19.0);
         cost.setPrefWidth(115.0);
-        cost.setText(Cost.toString() + "€");
+        cost.setText(costIn.toString() + "€");
         cost.setStyle("-fx-font-weight: bold; -fx-font-size: 1.5em;");
 
         setOnMouseClicked(e -> {
