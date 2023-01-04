@@ -3,6 +3,7 @@ package it.ispw.mangaeater;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.control.*;
@@ -75,16 +76,12 @@ public class Card extends Pane {
 
         setOnMouseClicked(e -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("dettaglio-annuncio.fxml"));
-                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
+                Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
                 stage.setTitle("Dettaglio annuncio - Manga Eater");
-                stage.setScene(new Scene(fxmlLoader.load()));
-                stage.setResizable(false);
-                stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
                 stage.show();
-                // Hide this current window (if this is what you want)
-                ((Node)(e.getSource())).getScene().getWindow().hide();
             }
             catch (IOException ex) {
                 ex.printStackTrace();
