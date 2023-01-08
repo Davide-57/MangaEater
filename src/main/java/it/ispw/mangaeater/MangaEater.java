@@ -36,7 +36,13 @@ public class MangaEater extends Application {
         }
     }
 
+    private static void inizializzaDbConnection() {
+    }
+
+
     public static void main(String[] args) {
+        inizializzaDbConnection();
         launch();
     }
+
 }

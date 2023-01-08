@@ -77,7 +77,7 @@
       </HBox>
       <VBox prefHeight="503.0" prefWidth="810.0" style="-fx-background-color: white;">
          <children>
-            <ScrollPane id="scrollPane" fx:id="scrollPane" prefHeight="520.0" prefWidth="690.0" style="-fx-background-color: white;">
+            <ScrollPane id="scrollPane" fx:id="scrollPane" prefHeight="520.0" prefWidth="690.0" style="-fx-background: white; -fx-background-color: white;">
                <content>
                   <GridPane fx:id="cardHolder" hgap="20.0" style="-fx-background-color: white;" vgap="20.0" />
                </content>

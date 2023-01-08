@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -42,34 +43,44 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         cp = new ComprareProdotto();
 
         List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
 
-        //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
-        list.add(new Card(1, "One-Punch Man Volume 1", "Un bel mangaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 500.0));
-        list.add(new Card(2, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(3, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(4, "Pawan Ghewande", "96******30", 50000.0));
-        list.add(new Card(5, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(6, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(7, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(8, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(9, "Pawan Ghewande", "96******30", 500.0));
-        list.add(new Card(10, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(11, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(12, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(13, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(14, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(15, "Pawan Ghewande","96******30", 500.0));
-        list.add(new Card(16, "Pawan Ghewande","96******30", 500.0));
-        
         int count = 0;
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 2; j++) {
-                cardHolder.add(list.get(count), j, i);
+
+        //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
+        for(AnnuncioBean annuncioBean : listaAnnunciBean){
+            list.add(new Card(count, annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto()));
+            count+=1;
+        }
+
+
+        /*
+        QUESTO PEZZO COMMENTATO LO LEVERò IN QUANTO ASSUMO CHE QUANDO L'APPLICAZIONE VIENE AVVIATA CI SIANO ALMENO 2 ANNUNCI DA MOSTRARE
+        MI SARà UTILE QUANDO INSERISCO IL MECCANISMO DI FILTRAGGIO IN QUANTO DA Lì POSSONO USCIRE ANCHE 0 O 1 ANNUNCI
+
+        if(list.size()==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setContentText("La ricerca non ha avuto risultati\n Immetere un altro filtro");
+            alert.showAndWait();
+        } else {
+            count = 0;
+            for(Card card: list){
+                cardHolder.add(card,count%2, count/2);
                 count++;
             }
+        }
+
+        */
+
+
+        count = 0;
+        for(Card card: list){
+            cardHolder.add(card,count%2, count/2);
+            count++;
         }
         //FINE INIZIALIZZAZIONE LISTA DI ANNUNCI
 

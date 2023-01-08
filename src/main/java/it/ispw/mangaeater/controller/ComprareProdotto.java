@@ -18,6 +18,6 @@ public class ComprareProdotto {
 
         listaAnnunci = annuncioDAO.selectAnnunciTot();
 
-        return AnnuncioBean.creaBean(listaAnnunci);
+        return AnnuncioBean.creaBeans(listaAnnunci);
     }
 }

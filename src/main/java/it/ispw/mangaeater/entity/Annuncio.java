@@ -4,14 +4,14 @@ public class Annuncio {
     private String titolo;
     private String descrizione;
     private double costo;
-    private Utente venditore;
+    private String venditoreEmail;
     private String urlImmagine;
 
-    public Annuncio(String titolo, String descrizione, double costo, Utente venditore, String urlImmagine) {
+    public Annuncio(String titolo, String descrizione, double costo, String venditoreEmail, String urlImmagine) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
-        this.venditore = venditore;
+        this.venditoreEmail = venditoreEmail;
         this.urlImmagine = urlImmagine;
     }
 
@@ -39,12 +39,12 @@ public class Annuncio {
         this.costo = costo;
     }
 
-    public Utente getVenditore() {
-        return venditore;
+    public String getVenditoreEmail() {
+        return venditoreEmail;
     }
 
-    public void setVenditore(Utente venditore) {
-        this.venditore = venditore;
+    public void setVenditoreEmail(String venditore) {
+        this.venditoreEmail = venditoreEmail;
     }
 
     public String getUrlImmagine() {
