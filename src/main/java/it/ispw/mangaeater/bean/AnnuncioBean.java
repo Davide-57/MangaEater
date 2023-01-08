@@ -1,7 +1,6 @@
 package it.ispw.mangaeater.bean;
 
 import it.ispw.mangaeater.entity.Annuncio;
-import it.ispw.mangaeater.entity.Utente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,6 @@ public class AnnuncioBean {
 
     //questa classe ha responsabilità di creator per sé stessa
     public static List<AnnuncioBean> creaBeans(List<Annuncio> listaAnnunci) {
-        int cont=0;
         AnnuncioBean bean;
         List<AnnuncioBean> beans = new ArrayList<>();
         for (Annuncio annuncio: listaAnnunci) {

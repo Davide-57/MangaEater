@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,8 +26,6 @@ public class HomeController implements Initializable {
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();
 
-    private ComprareProdotto cp;
-
     @FXML
     private GridPane cardHolder;
 
@@ -44,7 +41,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        cp = new ComprareProdotto();
+        ComprareProdotto cp = new ComprareProdotto();
 
         List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
 
