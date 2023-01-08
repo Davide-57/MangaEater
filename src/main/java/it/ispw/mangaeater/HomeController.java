@@ -1,5 +1,7 @@
 package it.ispw.mangaeater;
 
+import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.controller.ComprareProdotto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,12 +18,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
-    ObservableList<Card> list = FXCollections.observableArrayList();
+    private final ObservableList<Card> list = FXCollections.observableArrayList();
+
+    private ComprareProdotto cp;
 
     @FXML
     private GridPane cardHolder;
@@ -37,6 +42,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cp = new ComprareProdotto();
+
+        List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
 
         //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
         list.add(new Card(1, "One-Punch Man Volume 1", "Un bel mangaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 500.0));

@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import java.sql.* ;
+
 public class MangaEater extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,6 +22,18 @@ public class MangaEater extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
 
         stage.show();
+
+        String url = "jdbc:mysql://localhost:3306/mangaeater";
+        String username = "user";
+        String password = "user";
+
+        System.out.println("Connecting database...");
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            System.out.println("Database connected!");
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot connect the database!", e);
+        }
     }
 
     public static void main(String[] args) {
