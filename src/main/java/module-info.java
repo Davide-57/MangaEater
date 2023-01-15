@@ -6,7 +6,11 @@ module it.ispw.mangaeater {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires reactive.jikan;
+    requires reactor.core;
 
     opens it.ispw.mangaeater to javafx.fxml;
     exports it.ispw.mangaeater;
+    exports it.ispw.mangaeater.jikan;
+    opens it.ispw.mangaeater.jikan to javafx.fxml;
 }

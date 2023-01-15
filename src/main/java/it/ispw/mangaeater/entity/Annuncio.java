@@ -1,5 +1,9 @@
 package it.ispw.mangaeater.entity;
 
+import it.ispw.mangaeater.state.StateMachineAnnuncio;
+import it.ispw.mangaeater.state.StateMachineAnnuncioConcreta;
+import javafx.scene.layout.VBox;
+
 public class Annuncio {
     private String titolo;
     private String descrizione;
@@ -7,12 +11,19 @@ public class Annuncio {
     private String venditoreEmail;
     private String urlImmagine;
 
+    private StateMachineAnnuncio stateMachine;
+
     public Annuncio(String titolo, String descrizione, double costo, String venditoreEmail, String urlImmagine) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
         this.venditoreEmail = venditoreEmail;
         this.urlImmagine = urlImmagine;
+        this.stateMachine = new StateMachineAnnuncioConcreta(); //composizione
+    }
+
+    public static void temp(VBox allFrame) {
+        allFrame.setStyle("-fx-background-color:#FFD699;");
     }
 
     public String getTitolo() {

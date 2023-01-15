@@ -43,6 +43,7 @@ public class HomeController implements Initializable {
 
         ComprareProdotto cp = new ComprareProdotto();
 
+        //chiedo la lista al controller, pattern MVP
         List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
 
         int count = 0;
