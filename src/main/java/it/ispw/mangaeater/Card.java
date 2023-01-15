@@ -37,7 +37,7 @@ public class Card extends Pane {
         setPrefHeight(200.0);
         setPrefWidth(385.0);
 
-        photo.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/One-Punch_Man.jpg"))));
+        photo.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/"+idIn+".jpg"))));
         photo.setLayoutX(10);
         photo.setLayoutY(40);
         photo.setFitHeight(140);
@@ -77,7 +77,7 @@ public class Card extends Pane {
         setOnMouseClicked(e -> {
             try {
                 ComprareProdotto cp = new ComprareProdotto();
-                AnnuncioBean bean = new AnnuncioBean(nameIn, descriptionIn, costIn);
+                AnnuncioBean bean = new AnnuncioBean(idIn, nameIn, descriptionIn, costIn);
                 cp.mostraDettaglioAnnuncio(bean);
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();

@@ -7,21 +7,22 @@ import java.util.List;
 
 public class AnnuncioBean {
 
+    private final int id;
     private final String titolo;
     private final String descrizione;
     private final double costo;
     private String venditoreEmail;
-    private String urlImmagine;
 
-    public AnnuncioBean(String titolo, String descrizione, double costo, String venditoreEmail, String urlImmagine) {
+    public AnnuncioBean(int id, String titolo, String descrizione, double costo, String venditoreEmail) {
+        this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
         this.venditoreEmail = venditoreEmail;
-        this.urlImmagine = urlImmagine;
     }
 
-    public AnnuncioBean(String titolo, String descrizione, Double costo) {
+    public AnnuncioBean(int id, String titolo, String descrizione, Double costo) {
+        this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
@@ -32,7 +33,7 @@ public class AnnuncioBean {
         AnnuncioBean bean;
         List<AnnuncioBean> beans = new ArrayList<>();
         for (Annuncio annuncio: listaAnnunci) {
-            bean = new AnnuncioBean(annuncio.getTitolo(), annuncio.getDescrizione(), annuncio.getCosto(), annuncio.getVenditoreEmail(), annuncio.getUrlImmagine());
+            bean = new AnnuncioBean(annuncio.getId(), annuncio.getTitolo(), annuncio.getDescrizione(), annuncio.getCosto(), annuncio.getVenditoreEmail());
             beans.add(bean);
         }
         return beans;
@@ -54,7 +55,7 @@ public class AnnuncioBean {
         return venditoreEmail;
     }
 
-    public String getUrlImmagine() {
-        return urlImmagine;
+    public int getId() {
+        return id;
     }
 }

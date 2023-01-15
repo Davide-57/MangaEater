@@ -34,13 +34,13 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             rs.first();
             do{
+                int id = rs.getInt("idAnnuncio");
                 String titolo = rs.getString("titolo");
                 String desc = rs.getString("descrizione");
                 double costo = rs.getDouble("costo");
                 String venditoreEmail = rs.getString("venditore");
-                String urlImmagine = rs.getString("urlImmagine");
 
-                Annuncio a = new Annuncio(titolo, desc, costo, venditoreEmail, urlImmagine);
+                Annuncio a = new Annuncio(id, titolo, desc, costo, venditoreEmail);
 
                 listaAnnunci.add(a);
 

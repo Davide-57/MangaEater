@@ -69,6 +69,6 @@ public class DettaglioAnnuncioController implements Initializable {
         descriptionJikan.setText(Objects.requireNonNullElse(descJikan, "Non è disponibile una descrizione dalla libreria Jikan"));
 
         //la seguente istruzione è utile a far andare accapo il testo
-        descriptionJikan.setWrappingWidth(490);
+        descriptionJikan.setWrappingWidth(495);
     }
 }

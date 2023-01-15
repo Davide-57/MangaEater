@@ -2,28 +2,23 @@ package it.ispw.mangaeater.entity;
 
 import it.ispw.mangaeater.state.StateMachineAnnuncio;
 import it.ispw.mangaeater.state.StateMachineAnnuncioConcreta;
-import javafx.scene.layout.VBox;
 
 public class Annuncio {
+    private int id;
     private String titolo;
     private String descrizione;
     private double costo;
     private String venditoreEmail;
-    private String urlImmagine;
 
     private StateMachineAnnuncio stateMachine;
 
-    public Annuncio(String titolo, String descrizione, double costo, String venditoreEmail, String urlImmagine) {
+    public Annuncio(int id, String titolo, String descrizione, double costo, String venditoreEmail) {
+        this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
         this.venditoreEmail = venditoreEmail;
-        this.urlImmagine = urlImmagine;
         this.stateMachine = new StateMachineAnnuncioConcreta(); //composizione
-    }
-
-    public static void temp(VBox allFrame) {
-        allFrame.setStyle("-fx-background-color:#FFD699;");
     }
 
     public String getTitolo() {
@@ -58,11 +53,7 @@ public class Annuncio {
         this.venditoreEmail = venditoreEmail;
     }
 
-    public String getUrlImmagine() {
-        return urlImmagine;
-    }
-
-    public void setUrlImmagine(String urlImmagine) {
-        this.urlImmagine = urlImmagine;
+    public int getId() {
+        return id;
     }
 }
