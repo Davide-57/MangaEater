@@ -6,14 +6,20 @@ import java.sql.SQLException;
 
 public class DbConnection {
     private static Connection conn = null;
-    public synchronized static Connection getConnection() {
+
+    //aggiunto perché suggerito da SonarCloud in quanto è una Utility Class
+    private DbConnection() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static synchronized Connection getConnection() {
         if (conn == null) {
             try{
                 String user = "user";
-                String db_url = "jdbc:mysql://localhost:3306/mangaeater";
-                String driver_class_name = "com.mysql.cj.jdbc.Driver";
-                Class.forName(driver_class_name);
-                conn = DriverManager.getConnection(db_url, user, "user");
+                String dbUrl = "jdbc:mysql://localhost:3306/mangaeater";
+                String driverClassName = "com.mysql.cj.jdbc.Driver";
+                Class.forName(driverClassName);
+                conn = DriverManager.getConnection(dbUrl, user, "user");
             }
             catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
