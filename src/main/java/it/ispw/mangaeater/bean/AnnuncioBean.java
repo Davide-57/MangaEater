@@ -11,7 +11,7 @@ public class AnnuncioBean {
     private final String titolo;
     private final String descrizione;
     private final double costo;
-    private String venditoreEmail;
+    private final String venditoreEmail;
 
     public AnnuncioBean(int id, String titolo, String descrizione, double costo, String venditoreEmail) {
         this.id = id;
@@ -19,13 +19,6 @@ public class AnnuncioBean {
         this.descrizione = descrizione;
         this.costo = costo;
         this.venditoreEmail = venditoreEmail;
-    }
-
-    public AnnuncioBean(int id, String titolo, String descrizione, Double costo) {
-        this.id = id;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.costo = costo;
     }
 
     //questa classe ha responsabilità di creator per sé stessa

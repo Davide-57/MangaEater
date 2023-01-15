@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
 
         //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
         for(AnnuncioBean annuncioBean : listaAnnunciBean){
-            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto()));
+            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail()));
             count+=1;
         }
 

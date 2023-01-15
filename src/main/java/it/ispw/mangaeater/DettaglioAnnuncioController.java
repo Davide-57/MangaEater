@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -34,6 +35,9 @@ public class DettaglioAnnuncioController implements Initializable {
 
     @FXML
     private Text descriptionJikan;
+
+    @FXML
+    private Text emailVend;
 
     @FXML
     private ImageView image;
@@ -62,12 +66,15 @@ public class DettaglioAnnuncioController implements Initializable {
         title.setText(annuncioBean.getTitolo());
         cost.setText(annuncioBean.getCosto()+"€");
         description.setText(annuncioBean.getDescrizione());
+        //la seguente istruzione è utile a far andare accapo il testo
+        description.setWrappingWidth(495);
+        emailVend.setText(annuncioBean.getVenditoreEmail());
+        image.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/"+annuncioBean.getId()+".jpg"))));
 
         //di seguito chiamo la libreria Jikan per prendere informazioni sulla trama del manga
         JikanBoundary jikanBoundary = new JikanBoundary();
         String descJikan = jikanBoundary.estraiDescrizioneManga(title.getText());
         descriptionJikan.setText(Objects.requireNonNullElse(descJikan, "Non è disponibile una descrizione dalla libreria Jikan"));
-
         //la seguente istruzione è utile a far andare accapo il testo
         descriptionJikan.setWrappingWidth(495);
     }
