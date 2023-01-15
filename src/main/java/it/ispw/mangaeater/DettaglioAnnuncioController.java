@@ -39,9 +39,6 @@ public class DettaglioAnnuncioController implements Initializable {
     private ImageView image;
 
     @FXML
-    private ImageView imgBackHome;
-
-    @FXML
     private Label title;
 
     @FXML

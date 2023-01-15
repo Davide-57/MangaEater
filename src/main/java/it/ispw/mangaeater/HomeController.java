@@ -8,10 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,12 +26,6 @@ public class HomeController implements Initializable {
 
     @FXML
     private GridPane cardHolder;
-
-    @FXML
-    private TextField loginButton;
-
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private TextField searchBar;
@@ -86,7 +78,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void openLogin(MouseEvent event) {
+    void openLogin() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("login.fxml"));

@@ -7,9 +7,9 @@ import java.util.List;
 
 public class AnnuncioBean {
 
-    private String titolo;
-    private String descrizione;
-    private double costo;
+    private final String titolo;
+    private final String descrizione;
+    private final double costo;
     private String venditoreEmail;
     private String urlImmagine;
 

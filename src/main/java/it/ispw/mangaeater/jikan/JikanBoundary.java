@@ -6,6 +6,7 @@ import net.sandrohc.jikan.model.manga.Manga;
 import net.sandrohc.jikan.model.manga.MangaType;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public class JikanBoundary {
 
@@ -13,7 +14,7 @@ public class JikanBoundary {
         String descrizione = null;
         Jikan jikan = new Jikan();
 
-        Collection<Manga> results = null;
+        Collection<Manga> results;
         try {
             results = jikan.query().manga().search()
                     .query(nome)
@@ -25,7 +26,7 @@ public class JikanBoundary {
             throw new RuntimeException(e);
         }
 
-        for(Manga manga : results){
+        for(Manga manga : Objects.requireNonNull(results)){
             if(manga.synopsis != null){
                 descrizione = manga.synopsis;
                 break;
