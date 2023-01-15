@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -15,7 +14,7 @@
     <padding>
         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
     </padding>
-   <VBox alignment="TOP_CENTER" prefHeight="243.0" prefWidth="340.0">
+   <VBox alignment="TOP_CENTER" prefHeight="231.0" prefWidth="340.0">
       <children>
          <Label text="LOGIN" textFill="#ffb84d">
             <font>
@@ -66,9 +65,9 @@
          </VBox>
       </children>
    </VBox>
-   <HBox alignment="CENTER" prefHeight="67.0" prefWidth="340.0" translateY="10.0">
+   <VBox alignment="CENTER" prefHeight="99.0" prefWidth="340.0">
       <children>
-          <Button fx:id="loginButton" onAction="#onLoginButtonClick" prefHeight="39.0" prefWidth="107.0" style="-fx-background-color: #ffb84d; -fx-border-radius: 10; -fx-background-radius: 10;" text="Accedi">
+          <Button fx:id="loginButton" onAction="#onLoginButtonClick" prefHeight="39.0" prefWidth="107.0" style="-fx-background-color: #ffb84d; -fx-border-radius: 10; -fx-background-radius: 10;" text="Accedi" translateY="20.0">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
@@ -76,6 +75,11 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
+         <Label fx:id="registratiButton" onMouseClicked="#onRegistratiButtonClick" text="Registrati" textFill="#ffb84d" translateY="25.0">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
       </children>
-   </HBox>
+   </VBox>
 </VBox>

@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +33,9 @@ public class LoginController implements Initializable {
     private Button loginButton;
 
     @FXML
+    private Label registratiButton;
+
+    @FXML
     private TextField password;
 
     @FXML
@@ -47,6 +53,14 @@ public class LoginController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void onRegistratiButtonClick(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setContentText("La registrazione non è implementata");
+        alert.showAndWait();
     }
 
     @Override

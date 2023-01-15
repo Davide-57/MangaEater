@@ -16,7 +16,7 @@ public class JikanBoundary {
         Collection<Manga> results = null;
         try {
             results = jikan.query().manga().search()
-                    .query("one-piece")
+                    .query(nome)
                     .type(MangaType.MANGA)
                     .execute()
                     .collectList()
@@ -27,14 +27,6 @@ public class JikanBoundary {
 
         for(Manga manga : results){
             if(manga.synopsis != null){
-                System.out.println(manga.title);
-                System.out.println(manga.synopsis);
-                System.out.println(manga.type);
-                System.out.println(manga.rank);
-                System.out.println(manga.volumes);
-
-                System.out.println("\n\n");
-
                 descrizione = manga.synopsis;
                 break;
             }

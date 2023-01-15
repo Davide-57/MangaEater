@@ -1,5 +1,7 @@
 package it.ispw.mangaeater;
 
+import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.controller.ComprareProdotto;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -22,8 +24,6 @@ public class Card extends Pane {
     protected final Text description;
     protected final Label labelCost;
     protected final Label cost;
-
-    private int id;
 
     public Card(int idIn, String nameIn, String descriptionIn, Double costIn) {
 
@@ -76,6 +76,9 @@ public class Card extends Pane {
 
         setOnMouseClicked(e -> {
             try {
+                ComprareProdotto cp = new ComprareProdotto();
+                AnnuncioBean bean = new AnnuncioBean(nameIn, descriptionIn, costIn);
+                cp.mostraDettaglioAnnuncio(bean);
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);

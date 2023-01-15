@@ -21,6 +21,12 @@ public class AnnuncioBean {
         this.urlImmagine = urlImmagine;
     }
 
+    public AnnuncioBean(String titolo, String descrizione, Double costo) {
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.costo = costo;
+    }
+
     //questa classe ha responsabilità di creator per sé stessa
     public static List<AnnuncioBean> creaBeans(List<Annuncio> listaAnnunci) {
         AnnuncioBean bean;

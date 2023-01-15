@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox fx:id="allFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.DettaglioAnnuncioController">
    <children>
@@ -23,7 +25,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="64.0" prefWidth="849.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="title" style="-fx-text-fill: #ffb84d;" text="Title">
+                  <Label fx:id="title" text="Title">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -41,42 +43,82 @@
             </VBox>
             <VBox prefHeight="604.0" prefWidth="549.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <VBox prefHeight="213.0" prefWidth="547.0">
+                     <children>
+                        <HBox prefHeight="15.0" prefWidth="547.0">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Descrizione:">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="188.0" prefWidth="547.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="547.0">
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="70.0">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Costo:">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="cost" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost" translateY="-2.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="268.0" prefWidth="547.0" VBox.vgrow="NEVER">
+                     <children>
+                        <HBox prefHeight="22.0" prefWidth="547.0">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Descrizione Jikan:">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background: white; -fx-background-color: white;" VBox.vgrow="ALWAYS">
+                           <content>
+                              <VBox prefHeight="214.0" prefWidth="515.0">
+                                 <children>
+                                    <Text fx:id="descriptionJikan" strokeType="OUTSIDE" strokeWidth="0.0" text="Description Jikan">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
                      <padding>
                         <Insets bottom="10.0" right="10.0" />
                      </padding>
-                     <children>
-                        <Label style="-fx-text-fill: #ffb84d;" text="Descrizione:">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <padding>
-                        <Insets bottom="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <children>
-                        <Label style="-fx-text-fill: #ffb84d;" text="Costo:">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <children>
-                        <Label style="-fx-text-fill: #ffb84d;" text="Descrizione Wikipedia:">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
          </children>
