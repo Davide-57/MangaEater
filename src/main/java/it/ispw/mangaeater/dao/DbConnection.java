@@ -10,11 +10,10 @@ public class DbConnection {
         if (conn == null) {
             try{
                 String user = "user";
-                String pass = "user";
                 String db_url = "jdbc:mysql://localhost:3306/mangaeater";
                 String driver_class_name = "com.mysql.cj.jdbc.Driver";
                 Class.forName(driver_class_name);
-                conn = DriverManager.getConnection(db_url, user, pass);
+                conn = DriverManager.getConnection(db_url, user, "user");
             }
             catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();

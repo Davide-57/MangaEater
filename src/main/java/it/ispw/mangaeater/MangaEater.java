@@ -27,11 +27,10 @@ public class MangaEater extends Application {
 
         String url = "jdbc:mysql://localhost:3306/mangaeater";
         String username = "user";
-        String password = "user";
 
         System.out.println("Connecting database...");
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+        try (Connection connection = DriverManager.getConnection(url, username, "user")) {
             System.out.println("Database connected!");
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot connect the database!", e);

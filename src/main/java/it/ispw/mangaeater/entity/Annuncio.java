@@ -54,7 +54,7 @@ public class Annuncio {
         return venditoreEmail;
     }
 
-    public void setVenditoreEmail(String venditore) {
+    public void setVenditoreEmail(String venditoreEmail) {
         this.venditoreEmail = venditoreEmail;
     }
 
