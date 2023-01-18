@@ -22,6 +22,13 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
+    public HomeController() {
+    }
+
+    public HomeController(ComprareProdotto cp) {
+        this.cp = cp;
+    }
+
     private final ObservableList<Card> list = FXCollections.observableArrayList();
 
     @FXML
@@ -30,10 +37,10 @@ public class HomeController implements Initializable {
     @FXML
     private TextField searchBar;
 
+    private ComprareProdotto cp = new ComprareProdotto();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        ComprareProdotto cp = new ComprareProdotto();
 
         //chiedo la lista al controller, pattern MVP
         List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
@@ -42,10 +49,9 @@ public class HomeController implements Initializable {
 
         //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
         for(AnnuncioBean annuncioBean : listaAnnunciBean){
-            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail()));
+            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), this));
             count+=1;
         }
-
 
         /*
         QUESTO PEZZO COMMENTATO LO LEVERò IN QUANTO ASSUMO CHE QUANDO L'APPLICAZIONE VIENE AVVIATA CI SIANO ALMENO 2 ANNUNCI DA MOSTRARE
@@ -83,7 +89,7 @@ public class HomeController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("login.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Login - Manga Eater");
+            stage.setTitle("Manga Eater - Login");
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.setResizable(false);
             stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
@@ -95,5 +101,13 @@ public class HomeController implements Initializable {
         }
     }
 
+    public ComprareProdotto getCp() {
+        return cp;
+    }
+
+    /*
+    public void setCp(ComprareProdotto comprareProdotto){
+        cp = comprareProdotto;
+    }*/
 
 }

@@ -14,7 +14,6 @@ public class MangaEater extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MangaEater.class.getResource("home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
         stage.setTitle("Manga Eater");
         stage.setScene(scene);
         stage.setResizable(false);

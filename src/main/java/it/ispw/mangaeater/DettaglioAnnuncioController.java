@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,10 +23,17 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class DettaglioAnnuncioController implements Initializable {
+public class DettaglioAnnuncioController implements Initializable{
+
+    public DettaglioAnnuncioController(ComprareProdotto cp) {
+        this.cp = cp;
+    }
 
     @FXML
     private VBox allFrame;
+
+    @FXML
+    private Button buttonCompra;
 
     @FXML
     private Text cost;
@@ -45,24 +53,11 @@ public class DettaglioAnnuncioController implements Initializable {
     @FXML
     private Label title;
 
-    @FXML
-    void backHome(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Manga Eater");
-            stage.show();
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+    private ComprareProdotto cp;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AnnuncioBean annuncioBean = ComprareProdotto.beanDettaglioAnnuncio;
+        AnnuncioBean annuncioBean = cp.getBeanDettaglioAnnuncio();
         title.setText(annuncioBean.getTitolo());
         cost.setText(annuncioBean.getCosto()+"€");
         description.setText(annuncioBean.getDescrizione());
@@ -77,5 +72,37 @@ public class DettaglioAnnuncioController implements Initializable {
         descriptionJikan.setText(Objects.requireNonNullElse(descJikan, "Non è disponibile una descrizione dalla libreria Jikan"));
         //la seguente istruzione è utile a far andare accapo il testo
         descriptionJikan.setWrappingWidth(495);
+    }
+
+    @FXML
+    void backHome(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("home.fxml")));
+            loader.setControllerFactory(aClass -> new HomeController (cp));
+            Parent root = loader.load();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Manga Eater");
+
+            //di seguito recupero il controller della home appena creato e gli invio l'istanza del controller applicativo ComprareProdotto
+            //HomeController myController = loader.getController();
+            //myController.setCp(cp);
+
+            stage.show();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    void compraProdotto(MouseEvent event) {
+        if(cp.isLogged()){
+            //un utente si è loggato quindi avvio il caso d'uso Pagamento
+        }
+        else{
+            //non si è ancora loggato nessun utente quindi avvio il caso d'uso Login
+        }
     }
 }

@@ -10,18 +10,5 @@ public class Utente {
     //private String psw;
 
 
-    /*private static Utente utente = null;
 
-    private Utente(Utente utente) {
-        this.utente = utente;
-    }
-
-
-    public synchronized static Utente getInstance(String utenteId) {
-        if (utente == null){
-
-        }
-
-        return utente;
-    }*/
 }

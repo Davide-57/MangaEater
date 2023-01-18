@@ -7,11 +7,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.*;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class Card extends Pane {
     protected final Label labelCost;
     protected final Label cost;
 
-    public Card(int idIn, String nameIn, String descriptionIn, Double costIn, String emailVendIn) {
+    public Card(int idIn, String nameIn, String descriptionIn, Double costIn, String emailVendIn, HomeController homeController) {
 
         photo = new ImageView();
         name = new Label();
@@ -57,7 +58,7 @@ public class Card extends Pane {
         labelCost.setLayoutY(175);
         labelCost.setPrefHeight(20);
         labelCost.setPrefWidth(110);
-        labelCost.setText("Cost:");
+        labelCost.setText("Costo:");
         labelCost.setFont(new Font(13.0));
 
         description.setLayoutX(110);
@@ -76,14 +77,19 @@ public class Card extends Pane {
 
         setOnMouseClicked(e -> {
             try {
-                ComprareProdotto cp = new ComprareProdotto();
+                ComprareProdotto cp = homeController.getCp();
                 AnnuncioBean bean = new AnnuncioBean(idIn, nameIn, descriptionIn, costIn, emailVendIn);
                 cp.mostraDettaglioAnnuncio(bean);
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
+
+                loader.setControllerFactory(aClass -> new DettaglioAnnuncioController (cp));
+
+                Parent root = loader.load();
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setTitle("Dettaglio annuncio - Manga Eater");
+                stage.setTitle("Manga Eater - Dettaglio annuncio");
+
                 stage.show();
             }
             catch (IOException ex) {
