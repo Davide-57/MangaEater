@@ -18,12 +18,8 @@ public class UtenteDAOCSV implements UtenteDAO{
 
     private static final String CSV_FILE_NAME = "src/main/resources/utenze/utenti.CSV";
 
-    public UtenteDAOCSV() throws IOException {
+    public UtenteDAOCSV(){
         this.fd = new File(CSV_FILE_NAME);
-
-        if (!fd.exists()) {
-            fd.createNewFile();
-        }
     }
 
     @Override

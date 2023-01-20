@@ -22,14 +22,6 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-
-            //listaAnnunci.add(new Annuncio("prova1","desc", 100.2, "axs@xse.it", "ednkjwebdkjbwa"));
-            /*listaAnnunci.add(new Annuncio("prova2","desc", 20, "axs@xse.it", "ednkjwebdkjbwa"));
-            listaAnnunci.add(new Annuncio("prova3","desc", 20, "axs@xse.it", "ednkjwebdkjbwa"));
-            listaAnnunci.add(new Annuncio("prova4","desc", 20, "axs@xse.it", "ednkjwebdkjbwa"));
-            listaAnnunci.add(new Annuncio("prova5","desc", 20, "axs@xse.it", "ednkjwebdkjbwa"));
-
-             */
             ResultSet rs = Query.selectAll(stmt);
 
             rs.first();

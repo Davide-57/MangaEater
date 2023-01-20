@@ -20,10 +20,6 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
     public AnnuncioDAOCSV() throws IOException {
         this.fd = new File(CSV_FILE_NAME);
-
-        if (!fd.exists()) {
-            fd.createNewFile();
-        }
     }
 
     @Override
