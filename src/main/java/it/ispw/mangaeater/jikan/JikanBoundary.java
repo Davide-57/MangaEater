@@ -14,7 +14,7 @@ public class JikanBoundary {
         String descrizione = null;
         Jikan jikan = new Jikan();
 
-        Collection<Manga> results;
+        Collection<Manga> results = null;
         try {
             results = jikan.query().manga().search()
                     .query(nome)
@@ -23,7 +23,7 @@ public class JikanBoundary {
                     .collectList()
                     .block();
         } catch (JikanQueryException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         for(Manga manga : Objects.requireNonNull(results)){
