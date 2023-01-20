@@ -41,12 +41,12 @@ public class UtenteDAOCSV implements UtenteDAO{
             }
             else{
                 //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
-                int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.indexUtenteID]);
-                String nome = line[UtenteIndiceAttributi.indexNome];
-                String cognome = line[UtenteIndiceAttributi.indexCognome];
-                String email = line[UtenteIndiceAttributi.indexEmail];
-                String tipo = line[UtenteIndiceAttributi.indexTipo];
-                String psw = line[UtenteIndiceAttributi.indexPassword];
+                int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.INDEX_UTENTEID]);
+                String nome = line[UtenteIndiceAttributi.INDEX_NOME];
+                String cognome = line[UtenteIndiceAttributi.INDEX_COGNOME];
+                String email = line[UtenteIndiceAttributi.INDEX_EMAIL];
+                String tipo = line[UtenteIndiceAttributi.INDEX_TIPO];
+                String psw = line[UtenteIndiceAttributi.INDEX_PASSWORD];
 
                 Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw);
                 listaUtenti.add(utente);
@@ -61,16 +61,16 @@ public class UtenteDAOCSV implements UtenteDAO{
 
 
     private static class UtenteIndiceAttributi {
-        public static final int indexUtenteID = 0;
+        public static final int INDEX_UTENTEID = 0;
 
-        public static final int indexNome = 1;
+        public static final int INDEX_NOME = 1;
 
-        public static final int indexCognome = 2;
+        public static final int INDEX_COGNOME = 2;
 
-        public static final int indexEmail = 3;
+        public static final int INDEX_EMAIL = 3;
 
-        public static final int indexTipo = 4;
+        public static final int INDEX_TIPO = 4;
 
-        public static final int indexPassword = 5;
+        public static final int INDEX_PASSWORD = 5;
     }
 }

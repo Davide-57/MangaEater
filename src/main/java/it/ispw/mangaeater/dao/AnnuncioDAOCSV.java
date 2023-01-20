@@ -41,11 +41,11 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
             }
             else{
                 //le righe successive alla prima contengono le informazioni sugli annunci che vengono utilizzate per aggiungere un nuovo annuncio alla lista
-                int annuncioId = Integer.parseInt(line[AnnuncioDAOCSV.AnnuncioIndiceAttributi.indexAnnuncioID]);
-                String titolo = line[AnnuncioIndiceAttributi.indexTitolo];
-                String descrizione = line[AnnuncioIndiceAttributi.indexDescrizione];
-                double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.indexCosto]);
-                String venditoreEmail = line[AnnuncioIndiceAttributi.indexVenditoreEmail];
+                int annuncioId = Integer.parseInt(line[AnnuncioDAOCSV.AnnuncioIndiceAttributi.INDEX_ANNUNCIOID]);
+                String titolo = line[AnnuncioIndiceAttributi.INDEX_TITOLO];
+                String descrizione = line[AnnuncioIndiceAttributi.INDEX_DESCRIZIONE];
+                double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.INDEX_COSTO]);
+                String venditoreEmail = line[AnnuncioIndiceAttributi.INDEX_VENDITOREEMAIL];
 
                 Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail);
                 listaAnnunci.add(annuncio);
@@ -59,14 +59,14 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
 
     private static class AnnuncioIndiceAttributi {
-        public static final int indexAnnuncioID = 0;
+        public static final int INDEX_ANNUNCIOID = 0;
 
-        public static final int indexTitolo = 1;
+        public static final int INDEX_TITOLO = 1;
 
-        public static final int indexDescrizione = 2;
+        public static final int INDEX_DESCRIZIONE = 2;
 
-        public static final int indexCosto = 3;
+        public static final int INDEX_COSTO = 3;
 
-        public static final int indexVenditoreEmail = 4;
+        public static final int INDEX_VENDITOREEMAIL = 4;
     }
 }
