@@ -37,7 +37,7 @@ public class LoginController implements Initializable {
 
     @FXML
     void onLoginButtonClick() {
-        String email = this.email.getText();
+        String emailText = this.email.getText();
         String psw = this.password.getText();
     }
 

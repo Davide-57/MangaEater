@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AnnuncioDAOCSV implements AnnuncioDAO {
 
-    private File fd;
+    private final File fd;
 
     private static final String CSV_FILE_NAME = "src/main/resources/utenze/annunci.csv";
 
@@ -29,25 +29,25 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
         CSVReader csvReader;
         csvReader = new CSVReaderBuilder(new BufferedReader(new FileReader(fd))).build();
 
-        String[] record;
+        String[] line;
 
         List<Annuncio> listaAnnunci = new ArrayList<>();
 
         boolean firstLoop = true;
-        while ((record = csvReader.readNext()) != null) {
+        while ((line = csvReader.readNext()) != null) {
             if(firstLoop){
                 //scarto la prima riga perché è di intestazione
                 firstLoop = false;
             }
             else{
                 //le righe successive alla prima contengono le informazioni sugli annunci che vengono utilizzate per aggiungere un nuovo annuncio alla lista
-                int annuncioId = Integer.valueOf(record[AnnuncioDAOCSV.AnnuncioIndiceAttributi.getIndex_AnnuncioID()]);
-                String titolo = record[AnnuncioIndiceAttributi.getIndex_Titolo()];
-                String descrizione = record[AnnuncioIndiceAttributi.getIndex_Descrizione()];
-                double costo = Double.valueOf(record[AnnuncioIndiceAttributi.getIndex_Costo()]);
-                String vendtoreEmail = record[AnnuncioIndiceAttributi.getIndex_VenditoreEmail()];
+                int annuncioId = Integer.parseInt(line[AnnuncioDAOCSV.AnnuncioIndiceAttributi.indexAnnuncioID]);
+                String titolo = line[AnnuncioIndiceAttributi.indexTitolo];
+                String descrizione = line[AnnuncioIndiceAttributi.indexDescrizione];
+                double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.indexCosto]);
+                String venditoreEmail = line[AnnuncioIndiceAttributi.indexVenditoreEmail];
 
-                Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, vendtoreEmail);
+                Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail);
                 listaAnnunci.add(annuncio);
             }
 
@@ -59,24 +59,101 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
 
     private static class AnnuncioIndiceAttributi {
-        public static int getIndex_AnnuncioID() {
-            return 0;
-        }
+        public static int indexAnnuncioID = 0;
 
-        public static int getIndex_Titolo() {
-            return 1;
-        }
+        public static int indexTitolo = 1;
 
-        public static int getIndex_Descrizione() {
-            return 2;
-        }
+        public static int indexDescrizione = 2;
 
-        public static int getIndex_Costo() {
-            return 3;
-        }
+        public static int indexCosto = 3;
 
-        public static int getIndex_VenditoreEmail() {
-            return 4;
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static int indexVenditoreEmail = 4;
     }
 }

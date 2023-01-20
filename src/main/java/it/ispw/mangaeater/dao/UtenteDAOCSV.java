@@ -14,7 +14,7 @@ import java.util.List;
 
 public class UtenteDAOCSV implements UtenteDAO{
 
-    private File fd;
+    private final File fd;
 
     private static final String CSV_FILE_NAME = "src/main/resources/utenze/utenti.CSV";
 
@@ -29,24 +29,24 @@ public class UtenteDAOCSV implements UtenteDAO{
         CSVReader csvReader;
         csvReader = new CSVReaderBuilder(new BufferedReader(new FileReader(fd))).build();
 
-        String[] record;
+        String[] line;
 
         List<Utente> listaUtenti = new ArrayList<>();
 
         boolean firstLoop = true;
-        while ((record = csvReader.readNext()) != null) {
+        while ((line = csvReader.readNext()) != null) {
             if(firstLoop){
                 //scarto la prima riga perché è di intestazione
                 firstLoop = false;
             }
             else{
                 //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
-                int utenteId = Integer.valueOf(record[UtenteIndiceAttributi.getIndex_UtenteID()]);
-                String nome = record[UtenteIndiceAttributi.getIndex_Nome()];
-                String cognome = record[UtenteIndiceAttributi.getIndex_Cognome()];
-                String email = record[UtenteIndiceAttributi.getIndex_Email()];
-                String tipo = record[UtenteIndiceAttributi.getIndex_Tipo()];
-                String psw = record[UtenteIndiceAttributi.getIndex_Password()];
+                int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.indexUtenteID]);
+                String nome = line[UtenteIndiceAttributi.indexNome];
+                String cognome = line[UtenteIndiceAttributi.indexCognome];
+                String email = line[UtenteIndiceAttributi.indexEmail];
+                String tipo = line[UtenteIndiceAttributi.indexTipo];
+                String psw = line[UtenteIndiceAttributi.indexPassword];
 
                 Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw);
                 listaUtenti.add(utente);
@@ -61,28 +61,16 @@ public class UtenteDAOCSV implements UtenteDAO{
 
 
     private static class UtenteIndiceAttributi {
-        public static int getIndex_UtenteID() {
-            return 0;
-        }
+        public static int indexUtenteID = 0;
 
-        public static int getIndex_Nome() {
-            return 1;
-        }
+        public static int indexNome = 1;
 
-        public static int getIndex_Cognome() {
-            return 2;
-        }
+        public static int indexCognome = 2;
 
-        public static int getIndex_Email() {
-            return 3;
-        }
+        public static int indexEmail = 3;
 
-        public static int getIndex_Tipo() {
-            return 4;
-        }
+        public static int indexTipo = 4;
 
-        public static int getIndex_Password() {
-            return 5;
-        }
+        public static int indexPassword = 5;
     }
 }
