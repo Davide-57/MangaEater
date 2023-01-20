@@ -102,12 +102,9 @@ public class HomeController implements Initializable {
     }
 
     public ComprareProdotto getCp() {
+
         return cp;
     }
 
-    /*
-    public void setCp(ComprareProdotto comprareProdotto){
-        cp = comprareProdotto;
-    }*/
 
 }

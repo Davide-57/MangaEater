@@ -8,6 +8,7 @@ module it.ispw.mangaeater {
     requires java.sql;
     requires reactive.jikan;
     requires reactor.core;
+    requires com.opencsv;
 
     opens it.ispw.mangaeater to javafx.fxml;
     exports it.ispw.mangaeater;

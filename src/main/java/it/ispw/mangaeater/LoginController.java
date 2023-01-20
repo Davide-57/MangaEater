@@ -1,21 +1,21 @@
 package it.ispw.mangaeater;
 
+import it.ispw.mangaeater.controller.Login;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController{
+public class LoginController implements Initializable {
+
+    Login login;
 
     @FXML
     private TextField email;
@@ -29,21 +29,16 @@ public class LoginController{
     @FXML
     private TextField password;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        login = new Login();
+        login.estraiUtenti();
+    }
+
     @FXML
     void onLoginButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("hello-view.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Dettaglio - Manga Eater");
-            stage.setScene(new Scene(fxmlLoader.load(),450,450));
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        String email = this.email.getText();
+        String psw = this.password.getText();
     }
 
     @FXML
@@ -53,5 +48,4 @@ public class LoginController{
         alert.setContentText("La registrazione non è implementata");
         alert.showAndWait();
     }
-
 }

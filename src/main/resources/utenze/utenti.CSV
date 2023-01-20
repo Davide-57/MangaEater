@@ -1,0 +1,6 @@
+id,nome,cognome,email,tipo,psw
+1,Mario,Rossi,acq1@gmail.com,acquirente,psw1
+2,Luca,Verdi,acq2@gmail.com,acquirente,psw2
+3,Giuseppe,Neri,acq3@gmail.com,acquirente,psw3
+4,Mario,Bianchi,vend1@gmail.com,venditore,psw4
+5,Luca,Gialli,vend2@gmail.com,venditore,psw5

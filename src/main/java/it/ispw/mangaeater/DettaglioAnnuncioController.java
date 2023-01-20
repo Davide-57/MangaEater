@@ -85,10 +85,6 @@ public class DettaglioAnnuncioController implements Initializable{
             stage.setScene(scene);
             stage.setTitle("Manga Eater");
 
-            //di seguito recupero il controller della home appena creato e gli invio l'istanza del controller applicativo ComprareProdotto
-            //HomeController myController = loader.getController();
-            //myController.setCp(cp);
-
             stage.show();
         }
         catch (IOException ex) {
