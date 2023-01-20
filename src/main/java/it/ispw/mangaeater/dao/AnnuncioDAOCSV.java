@@ -59,101 +59,14 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
 
     private static class AnnuncioIndiceAttributi {
-        public static int indexAnnuncioID = 0;
+        public static final int indexAnnuncioID = 0;
 
-        public static int indexTitolo = 1;
+        public static final int indexTitolo = 1;
 
-        public static int indexDescrizione = 2;
+        public static final int indexDescrizione = 2;
 
-        public static int indexCosto = 3;
+        public static final int indexCosto = 3;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public static int indexVenditoreEmail = 4;
+        public static final int indexVenditoreEmail = 4;
     }
 }

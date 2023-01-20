@@ -61,16 +61,16 @@ public class UtenteDAOCSV implements UtenteDAO{
 
 
     private static class UtenteIndiceAttributi {
-        public static int indexUtenteID = 0;
+        public static final int indexUtenteID = 0;
 
-        public static int indexNome = 1;
+        public static final int indexNome = 1;
 
-        public static int indexCognome = 2;
+        public static final int indexCognome = 2;
 
-        public static int indexEmail = 3;
+        public static final int indexEmail = 3;
 
-        public static int indexTipo = 4;
+        public static final int indexTipo = 4;
 
-        public static int indexPassword = 5;
+        public static final int indexPassword = 5;
     }
 }
