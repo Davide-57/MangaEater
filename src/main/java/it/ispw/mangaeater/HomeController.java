@@ -4,10 +4,14 @@ import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -35,6 +39,9 @@ public class HomeController implements Initializable {
     private GridPane cardHolder;
 
     @FXML
+    private MenuButton filtroButton;
+
+    @FXML
     private TextField searchBar;
 
     private ComprareProdotto cp = new ComprareProdotto();
@@ -42,15 +49,48 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        inizializzaLista();
+        inizializzaBottoneFiltro();
+
+    }
+
+    private void inizializzaBottoneFiltro() {
+        // crea menuitems
+        MenuItem menuItem1 = new MenuItem("Ordina per inserimento");
+        MenuItem menuItem2 = new MenuItem("Ordina per titolo");
+        MenuItem menuItem3 = new MenuItem("Ordina per costo");
+
+        menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Opzione 1 selezionata");
+            }
+        });
+
+        menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Opzione 2 selezionata");
+            }
+        });
+
+        menuItem3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Opzione 2 selezionata");
+            }
+        });
+
+
+        filtroButton.getItems().addAll(menuItem1, menuItem2, menuItem3);
+    }
+
+    private void inizializzaLista() {
         //chiedo la lista al controller, pattern MVP
-        List<AnnuncioBean> listaAnnunciBean = cp.visualizzaAnnunci();
-
-        int count = 0;
-
-        //INIZIO INIZIALIZZAZIONE LISTA DI ANNUNCI
+        List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
+        
         for(AnnuncioBean annuncioBean : listaAnnunciBean){
             list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), this));
-            count+=1;
         }
 
         /*
@@ -73,14 +113,11 @@ public class HomeController implements Initializable {
         */
 
 
-        count = 0;
+        int count = 0;
         for(Card card: list){
             cardHolder.add(card,count%2, count/2);
             count++;
         }
-        //FINE INIZIALIZZAZIONE LISTA DI ANNUNCI
-
-
     }
 
     @FXML

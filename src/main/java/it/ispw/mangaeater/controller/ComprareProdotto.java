@@ -1,38 +1,39 @@
 package it.ispw.mangaeater.controller;
 
-import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.bean.AnnuncioBean;
-import it.ispw.mangaeater.dao.AnnuncioDAO;
-import it.ispw.mangaeater.dao.AnnuncioDAOCSV;
+import it.ispw.mangaeater.decorator.FiltroAnnunci;
+import it.ispw.mangaeater.decorator.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ComprareProdotto {
 
     private List<Annuncio> listaAnnunci;
 
+    //vedere se creare una classe Sessione
     private Utente utenteLoggato = null;
+
+    private FiltroAnnunci filtroAnnunci;
 
     private AnnuncioBean beanDettaglioAnnuncio;
 
-    public List<AnnuncioBean> visualizzaAnnunci() {
-        try{
-            //può essere scelto il tipo di DAO (CSV o DBMS). Da mettere una scelta randomica dei due
-            AnnuncioDAO annuncioDAO = new AnnuncioDAOCSV();
-            listaAnnunci = annuncioDAO.selectAnnunciTot();
-        } catch (CsvValidationException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
+    public List<AnnuncioBean> estraiAnnunciTot() {
 
+        filtroAnnunci = new FiltroStandard();
+        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
+
+    public List<AnnuncioBean> cambiaOrdinamento(FiltroStandard.OrdineAnnunci nuovoOrdine) {
+
+        filtroAnnunci.setOrdineAnnunci(nuovoOrdine);
+        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        return AnnuncioBean.creaBeans(listaAnnunci);
+    }
+
 
     public void mostraDettaglioAnnuncio(AnnuncioBean bean) {
         beanDettaglioAnnuncio = bean;
