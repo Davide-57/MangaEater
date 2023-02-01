@@ -2,6 +2,7 @@ package it.ispw.mangaeater.dao;
 
 import it.ispw.mangaeater.dao.query.Query;
 import it.ispw.mangaeater.entity.Annuncio;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,8 +32,9 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
                 String desc = rs.getString("descrizione");
                 double costo = rs.getDouble("costo");
                 String venditoreEmail = rs.getString("venditore");
+                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(rs.getString("categoria"));
 
-                Annuncio a = new Annuncio(id, titolo, desc, costo, venditoreEmail);
+                Annuncio a = new Annuncio(id, titolo, desc, costo, venditoreEmail, categoria);
 
                 listaAnnunci.add(a);
 

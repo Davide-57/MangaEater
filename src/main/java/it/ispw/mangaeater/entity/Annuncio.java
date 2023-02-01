@@ -1,5 +1,6 @@
 package it.ispw.mangaeater.entity;
 
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.state.StateMachineAnnuncio;
 import it.ispw.mangaeater.state.StateMachineAnnuncioConcreta;
 
@@ -9,15 +10,18 @@ public class Annuncio {
     private String descrizione;
     private double costo;
     private String venditoreEmail;
+    private CategoriaAnnuncio categoria;
 
     private StateMachineAnnuncio stateMachine;
 
-    public Annuncio(int id, String titolo, String descrizione, double costo, String venditoreEmail) {
+
+    public Annuncio(int id, String titolo, String descrizione, double costo, String venditoreEmail, CategoriaAnnuncio categoria) {
         this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.costo = costo;
         this.venditoreEmail = venditoreEmail;
+        this.categoria = categoria;
         this.stateMachine = new StateMachineAnnuncioConcreta(); //composizione
     }
 
@@ -55,5 +59,13 @@ public class Annuncio {
 
     public int getId() {
         return id;
+    }
+
+    public CategoriaAnnuncio getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaAnnuncio categoria) {
+        this.categoria = categoria;
     }
 }

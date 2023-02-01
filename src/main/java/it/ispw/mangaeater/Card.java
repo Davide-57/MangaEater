@@ -2,6 +2,7 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -26,7 +27,7 @@ public class Card extends Pane {
     protected final Label labelCost;
     protected final Label cost;
 
-    public Card(int idIn, String nameIn, String descriptionIn, Double costIn, String emailVendIn, HomeController homeController) {
+    public Card(int idIn, String nameIn, String descriptionIn, Double costIn, String emailVendIn, CategoriaAnnuncio categoriaIn, HomeController homeController) {
 
         photo = new ImageView();
         name = new Label();
@@ -78,7 +79,7 @@ public class Card extends Pane {
         setOnMouseClicked(e -> {
             try {
                 ComprareProdotto cp = homeController.getCp();
-                AnnuncioBean bean = new AnnuncioBean(idIn, nameIn, descriptionIn, costIn, emailVendIn);
+                AnnuncioBean bean = new AnnuncioBean(idIn, nameIn, descriptionIn, costIn, emailVendIn, categoriaIn);
                 cp.mostraDettaglioAnnuncio(bean);
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
 

@@ -2,9 +2,11 @@ package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.decorator.FiltroAnnunci;
+import it.ispw.mangaeater.decorator.FiltroPerCategoriaDecorator;
 import it.ispw.mangaeater.decorator.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 import java.util.List;
 
@@ -28,8 +30,15 @@ public class ComprareProdotto {
     }
 
     public List<AnnuncioBean> cambiaOrdinamento(FiltroStandard.OrdineAnnunci nuovoOrdine) {
-
+        //ancora non fatto
         filtroAnnunci.setOrdineAnnunci(nuovoOrdine);
+        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        return AnnuncioBean.creaBeans(listaAnnunci);
+    }
+
+    public List<AnnuncioBean> estraiAnnunciPerCategoria(CategoriaAnnuncio categoria) {
+        FiltroAnnunci filtroAnnunciWrapped = filtroAnnunci;
+        filtroAnnunci = new FiltroPerCategoriaDecorator(filtroAnnunciWrapped, categoria);
         listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
@@ -46,4 +55,5 @@ public class ComprareProdotto {
     public boolean isLogged() {
         return utenteLoggato != null;
     }
+
 }

@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.entity.Annuncio;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +17,7 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
     private final File fd;
 
-    private static final String CSV_FILE_NAME = "src/main/resources/utenze/annunci.csv";
+    private static final String CSV_FILE_NAME = "src/main/resources/annunci/annunci.csv";
 
     public AnnuncioDAOCSV() throws IOException {
         this.fd = new File(CSV_FILE_NAME);
@@ -46,8 +47,9 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
                 String descrizione = line[AnnuncioIndiceAttributi.INDEX_DESCRIZIONE];
                 double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.INDEX_COSTO]);
                 String venditoreEmail = line[AnnuncioIndiceAttributi.INDEX_VENDITOREEMAIL];
+                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(line[AnnuncioIndiceAttributi.INDEX_CATEGORIA]);
 
-                Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail);
+                Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail, categoria);
                 listaAnnunci.add(annuncio);
             }
 
@@ -68,5 +70,7 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
         public static final int INDEX_COSTO = 3;
 
         public static final int INDEX_VENDITOREEMAIL = 4;
+
+        public static final int INDEX_CATEGORIA = 5;
     }
 }

@@ -2,6 +2,7 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,38 +40,49 @@ public class HomeController implements Initializable {
     private GridPane cardHolder;
 
     @FXML
-    private MenuButton filtroButton;
+    private MenuButton categorieButton;
 
     @FXML
     private TextField searchBar;
 
     private ComprareProdotto cp = new ComprareProdotto();
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        inizializzaLista();
+        //chiedo la lista al controller, pattern MVP
+        List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
+        inizializzaLista(listaAnnunciBean);
         inizializzaBottoneFiltro();
 
     }
 
+
+
+
+
     private void inizializzaBottoneFiltro() {
         // crea menuitems
-        MenuItem menuItem1 = new MenuItem("Ordina per inserimento");
-        MenuItem menuItem2 = new MenuItem("Ordina per titolo");
-        MenuItem menuItem3 = new MenuItem("Ordina per costo");
+        MenuItem menuItem1 = new MenuItem("Shonen                 ");
+        MenuItem menuItem2 = new MenuItem("Kodomo");
+        MenuItem menuItem3 = new MenuItem("Shoujo");
+        MenuItem menuItem4 = new MenuItem("Josei");
+        MenuItem menuItem5 = new MenuItem("Seinen");
 
         menuItem1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Opzione 1 selezionata");
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.shonen);
+                inizializzaLista(listaAnnunciBean);
             }
         });
 
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Opzione 2 selezionata");
+                cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.kodomo);
             }
         });
 
@@ -81,16 +93,38 @@ public class HomeController implements Initializable {
             }
         });
 
+        menuItem4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Opzione 2 selezionata");
+            }
+        });
 
-        filtroButton.getItems().addAll(menuItem1, menuItem2, menuItem3);
+        menuItem5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Opzione 2 selezionata");
+            }
+        });
+
+
+        categorieButton.getItems().add(menuItem1);
+        categorieButton.getItems().add(menuItem2);
+        categorieButton.getItems().add(menuItem3);
+        categorieButton.getItems().add(menuItem4);
+        categorieButton.getItems().add(menuItem5);
     }
 
-    private void inizializzaLista() {
-        //chiedo la lista al controller, pattern MVP
-        List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
-        
+    private void inizializzaLista(List<AnnuncioBean> listaAnnunciBean) {
+
         for(AnnuncioBean annuncioBean : listaAnnunciBean){
-            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), this));
+            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), annuncioBean.getCategoria(), this));
+        }
+
+        int count = 0;
+        for(Card card: list){
+            cardHolder.add(card,count%2, count/2);
+            count++;
         }
 
         /*
@@ -112,12 +146,6 @@ public class HomeController implements Initializable {
 
         */
 
-
-        int count = 0;
-        for(Card card: list){
-            cardHolder.add(card,count%2, count/2);
-            count++;
-        }
     }
 
     @FXML
