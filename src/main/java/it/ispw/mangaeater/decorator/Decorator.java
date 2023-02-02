@@ -8,7 +8,7 @@ public abstract class Decorator extends FiltroAnnunci{
 
     protected FiltroAnnunci filtro;
 
-    public Decorator(FiltroAnnunci filtro) {
+    protected Decorator(FiltroAnnunci filtro) {
         this.filtro = filtro;
     }
 

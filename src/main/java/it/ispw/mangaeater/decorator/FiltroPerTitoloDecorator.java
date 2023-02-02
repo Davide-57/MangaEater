@@ -23,16 +23,9 @@ public class FiltroPerTitoloDecorator extends Decorator{
 
         listaAnnunci = super.visualizzaAnnunci();
 
-        List<Annuncio> nuovaListaFiltrata = listaAnnunci.stream()
+        return listaAnnunci.stream()
                 .filter(entry -> entry.getTitolo().toUpperCase().contains(titolo.toUpperCase()))
                 .collect(Collectors.toList());
-
-        return nuovaListaFiltrata;
-    }
-
-    @Override
-    public void setOrdineAnnunci(OrdineAnnunci ordineAnnunci) {
-        super.setOrdineAnnunci(ordineAnnunci);
     }
 
     @Override

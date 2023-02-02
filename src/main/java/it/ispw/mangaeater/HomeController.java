@@ -77,7 +77,7 @@ public class HomeController implements Initializable {
         menuItem1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.shonen);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHONEN);
                 inizializzaLista(listaAnnunciBean);
             }
         });
@@ -85,7 +85,7 @@ public class HomeController implements Initializable {
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.kodomo);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.KODOMO);
                 inizializzaLista(listaAnnunciBean);
             }
         });
@@ -93,7 +93,7 @@ public class HomeController implements Initializable {
         menuItem3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.shoujo);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHOUJO);
                 inizializzaLista(listaAnnunciBean);
             }
         });
@@ -101,7 +101,7 @@ public class HomeController implements Initializable {
         menuItem4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.josei);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.JOSEI);
                 inizializzaLista(listaAnnunciBean);
             }
         });
@@ -109,7 +109,7 @@ public class HomeController implements Initializable {
         menuItem5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.seinen);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SEINEN);
                 inizializzaLista(listaAnnunciBean);
             }
         });
@@ -124,7 +124,7 @@ public class HomeController implements Initializable {
 
     private void inizializzaLista(List<AnnuncioBean> listaAnnunciBean) {
 
-        if(listaAnnunciBean.size()==0){
+        if(listaAnnunciBean.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setContentText("La ricerca non ha avuto risultati\n Immetere un altro filtro");

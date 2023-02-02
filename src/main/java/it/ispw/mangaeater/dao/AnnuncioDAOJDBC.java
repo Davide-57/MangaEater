@@ -32,7 +32,7 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
                 String desc = rs.getString("descrizione");
                 double costo = rs.getDouble("costo");
                 String venditoreEmail = rs.getString("venditore");
-                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(rs.getString("categoria"));
+                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(rs.getString("categoria").toUpperCase());
 
                 Annuncio a = new Annuncio(id, titolo, desc, costo, venditoreEmail, categoria);
 

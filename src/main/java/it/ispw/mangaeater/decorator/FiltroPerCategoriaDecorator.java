@@ -25,11 +25,9 @@ public class FiltroPerCategoriaDecorator extends Decorator{
 
         listaAnnunci = super.visualizzaAnnunci();
 
-        List<Annuncio> nuovaListaFiltrata = listaAnnunci.stream()
+        return listaAnnunci.stream()
                 .filter(entry -> entry.getCategoria()==categoria)
                 .collect(Collectors.toList());
-
-        return nuovaListaFiltrata;
     }
 
     @Override
@@ -37,14 +35,6 @@ public class FiltroPerCategoriaDecorator extends Decorator{
         if(filtro.categoriaFiltrata){
             filtro = ((Decorator) filtro).getFiltro();
         }
-    }
-
-
-
-    @Override
-    public void setOrdineAnnunci(OrdineAnnunci ordineAnnunci) {
-
-        super.setOrdineAnnunci(ordineAnnunci);
     }
 
 }

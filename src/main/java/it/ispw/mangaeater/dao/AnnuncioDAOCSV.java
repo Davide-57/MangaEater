@@ -47,7 +47,7 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
                 String descrizione = line[AnnuncioIndiceAttributi.INDEX_DESCRIZIONE];
                 double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.INDEX_COSTO]);
                 String venditoreEmail = line[AnnuncioIndiceAttributi.INDEX_VENDITOREEMAIL];
-                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(line[AnnuncioIndiceAttributi.INDEX_CATEGORIA]);
+                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(line[AnnuncioIndiceAttributi.INDEX_CATEGORIA].toUpperCase());
 
                 Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail, categoria);
                 listaAnnunci.add(annuncio);
