@@ -1,6 +1,7 @@
 package it.ispw.mangaeater.dao;
 
 import it.ispw.mangaeater.dao.query.Query;
+import it.ispw.mangaeater.decorator.FiltroAnnunci;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
@@ -12,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnnuncioDAOJDBC implements AnnuncioDAO{
-    @Override
-    public List<Annuncio> selectAnnunciTot() {
+
+    public List<Annuncio> selectAnnunciOrdinati(FiltroAnnunci.OrdineAnnunci ordineAnnunci) {
         List<Annuncio> listaAnnunci = new ArrayList<>();
         Statement stmt = null;
         Connection conn;
@@ -23,7 +24,13 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-            ResultSet rs = Query.selectAll(stmt);
+            ResultSet rs = null;
+            switch (ordineAnnunci){
+                case ID -> rs = Query.selectAllOrderById(stmt);
+                case TITOLO -> rs = Query.selectAllOrderByTitolo(stmt);
+                case COSTO_CRESCENTE -> rs = Query.selectAllOrderByCostCresc(stmt);
+                case COSTO_DECRESCENTE -> rs = Query.selectAllOrderByCostDecresc(stmt);
+            }
 
             rs.first();
             do{

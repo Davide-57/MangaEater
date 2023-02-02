@@ -31,7 +31,6 @@ public class ComprareProdotto {
     }
 
     public List<AnnuncioBean> cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci nuovoOrdine) {
-        //ancora non fatto
         filtroAnnunci.setOrdineAnnunci(nuovoOrdine);
         listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         return AnnuncioBean.creaBeans(listaAnnunci);

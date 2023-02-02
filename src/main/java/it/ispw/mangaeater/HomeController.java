@@ -2,6 +2,7 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.decorator.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +47,9 @@ public class HomeController implements Initializable {
     private MenuButton categorieButton;
 
     @FXML
+    private MenuButton iconaOrdinamento;
+
+    @FXML
     private TextField searchBar;
 
     private ComprareProdotto cp = new ComprareProdotto();
@@ -59,15 +63,59 @@ public class HomeController implements Initializable {
         List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
         inizializzaLista(listaAnnunciBean);
         inizializzaBottoneFiltro();
+        inizializzaIconaOrdinamento();
 
     }
 
+    private void inizializzaIconaOrdinamento() {
+        // crea menu items
+        MenuItem menuItem1 = new MenuItem("Inserimento");
+        MenuItem menuItem2 = new MenuItem("Titolo");
+        MenuItem menuItem3 = new MenuItem("Costo Crescente");
+        MenuItem menuItem4 = new MenuItem("Costo Decrescente");
 
+        menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
+                inizializzaLista(listaAnnunciBean);
+            }
+        });
 
+        menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
+                inizializzaLista(listaAnnunciBean);
+            }
+        });
+
+        menuItem3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_CRESCENTE);
+                inizializzaLista(listaAnnunciBean);
+            }
+        });
+
+        menuItem4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_DECRESCENTE);
+                inizializzaLista(listaAnnunciBean);
+            }
+        });
+
+        //di seguito vengono aggiunti i menu item appena creati al bottone
+        iconaOrdinamento.getItems().add(menuItem1);
+        iconaOrdinamento.getItems().add(menuItem2);
+        iconaOrdinamento.getItems().add(menuItem3);
+        iconaOrdinamento.getItems().add(menuItem4);
+    }
 
 
     private void inizializzaBottoneFiltro() {
-        // crea menuitems
+        // crea menu items
         MenuItem menuItem1 = new MenuItem("Shonen                 ");
         MenuItem menuItem2 = new MenuItem("Kodomo");
         MenuItem menuItem3 = new MenuItem("Shoujo");
@@ -126,6 +174,7 @@ public class HomeController implements Initializable {
         });
 
 
+        //di seguito vengono aggiunti i menu item appena creati al bottone
         categorieButton.getItems().add(menuItem1);
         categorieButton.getItems().add(menuItem2);
         categorieButton.getItems().add(menuItem3);

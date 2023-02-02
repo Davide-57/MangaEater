@@ -14,6 +14,7 @@ public abstract class FiltroAnnunci {
     // se true allora il filtro è un decoratore per filtrare i titoli
     protected boolean titoloFiltrato = false;
 
+
     public abstract List<Annuncio> visualizzaAnnunci();
 
     public abstract void setOrdineAnnunci(OrdineAnnunci ordineAnnunci);
@@ -21,7 +22,8 @@ public abstract class FiltroAnnunci {
     public enum OrdineAnnunci{
         ID,
         TITOLO,
-        COSTO
+        COSTO_CRESCENTE,
+        COSTO_DECRESCENTE
     }
 
 }

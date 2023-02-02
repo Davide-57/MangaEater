@@ -3,6 +3,7 @@ package it.ispw.mangaeater.dao;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
+import it.ispw.mangaeater.decorator.FiltroAnnunci;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
@@ -24,7 +25,7 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
     }
 
     @Override
-    public List<Annuncio> selectAnnunciTot() throws IOException, CsvValidationException {
+    public List<Annuncio> selectAnnunciOrdinati(FiltroAnnunci.OrdineAnnunci ordineAnnunci) throws IOException, CsvValidationException {
 
         // create csvReader object passing file reader as a parameter
         CSVReader csvReader;
