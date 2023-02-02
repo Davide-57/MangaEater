@@ -8,8 +8,10 @@ public abstract class FiltroAnnunci {
 
     protected List<Annuncio> listaAnnunci;
 
+    // se true allora il filtro è un decoratore per filtrare le categorie
     protected boolean categoriaFiltrata = false;
 
+    // se true allora il filtro è un decoratore per filtrare i titoli
     protected boolean titoloFiltrato = false;
 
     public abstract List<Annuncio> visualizzaAnnunci();

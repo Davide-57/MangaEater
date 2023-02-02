@@ -41,6 +41,10 @@ public class ComprareProdotto {
         FiltroAnnunci filtroAnnunciWrapped = filtroAnnunci;
         filtroAnnunci = new FiltroPerCategoriaDecorator(filtroAnnunciWrapped, categoria);
         listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        if(listaAnnunci.isEmpty()){
+            //reimposto il filtro precedente in quanto la ricerca non ha dato risultati
+            filtroAnnunci = filtroAnnunciWrapped;
+        }
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
 

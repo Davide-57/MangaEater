@@ -73,6 +73,7 @@ public class HomeController implements Initializable {
         MenuItem menuItem3 = new MenuItem("Shoujo");
         MenuItem menuItem4 = new MenuItem("Josei");
         MenuItem menuItem5 = new MenuItem("Seinen");
+        MenuItem menuItem6 = new MenuItem("Tutti");
 
         menuItem1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -114,12 +115,23 @@ public class HomeController implements Initializable {
             }
         });
 
+        menuItem6.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
+                inizializzaLista(listaAnnunciBean);
+                //rimuovo qualsiasi cosa nella searchbar per chiearire il fatto che vengono rimossi anche eventuali filtri sul titolo
+                searchBar.clear();
+            }
+        });
+
 
         categorieButton.getItems().add(menuItem1);
         categorieButton.getItems().add(menuItem2);
         categorieButton.getItems().add(menuItem3);
         categorieButton.getItems().add(menuItem4);
         categorieButton.getItems().add(menuItem5);
+        categorieButton.getItems().add(menuItem6);
     }
 
     private void inizializzaLista(List<AnnuncioBean> listaAnnunciBean) {

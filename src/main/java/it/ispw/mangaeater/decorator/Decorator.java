@@ -27,4 +27,8 @@ public abstract class Decorator extends FiltroAnnunci{
     public FiltroAnnunci getFiltro() {
         return filtro;
     }
+
+    public void setFiltro(FiltroAnnunci filtro) {
+        this.filtro = filtro;
+    }
 }
