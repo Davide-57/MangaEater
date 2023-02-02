@@ -74,7 +74,7 @@ public class HomeController implements Initializable {
         MenuItem menuItem3 = new MenuItem("Costo Crescente");
         MenuItem menuItem4 = new MenuItem("Costo Decrescente");
 
-        menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem1.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
@@ -82,7 +82,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem2.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
@@ -90,7 +90,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem3.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem3.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_CRESCENTE);
@@ -98,7 +98,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem4.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem4.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_DECRESCENTE);
@@ -123,7 +123,7 @@ public class HomeController implements Initializable {
         MenuItem menuItem5 = new MenuItem("Seinen");
         MenuItem menuItem6 = new MenuItem("Tutti");
 
-        menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem1.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHONEN);
@@ -131,7 +131,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem2.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.KODOMO);
@@ -139,7 +139,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem3.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem3.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHOUJO);
@@ -147,7 +147,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem4.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem4.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.JOSEI);
@@ -155,7 +155,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem5.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem5.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SEINEN);
@@ -163,7 +163,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        menuItem6.setOnAction(new EventHandler<ActionEvent>() {
+        menuItem6.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
