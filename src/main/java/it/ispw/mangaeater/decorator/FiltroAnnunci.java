@@ -8,6 +8,10 @@ public abstract class FiltroAnnunci {
 
     protected List<Annuncio> listaAnnunci;
 
+    protected boolean categoriaFiltrata = false;
+
+    protected boolean titoloFiltrato = false;
+
     public abstract List<Annuncio> visualizzaAnnunci();
 
     public abstract void setOrdineAnnunci(OrdineAnnunci ordineAnnunci);

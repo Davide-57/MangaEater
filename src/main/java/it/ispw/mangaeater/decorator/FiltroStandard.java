@@ -32,6 +32,7 @@ public class FiltroStandard extends FiltroAnnunci{
 
     //questo metodo serve a cambiare l'ordinamento della lista
     public void setOrdineAnnunci(OrdineAnnunci ordineAnnunci) {
+
         this.ordineAnnunci = ordineAnnunci;
     }
 

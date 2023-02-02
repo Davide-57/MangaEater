@@ -3,6 +3,7 @@ package it.ispw.mangaeater.controller;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.decorator.FiltroAnnunci;
 import it.ispw.mangaeater.decorator.FiltroPerCategoriaDecorator;
+import it.ispw.mangaeater.decorator.FiltroPerTitoloDecorator;
 import it.ispw.mangaeater.decorator.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
@@ -39,6 +40,13 @@ public class ComprareProdotto {
     public List<AnnuncioBean> estraiAnnunciPerCategoria(CategoriaAnnuncio categoria) {
         FiltroAnnunci filtroAnnunciWrapped = filtroAnnunci;
         filtroAnnunci = new FiltroPerCategoriaDecorator(filtroAnnunciWrapped, categoria);
+        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        return AnnuncioBean.creaBeans(listaAnnunci);
+    }
+
+    public List<AnnuncioBean> estraiAnnunciPerTitolo(String titolo) {
+        FiltroAnnunci filtroAnnunciWrapped = filtroAnnunci;
+        filtroAnnunci = new FiltroPerTitoloDecorator(filtroAnnunciWrapped, titolo);
         listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         return AnnuncioBean.creaBeans(listaAnnunci);
     }

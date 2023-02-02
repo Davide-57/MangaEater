@@ -8,17 +8,21 @@ import java.util.stream.Collectors;
 
 public class FiltroPerCategoriaDecorator extends Decorator{
 
-    private CategoriaAnnuncio categoria;
+    private final CategoriaAnnuncio categoria;
 
     public FiltroPerCategoriaDecorator(FiltroAnnunci filtro, CategoriaAnnuncio categoria) {
 
         super(filtro);
         this.categoria = categoria;
+        this.categoriaFiltrata = true;
     }
 
 
     @Override
     public List<Annuncio> visualizzaAnnunci() {
+
+        rimuoviDecoratorDaSovrascrivere();
+
         listaAnnunci = super.visualizzaAnnunci();
 
         List<Annuncio> nuovaListaFiltrata = listaAnnunci.stream()
@@ -29,7 +33,17 @@ public class FiltroPerCategoriaDecorator extends Decorator{
     }
 
     @Override
+    protected void rimuoviDecoratorDaSovrascrivere(){
+        if(filtro.categoriaFiltrata){
+            filtro = ((Decorator) filtro).getFiltro();
+        }
+    }
+
+
+
+    @Override
     public void setOrdineAnnunci(OrdineAnnunci ordineAnnunci) {
+
         super.setOrdineAnnunci(ordineAnnunci);
     }
 

@@ -41,7 +41,7 @@
                         </InnerShadow>
                      </effect>
                   </MenuButton>
-                  <TextField fx:id="searchBar" focusTraversable="false" prefWidth="300.0" promptText="Cerca" style="-fx-border-color: #ffb84d; -fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-text-fill: #ffb84d; -fx-prompt-text-fill: #ffd699;" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="searchBar" focusTraversable="false" onKeyPressed="#estraiAnnunciPerTitolo" prefWidth="300.0" promptText="Cerca" style="-fx-border-color: #ffb84d; -fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-text-fill: #ffb84d; -fx-prompt-text-fill: #ffd699;" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

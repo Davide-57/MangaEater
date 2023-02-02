@@ -11,10 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -82,28 +85,32 @@ public class HomeController implements Initializable {
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.kodomo);
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.kodomo);
+                inizializzaLista(listaAnnunciBean);
             }
         });
 
         menuItem3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Opzione 2 selezionata");
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.shoujo);
+                inizializzaLista(listaAnnunciBean);
             }
         });
 
         menuItem4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Opzione 2 selezionata");
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.josei);
+                inizializzaLista(listaAnnunciBean);
             }
         });
 
         menuItem5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Opzione 2 selezionata");
+                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.seinen);
+                inizializzaLista(listaAnnunciBean);
             }
         });
 
@@ -117,35 +124,24 @@ public class HomeController implements Initializable {
 
     private void inizializzaLista(List<AnnuncioBean> listaAnnunciBean) {
 
-        for(AnnuncioBean annuncioBean : listaAnnunciBean){
-            list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), annuncioBean.getCategoria(), this));
-        }
-
-        int count = 0;
-        for(Card card: list){
-            cardHolder.add(card,count%2, count/2);
-            count++;
-        }
-
-        /*
-        QUESTO PEZZO COMMENTATO LO LEVERò IN QUANTO ASSUMO CHE QUANDO L'APPLICAZIONE VIENE AVVIATA CI SIANO ALMENO 2 ANNUNCI DA MOSTRARE
-        MI SARà UTILE QUANDO INSERISCO IL MECCANISMO DI FILTRAGGIO IN QUANTO DA Lì POSSONO USCIRE ANCHE 0 O 1 ANNUNCI
-
-        if(list.size()==0){
+        if(listaAnnunciBean.size()==0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setContentText("La ricerca non ha avuto risultati\n Immetere un altro filtro");
             alert.showAndWait();
         } else {
-            count = 0;
+            cardHolder.getChildren().removeAll(list);
+            list.clear();
+            for(AnnuncioBean annuncioBean : listaAnnunciBean){
+                list.add(new Card(annuncioBean.getId(), annuncioBean.getTitolo(), annuncioBean.getDescrizione(), annuncioBean.getCosto(), annuncioBean.getVenditoreEmail(), annuncioBean.getCategoria(), this));
+            }
+
+            int count = 0;
             for(Card card: list){
                 cardHolder.add(card,count%2, count/2);
                 count++;
             }
         }
-
-        */
-
     }
 
     @FXML
@@ -169,6 +165,15 @@ public class HomeController implements Initializable {
     public ComprareProdotto getCp() {
 
         return cp;
+    }
+
+    @FXML
+    void estraiAnnunciPerTitolo(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            // codice da eseguire quando viene premuto il tasto "invio"
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerTitolo(searchBar.getText());
+            inizializzaLista(listaAnnunciBean);
+        }
     }
 
 

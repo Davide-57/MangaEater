@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Decorator extends FiltroAnnunci{
 
-    FiltroAnnunci filtro;
+    protected FiltroAnnunci filtro;
 
     public Decorator(FiltroAnnunci filtro) {
         this.filtro = filtro;
@@ -20,5 +20,11 @@ public abstract class Decorator extends FiltroAnnunci{
 
     public void setOrdineAnnunci(OrdineAnnunci ordineAnnunci) {
         filtro.setOrdineAnnunci(ordineAnnunci);
+    }
+
+    protected abstract void rimuoviDecoratorDaSovrascrivere();
+
+    public FiltroAnnunci getFiltro() {
+        return filtro;
     }
 }
