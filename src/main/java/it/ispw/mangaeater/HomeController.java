@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     public HomeController() {
+        this.cp = new ComprareProdotto();
     }
 
     public HomeController(ComprareProdotto cp) {
@@ -52,7 +53,7 @@ public class HomeController implements Initializable {
     @FXML
     private TextField searchBar;
 
-    private ComprareProdotto cp = new ComprareProdotto();
+    private final ComprareProdotto cp;
 
 
 
@@ -66,6 +67,43 @@ public class HomeController implements Initializable {
         inizializzaIconaOrdinamento();
 
     }
+
+    @FXML
+    void openLogin() {
+        try {
+            //FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setLocation(getClass().getResource("login.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login.fxml")));
+            loader.setControllerFactory(aClass -> new LoginController (cp));
+
+            Stage stage = new Stage();
+            stage.setTitle("Manga Eater - Login");
+            stage.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ComprareProdotto getCp() {
+
+        return cp;
+    }
+
+    @FXML
+    void estraiAnnunciPerTitolo(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            // codice da eseguire quando viene premuto il tasto "invio"
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerTitolo(searchBar.getText());
+            inizializzaLista(listaAnnunciBean);
+        }
+    }
+
 
     private void inizializzaIconaOrdinamento() {
         // crea menu items
@@ -189,6 +227,7 @@ public class HomeController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setContentText("La ricerca non ha avuto risultati\n Immetere un altro filtro");
+            alert.setTitle("NESSUN RISULTATO");
             alert.showAndWait();
         } else {
             cardHolder.getChildren().removeAll(list);
@@ -204,38 +243,5 @@ public class HomeController implements Initializable {
             }
         }
     }
-
-    @FXML
-    void openLogin() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("login.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Manga Eater - Login");
-            stage.setScene(new Scene(fxmlLoader.load()));
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ComprareProdotto getCp() {
-
-        return cp;
-    }
-
-    @FXML
-    void estraiAnnunciPerTitolo(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            // codice da eseguire quando viene premuto il tasto "invio"
-            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerTitolo(searchBar.getText());
-            inizializzaLista(listaAnnunciBean);
-        }
-    }
-
 
 }

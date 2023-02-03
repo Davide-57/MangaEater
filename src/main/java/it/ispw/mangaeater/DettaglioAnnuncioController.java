@@ -25,10 +25,6 @@ import java.util.ResourceBundle;
 
 public class DettaglioAnnuncioController implements Initializable{
 
-    public DettaglioAnnuncioController(ComprareProdotto cp) {
-        this.cp = cp;
-    }
-
     @FXML
     private VBox allFrame;
 
@@ -54,6 +50,10 @@ public class DettaglioAnnuncioController implements Initializable{
     private Label title;
 
     private ComprareProdotto cp;
+
+    public DettaglioAnnuncioController(ComprareProdotto cp) {
+        this.cp = cp;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

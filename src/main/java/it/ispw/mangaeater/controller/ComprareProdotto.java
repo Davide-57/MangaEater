@@ -6,8 +6,8 @@ import it.ispw.mangaeater.decorator.FiltroPerCategoriaDecorator;
 import it.ispw.mangaeater.decorator.FiltroPerTitoloDecorator;
 import it.ispw.mangaeater.decorator.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
-import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
+import it.ispw.mangaeater.sessione.Sessione;
 
 import java.util.List;
 
@@ -15,18 +15,24 @@ public class ComprareProdotto {
 
     private List<Annuncio> listaAnnunci;
 
-    //vedere se creare una classe Sessione
-    private Utente utenteLoggato = null;
+    // la classe Sessione ha la responsabilità di registrare se un utente è attualmente loggato
+    private Sessione sessione;
 
-    private FiltroAnnunci filtroAnnunci;
+    private FiltroAnnunci filtroAnnunci = null;
 
     private AnnuncioBean beanDettaglioAnnuncio;
 
+    public ComprareProdotto() {
+        sessione = new Sessione();
+    }
 
     public List<AnnuncioBean> estraiAnnunciTot() {
 
-        filtroAnnunci = new FiltroStandard();
-        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        //se filtro annunci è diverso da null utilizzo la lista generata precedentemente in modo da non resettare il filtro
+        if(filtroAnnunci == null){
+            filtroAnnunci = new FiltroStandard();
+            listaAnnunci = filtroAnnunci.visualizzaAnnunci();
+        }
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
 
@@ -64,7 +70,11 @@ public class ComprareProdotto {
     }
 
     public boolean isLogged() {
-        return utenteLoggato != null;
+        return sessione.isLogged();
+    }
+
+    public void setSessione(Sessione sessione) {
+        this.sessione = sessione;
     }
 
 }

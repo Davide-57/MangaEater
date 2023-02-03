@@ -33,24 +33,19 @@ public class UtenteDAOCSV implements UtenteDAO{
 
         List<Utente> listaUtenti = new ArrayList<>();
 
-        boolean firstLoop = true;
+        //scarto la prima riga perché è di intestazione
+        csvReader.readNext();
         while ((line = csvReader.readNext()) != null) {
-            if(firstLoop){
-                //scarto la prima riga perché è di intestazione
-                firstLoop = false;
-            }
-            else{
-                //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
-                int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.INDEX_UTENTEID]);
-                String nome = line[UtenteIndiceAttributi.INDEX_NOME];
-                String cognome = line[UtenteIndiceAttributi.INDEX_COGNOME];
-                String email = line[UtenteIndiceAttributi.INDEX_EMAIL];
-                String tipo = line[UtenteIndiceAttributi.INDEX_TIPO];
-                String psw = line[UtenteIndiceAttributi.INDEX_PASSWORD];
+            //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
+            int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.INDEX_UTENTEID]);
+            String nome = line[UtenteIndiceAttributi.INDEX_NOME];
+            String cognome = line[UtenteIndiceAttributi.INDEX_COGNOME];
+            String email = line[UtenteIndiceAttributi.INDEX_EMAIL];
+            String tipo = line[UtenteIndiceAttributi.INDEX_TIPO];
+            String psw = line[UtenteIndiceAttributi.INDEX_PASSWORD];
 
-                Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw);
-                listaUtenti.add(utente);
-            }
+            Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw);
+            listaUtenti.add(utente);
 
         }
         csvReader.close();

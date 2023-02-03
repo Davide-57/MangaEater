@@ -21,7 +21,11 @@ public class Utente {
         this.psw = psw;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPsw() {
+        return psw;
     }
 }

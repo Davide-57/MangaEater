@@ -35,24 +35,19 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
         List<Annuncio> listaAnnunci = new ArrayList<>();
 
-        boolean firstLoop = true;
+        //scarto la prima riga perché è di intestazione
+        csvReader.readNext();
         while ((line = csvReader.readNext()) != null) {
-            if(firstLoop){
-                //scarto la prima riga perché è di intestazione
-                firstLoop = false;
-            }
-            else{
-                //le righe successive alla prima contengono le informazioni sugli annunci che vengono utilizzate per aggiungere un nuovo annuncio alla lista
-                int annuncioId = Integer.parseInt(line[AnnuncioDAOCSV.AnnuncioIndiceAttributi.INDEX_ANNUNCIOID]);
-                String titolo = line[AnnuncioIndiceAttributi.INDEX_TITOLO];
-                String descrizione = line[AnnuncioIndiceAttributi.INDEX_DESCRIZIONE];
-                double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.INDEX_COSTO]);
-                String venditoreEmail = line[AnnuncioIndiceAttributi.INDEX_VENDITOREEMAIL];
-                CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(line[AnnuncioIndiceAttributi.INDEX_CATEGORIA].toUpperCase());
+            //le righe successive alla prima contengono le informazioni sugli annunci che vengono utilizzate per aggiungere un nuovo annuncio alla lista
+            int annuncioId = Integer.parseInt(line[AnnuncioDAOCSV.AnnuncioIndiceAttributi.INDEX_ANNUNCIOID]);
+            String titolo = line[AnnuncioIndiceAttributi.INDEX_TITOLO];
+            String descrizione = line[AnnuncioIndiceAttributi.INDEX_DESCRIZIONE];
+            double costo = Double.parseDouble(line[AnnuncioIndiceAttributi.INDEX_COSTO]);
+            String venditoreEmail = line[AnnuncioIndiceAttributi.INDEX_VENDITOREEMAIL];
+            CategoriaAnnuncio categoria = CategoriaAnnuncio.valueOf(line[AnnuncioIndiceAttributi.INDEX_CATEGORIA].toUpperCase());
 
-                Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail, categoria);
-                listaAnnunci.add(annuncio);
-            }
+            Annuncio annuncio = new Annuncio(annuncioId, titolo, descrizione, costo, venditoreEmail, categoria);
+            listaAnnunci.add(annuncio);
 
         }
         csvReader.close();

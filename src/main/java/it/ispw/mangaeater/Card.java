@@ -80,6 +80,7 @@ public class Card extends Pane {
             try {
                 ComprareProdotto cp = homeController.getCp();
                 AnnuncioBean bean = new AnnuncioBean(idIn, nameIn, descriptionIn, costIn, emailVendIn, categoriaIn);
+                // con la seguente operazione viene richiesto al controller applicativo di memorizzare le informazioni dell'annuncio di cui si vuole il dettaglio
                 cp.mostraDettaglioAnnuncio(bean);
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
 
