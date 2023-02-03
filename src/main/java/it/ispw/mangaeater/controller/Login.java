@@ -52,7 +52,6 @@ public class Login {
                 if(u.getPsw().equals(psw)){
                     utenteVerificato = true;
                     cp.setSessione(new Sessione(u));
-                    break;
                 }
                 // se la password non viene verificata allora termina il for perché l'email è univoca
                 break;

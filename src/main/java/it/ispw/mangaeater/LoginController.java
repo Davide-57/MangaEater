@@ -55,7 +55,6 @@ public class LoginController implements Initializable {
                 if(login.autenticaUtente(bean)){
                     // utente autenticato, la schermata di login viene chiusa
                     ((Stage)email.getScene().getWindow()).close();
-                    System.out.println("VERIFICATO");
                 }
                 else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);

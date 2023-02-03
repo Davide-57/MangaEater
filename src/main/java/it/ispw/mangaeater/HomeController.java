@@ -71,10 +71,8 @@ public class HomeController implements Initializable {
     @FXML
     void openLogin() {
         try {
-            //FXMLLoader fxmlLoader = new FXMLLoader();
-            //fxmlLoader.setLocation(getClass().getResource("login.fxml"));
-
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login.fxml")));
+            // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
             loader.setControllerFactory(aClass -> new LoginController (cp));
 
             Stage stage = new Stage();
