@@ -1,10 +1,10 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
-import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
-import it.ispw.mangaeater.decoratorPattern.FiltroPerCategoriaDecorator;
-import it.ispw.mangaeater.decoratorPattern.FiltroPerTitoloDecorator;
-import it.ispw.mangaeater.decoratorPattern.FiltroStandard;
+import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
+import it.ispw.mangaeater.decorator_pattern.FiltroPerCategoriaDecorator;
+import it.ispw.mangaeater.decorator_pattern.FiltroPerTitoloDecorator;
+import it.ispw.mangaeater.decorator_pattern.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;

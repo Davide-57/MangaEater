@@ -2,10 +2,10 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
-import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
+import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
-import it.ispw.mangaeater.observerPattern.Observer;
-import it.ispw.mangaeater.observerPattern.Subject;
+import it.ispw.mangaeater.observer_pattern.Observer;
+import it.ispw.mangaeater.observer_pattern.Subject;
 import it.ispw.mangaeater.sessione.Sessione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -78,6 +78,8 @@ public class HomeController implements Initializable, Observer {
 
     private Subject sessione;
 
+    private static final String LOGOUT = "Logout";
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,7 +92,7 @@ public class HomeController implements Initializable, Observer {
 
         // se è stato effettuato il login il bottone del login diventa quello del logout
         if(cp.isLogged()){
-            loginButton.setText("Logout");
+            loginButton.setText(LOGOUT);
         }
 
     }
@@ -280,13 +282,12 @@ public class HomeController implements Initializable, Observer {
     public void update() {
         // viene cambiata l'etichetta del loginButton
         String textLoginButton = loginButton.getText();
-        if(textLoginButton.equals("Logout")){
+        if(textLoginButton.equals(LOGOUT)){
             loginButton.setText("Accedi | Registrati");
         }
         else{
-            loginButton.setText("Logout");
+            loginButton.setText(LOGOUT);
         }
-        System.out.println("No new message");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package it.ispw.mangaeater.observerPattern;
+package it.ispw.mangaeater.observer_pattern;
 
 public interface Subject {
 

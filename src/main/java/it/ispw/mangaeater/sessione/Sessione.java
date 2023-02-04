@@ -1,8 +1,8 @@
 package it.ispw.mangaeater.sessione;
 
 import it.ispw.mangaeater.entity.Utente;
-import it.ispw.mangaeater.observerPattern.Observer;
-import it.ispw.mangaeater.observerPattern.Subject;
+import it.ispw.mangaeater.observer_pattern.Observer;
+import it.ispw.mangaeater.observer_pattern.Subject;
 
 import java.util.ArrayList;
 import java.util.List;

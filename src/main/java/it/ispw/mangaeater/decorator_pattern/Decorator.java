@@ -1,4 +1,4 @@
-package it.ispw.mangaeater.decoratorPattern;
+package it.ispw.mangaeater.decorator_pattern;
 
 import it.ispw.mangaeater.entity.Annuncio;
 

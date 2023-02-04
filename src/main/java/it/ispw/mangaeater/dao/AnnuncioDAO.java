@@ -1,7 +1,7 @@
 package it.ispw.mangaeater.dao;
 
 import com.opencsv.exceptions.CsvValidationException;
-import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
+import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.entity.Annuncio;
 
 import java.io.IOException;
