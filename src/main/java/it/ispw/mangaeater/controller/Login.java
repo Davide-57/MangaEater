@@ -5,7 +5,6 @@ import it.ispw.mangaeater.bean.UtenteBeanFromView;
 import it.ispw.mangaeater.dao.UtenteDAO;
 import it.ispw.mangaeater.dao.UtenteDAOCSV;
 import it.ispw.mangaeater.entity.Utente;
-import it.ispw.mangaeater.sessione.Sessione;
 
 import java.io.IOException;
 import java.util.List;
@@ -51,7 +50,7 @@ public class Login {
                 // una volta che viene matchata un'email allora viene confrontata anche la password
                 if(u.getPsw().equals(psw)){
                     utenteVerificato = true;
-                    cp.setSessione(new Sessione(u));
+                    cp.setUtenteLoggato(u);
                 }
                 // se la password non viene verificata allora termina il for perché l'email è univoca
                 break;

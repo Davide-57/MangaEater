@@ -1,11 +1,12 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
-import it.ispw.mangaeater.decorator.FiltroAnnunci;
-import it.ispw.mangaeater.decorator.FiltroPerCategoriaDecorator;
-import it.ispw.mangaeater.decorator.FiltroPerTitoloDecorator;
-import it.ispw.mangaeater.decorator.FiltroStandard;
+import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
+import it.ispw.mangaeater.decoratorPattern.FiltroPerCategoriaDecorator;
+import it.ispw.mangaeater.decoratorPattern.FiltroPerTitoloDecorator;
+import it.ispw.mangaeater.decoratorPattern.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
+import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.sessione.Sessione;
 
@@ -77,4 +78,15 @@ public class ComprareProdotto {
         this.sessione = sessione;
     }
 
+    public void setUtenteLoggato(Utente utente){
+        sessione.setUtenteLoggato(utente);
+    }
+
+    public Sessione getSessione() {
+        return sessione;
+    }
+
+    public void effettuaLogout() {
+        setUtenteLoggato(null);
+    }
 }

@@ -60,7 +60,7 @@
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../../../images/icona-ordinamento.jpg" />
+                              <Image url="@../../../images/icona-ordinamento.png" />
                            </image>
                         </ImageView>
                      </graphic>

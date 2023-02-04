@@ -1,20 +1,22 @@
-package it.ispw.mangaeater.decorator;
+package it.ispw.mangaeater.decoratorPattern;
 
 import it.ispw.mangaeater.entity.Annuncio;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FiltroPerTitoloDecorator extends Decorator{
+public class FiltroPerCategoriaDecorator extends Decorator{
 
-    private final String titolo;
+    private final CategoriaAnnuncio categoria;
 
-    public FiltroPerTitoloDecorator(FiltroAnnunci filtro, String titolo) {
+    public FiltroPerCategoriaDecorator(FiltroAnnunci filtro, CategoriaAnnuncio categoria) {
 
         super(filtro);
-        this.titolo = titolo;
-        this.titoloFiltrato = true;
+        this.categoria = categoria;
+        this.categoriaFiltrata = true;
     }
+
 
     @Override
     public List<Annuncio> visualizzaAnnunci() {
@@ -24,12 +26,12 @@ public class FiltroPerTitoloDecorator extends Decorator{
         listaAnnunci = super.visualizzaAnnunci();
 
         return listaAnnunci.stream()
-                .filter(entry -> entry.getTitolo().toUpperCase().contains(titolo.toUpperCase()))
+                .filter(entry -> entry.getCategoria()==categoria)
                 .collect(Collectors.toList());
     }
 
     @Override
-    protected void rimuoviDecoratorDaSovrascrivere() {
+    protected void rimuoviDecoratorDaSovrascrivere(){
         /*
         LOGICA DELLA RIMOZIONE DEI DECORATOR:
         Vengono rimossi tutti i decorator che applicano un filtro per titolo
@@ -43,7 +45,7 @@ public class FiltroPerTitoloDecorator extends Decorator{
         Decorator filtroInGerarchiaPrec = this;
         while(filtroInGerarchiaActual.categoriaFiltrata || filtroInGerarchiaActual.titoloFiltrato){
             // se sto nel ciclo significa che filtroInGerarchia è un filtro non standard. Mi fermo quando arrivo al filtro standard
-            if(filtroInGerarchiaActual.titoloFiltrato){
+            if(filtroInGerarchiaActual.categoriaFiltrata){
                 filtroInGerarchiaPrec.setFiltro(((Decorator)filtroInGerarchiaActual).getFiltro());
             }
             //passo al prossimo filtro della gerarchia
@@ -51,4 +53,5 @@ public class FiltroPerTitoloDecorator extends Decorator{
             filtroInGerarchiaActual = ((Decorator) filtroInGerarchiaActual).getFiltro();
         }
     }
+
 }

@@ -3,7 +3,7 @@ package it.ispw.mangaeater.dao;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
-import it.ispw.mangaeater.decorator.FiltroAnnunci;
+import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 

@@ -1,4 +1,4 @@
-package it.ispw.mangaeater.decorator;
+package it.ispw.mangaeater.decoratorPattern;
 
 import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.dao.AnnuncioDAO;

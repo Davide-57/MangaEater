@@ -2,8 +2,11 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
-import it.ispw.mangaeater.decorator.FiltroAnnunci;
+import it.ispw.mangaeater.decoratorPattern.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
+import it.ispw.mangaeater.observerPattern.Observer;
+import it.ispw.mangaeater.observerPattern.Subject;
+import it.ispw.mangaeater.sessione.Sessione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,14 +32,29 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+public class HomeController implements Initializable, Observer {
 
+    //questo costruttore è quello richiamato dal main
+    //per questo motivo dovrà essere creata una nuova sessione e impostata come Subject di questa istanza
     public HomeController() {
+        //creo il controller applicativo
         this.cp = new ComprareProdotto();
+        //imposto questa istanza del controller grafico come Observer della sessione
+        this.setSubject(new Sessione());
+        sessione.register(this);
+        //imposto la sessione nel controller applicativo
+        //NOTA: sono consapevole che non dovrebbero esserci messaggi al controller
+        //      applicativo con oggetti che non sono Bean ma considererò la classe
+        //      Sessione come una classe particolare per cui tali messaggi sono consentiti
+        cp.setSessione((Sessione) sessione);
     }
 
+    //questo costruttore viene richiamato dal dettaglioAnnuncioController
+    //dato che già esiste una sessione la devo richiamare dal controller applicativo
     public HomeController(ComprareProdotto cp) {
+        //creo il controller applicativo
         this.cp = cp;
+        this.setSubject(cp.getSessione());
     }
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();
@@ -53,8 +71,12 @@ public class HomeController implements Initializable {
     @FXML
     private TextField searchBar;
 
+    @FXML
+    private TextField loginButton;
+
     private final ComprareProdotto cp;
 
+    private Subject sessione;
 
 
     @Override
@@ -66,22 +88,34 @@ public class HomeController implements Initializable {
         inizializzaBottoneFiltro();
         inizializzaIconaOrdinamento();
 
+        // se è stato effettuato il login il bottone del login diventa quello del logout
+        if(cp.isLogged()){
+            loginButton.setText("Logout");
+        }
+
     }
 
     @FXML
     void openLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login.fxml")));
-            // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
-            loader.setControllerFactory(aClass -> new LoginController (cp));
+            if(!cp.isLogged()){
+                //se l'utente non è loggato va fatto il login
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login.fxml")));
+                // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
+                loader.setControllerFactory(aClass -> new LoginController (cp));
 
-            Stage stage = new Stage();
-            stage.setTitle("Manga Eater - Login");
-            stage.setScene(new Scene(loader.load()));
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
+                Stage stage = new Stage();
+                stage.setTitle("Manga Eater - Login");
+                stage.setScene(new Scene(loader.load()));
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+            }
+            else{
+                //altrimenti c'è un utente loggato e quindi si vuole effettuare il logout
+                cp.effettuaLogout();
+            }
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -242,4 +276,21 @@ public class HomeController implements Initializable {
         }
     }
 
+    @Override
+    public void update() {
+        // viene cambiata l'etichetta del loginButton
+        String textLoginButton = loginButton.getText();
+        if(textLoginButton.equals("Logout")){
+            loginButton.setText("Accedi | Registrati");
+        }
+        else{
+            loginButton.setText("Logout");
+        }
+        System.out.println("No new message");
+    }
+
+    @Override
+    public void setSubject(Subject sub) {
+        sessione = sub;
+    }
 }
