@@ -60,6 +60,10 @@ public class UtenteDAOCSV implements UtenteDAO{
         return listaUtenti;
     }
 
+    @Override
+    public void updateCosto(Utente utenteLoggato, double nuovoCosto) {
+
+    }
 
 
     private static class UtenteIndiceAttributi {

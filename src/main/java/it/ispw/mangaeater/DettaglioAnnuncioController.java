@@ -2,7 +2,7 @@ package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
-import it.ispw.mangaeater.jikan.JikanBoundary;
+import it.ispw.mangaeater.boundary.jikan.JikanBoundary;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

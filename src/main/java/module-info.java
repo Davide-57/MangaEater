@@ -12,6 +12,6 @@ module it.ispw.mangaeater {
 
     opens it.ispw.mangaeater to javafx.fxml;
     exports it.ispw.mangaeater;
-    exports it.ispw.mangaeater.jikan;
-    opens it.ispw.mangaeater.jikan to javafx.fxml;
+    exports it.ispw.mangaeater.boundary.jikan;
+    opens it.ispw.mangaeater.boundary.jikan to javafx.fxml;
 }

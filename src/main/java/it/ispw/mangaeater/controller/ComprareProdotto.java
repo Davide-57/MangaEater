@@ -1,6 +1,8 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.boundary.CorriereBoundaryCP;
+import it.ispw.mangaeater.boundary.VenditoreBoundaryCP;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.decorator_pattern.FiltroPerCategoriaDecorator;
 import it.ispw.mangaeater.decorator_pattern.FiltroPerTitoloDecorator;
@@ -106,5 +108,11 @@ public class ComprareProdotto {
 
     public Sessione getSessione() {
         return sessione;
+    }
+
+    public void concludiAcquisto(String emailVenditore) {
+        VenditoreBoundaryCP vb = new VenditoreBoundaryCP(emailVenditore);
+        CorriereBoundaryCP cb = new CorriereBoundaryCP();
+
     }
 }

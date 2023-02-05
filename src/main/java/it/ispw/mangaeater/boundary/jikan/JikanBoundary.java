@@ -1,4 +1,4 @@
-package it.ispw.mangaeater.jikan;
+package it.ispw.mangaeater.boundary.jikan;
 
 import net.sandrohc.jikan.Jikan;
 import net.sandrohc.jikan.exception.JikanQueryException;

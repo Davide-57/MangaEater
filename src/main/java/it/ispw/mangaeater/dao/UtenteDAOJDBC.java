@@ -2,6 +2,7 @@ package it.ispw.mangaeater.dao;
 
 import it.ispw.mangaeater.dao.query.QueryUtente;
 import it.ispw.mangaeater.entity.Utente;
+import it.ispw.mangaeater.exception.SQLUtenteException;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -53,5 +54,23 @@ public class UtenteDAOJDBC implements UtenteDAO{
             }
         }
         return listaUtenti;
+    }
+
+    @Override
+    public void updateCosto(Utente utenteLoggato, double nuovoCosto) throws SQLUtenteException {
+
+        // STEP 1: dichiarazioni
+
+        try {
+            Connection conn = DbConnection.getConnection();
+
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            QueryUtente.updateSaldo(stmt, utenteLoggato, nuovoCosto);
+
+        } catch (SQLException e) {
+            throw new SQLUtenteException(e.getMessage());
+        }
+
     }
 }
