@@ -65,6 +65,9 @@
                            <image>
                               <Image url="@../../../images/icona-ordinamento.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
                      </graphic>
                   </MenuButton>
