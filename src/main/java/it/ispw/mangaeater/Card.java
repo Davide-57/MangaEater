@@ -5,6 +5,7 @@ import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -104,6 +105,8 @@ public class Card extends Pane {
                 -fx-background-color:#FFD699;-fx-border-size:0.5;
                 -fx-border-color:  #ffb84d;
                 -fx-border-radius: 20;-fx-background-radius: 20;""");
+
+        setCursor(Cursor.HAND);
 
         //mostra la card creata a schermo
         getChildren().addAll(photo,name, description, labelCost, cost);

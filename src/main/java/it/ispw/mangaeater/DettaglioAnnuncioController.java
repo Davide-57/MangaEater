@@ -9,12 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,12 +22,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DettaglioAnnuncioController implements Initializable{
-
-    @FXML
-    private VBox allFrame;
-
-    @FXML
-    private Button buttonCompra;
 
     @FXML
     private Text cost;
@@ -49,7 +41,7 @@ public class DettaglioAnnuncioController implements Initializable{
     @FXML
     private Label title;
 
-    private ComprareProdotto cp;
+    private final ComprareProdotto cp;
 
     public DettaglioAnnuncioController(ComprareProdotto cp) {
         this.cp = cp;
