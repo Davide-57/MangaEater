@@ -1,6 +1,6 @@
 package it.ispw.mangaeater.dao;
 
-import it.ispw.mangaeater.dao.query.Query;
+import it.ispw.mangaeater.dao.query.QueryAnnuncio;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
@@ -26,10 +26,10 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             ResultSet rs = null;
             switch (ordineAnnunci){
-                case ID -> rs = Query.selectAllOrderById(stmt);
-                case TITOLO -> rs = Query.selectAllOrderByTitolo(stmt);
-                case COSTO_CRESCENTE -> rs = Query.selectAllOrderByCostCresc(stmt);
-                case COSTO_DECRESCENTE -> rs = Query.selectAllOrderByCostDecresc(stmt);
+                case ID -> rs = QueryAnnuncio.selectAllOrderById(stmt);
+                case TITOLO -> rs = QueryAnnuncio.selectAllOrderByTitolo(stmt);
+                case COSTO_CRESCENTE -> rs = QueryAnnuncio.selectAllOrderByCostCresc(stmt);
+                case COSTO_DECRESCENTE -> rs = QueryAnnuncio.selectAllOrderByCostDecresc(stmt);
             }
 
             rs.first();

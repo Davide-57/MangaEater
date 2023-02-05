@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Query {
+public class QueryAnnuncio {
 
     //aggiunto perché suggerito da SonarCloud in quanto è una Utility Class
-    private Query() {
+    private QueryAnnuncio() {
         throw new IllegalStateException("Utility class");
     }
 

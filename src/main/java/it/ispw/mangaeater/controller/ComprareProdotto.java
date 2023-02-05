@@ -19,11 +19,11 @@ public class ComprareProdotto {
     private List<Annuncio> listaAnnunci;
 
     // la classe Sessione ha la responsabilità di registrare se un utente è attualmente loggato
-    private Sessione sessione;
+    private final Sessione sessione;
 
     private FiltroAnnunci filtroAnnunci = null;
 
-    private AnnuncioBean beanDettaglioAnnuncio;
+    private Annuncio annuncioInDettaglio;
 
     public ComprareProdotto() {
         sessione = new Sessione();
@@ -71,11 +71,12 @@ public class ComprareProdotto {
 
 
     public void mostraDettaglioAnnuncio(AnnuncioBean bean) {
-        beanDettaglioAnnuncio = bean;
+        annuncioInDettaglio = new Annuncio(bean.getId(), bean.getTitolo(), bean.getDescrizione(), bean.getCosto(), bean.getVenditoreEmail(), bean.getCategoria());
     }
 
     public AnnuncioBean getBeanDettaglioAnnuncio() {
-        return beanDettaglioAnnuncio;
+        return new AnnuncioBean(annuncioInDettaglio.getId(), annuncioInDettaglio.getTitolo(), annuncioInDettaglio.getDescrizione(), annuncioInDettaglio.getCosto(),
+                annuncioInDettaglio.getVenditoreEmail(), annuncioInDettaglio.getCategoria());
     }
 
     public boolean isLogged() {
@@ -97,5 +98,13 @@ public class ComprareProdotto {
 
     public void resetObserverSessione() {
         sessione.resetObserver();
+    }
+
+    public Annuncio getAnnuncioInDettaglio() {
+        return annuncioInDettaglio;
+    }
+
+    public Sessione getSessione() {
+        return sessione;
     }
 }

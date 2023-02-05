@@ -12,7 +12,7 @@ public class SessioneBean implements Observer, Subject {
 
     private UtenteBeanFromController utenteLoggatoBean;
 
-    private List<Observer> observers;
+    private final List<Observer> observers;
     private boolean changed;
 
     private Subject sessione;

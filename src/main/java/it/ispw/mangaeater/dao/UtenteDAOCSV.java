@@ -23,7 +23,7 @@ public class UtenteDAOCSV implements UtenteDAO{
     }
 
     @Override
-    public List<Utente> selectUtentiTot() throws CsvValidationException, IOException {
+    public List<Utente> selectUtentiTot() throws IOException {
 
         // create csvReader object passing file reader as a parameter
         CSVReader csvReader;
@@ -33,21 +33,28 @@ public class UtenteDAOCSV implements UtenteDAO{
 
         List<Utente> listaUtenti = new ArrayList<>();
 
-        //scarto la prima riga perché è di intestazione
-        csvReader.readNext();
-        while ((line = csvReader.readNext()) != null) {
-            //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
-            int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.INDEX_UTENTEID]);
-            String nome = line[UtenteIndiceAttributi.INDEX_NOME];
-            String cognome = line[UtenteIndiceAttributi.INDEX_COGNOME];
-            String email = line[UtenteIndiceAttributi.INDEX_EMAIL];
-            String tipo = line[UtenteIndiceAttributi.INDEX_TIPO];
-            String psw = line[UtenteIndiceAttributi.INDEX_PASSWORD];
+        try{
+            //scarto la prima riga perché è d'intestazione
+            csvReader.readNext();
+            while ((line = csvReader.readNext()) != null) {
+                //le righe successive alla prima contengono le informazioni sugli utenti che vengono utilizzate per aggiungere un nuovo utente alla lista
+                int utenteId = Integer.parseInt(line[UtenteIndiceAttributi.INDEX_UTENTEID]);
+                String nome = line[UtenteIndiceAttributi.INDEX_NOME];
+                String cognome = line[UtenteIndiceAttributi.INDEX_COGNOME];
+                String email = line[UtenteIndiceAttributi.INDEX_EMAIL];
+                String tipo = line[UtenteIndiceAttributi.INDEX_TIPO];
+                String psw = line[UtenteIndiceAttributi.INDEX_PASSWORD];
+                double saldo = Double.parseDouble(line[UtenteIndiceAttributi.INDEX_SALDO]);
 
-            Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw);
-            listaUtenti.add(utente);
+                Utente utente = new Utente(utenteId, nome, cognome, email, tipo, psw, saldo);
+                listaUtenti.add(utente);
 
+            }
         }
+        catch (CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+
         csvReader.close();
 
         return listaUtenti;
@@ -67,5 +74,7 @@ public class UtenteDAOCSV implements UtenteDAO{
         public static final int INDEX_TIPO = 4;
 
         public static final int INDEX_PASSWORD = 5;
+
+        public static final int INDEX_SALDO = 6;
     }
 }

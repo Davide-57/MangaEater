@@ -1,6 +1,5 @@
 package it.ispw.mangaeater.controller;
 
-import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.bean.UtenteBeanFromView;
 import it.ispw.mangaeater.dao.UtenteDAO;
 import it.ispw.mangaeater.dao.UtenteDAOCSV;
@@ -27,13 +26,11 @@ public class Login {
     public void estraiUtenti() {
 
         try {
+            // DAO CSV e JDBC intercambiabili
             UtenteDAO annuncioDAO = new UtenteDAOCSV();
             listaUtenti = annuncioDAO.selectUtentiTot();
         }
         catch (IOException e){
-            e.printStackTrace();
-        }
-        catch (CsvValidationException e) {
             e.printStackTrace();
         }
 

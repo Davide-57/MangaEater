@@ -79,4 +79,8 @@ public class Sessione implements Subject {
             unregister(obj);
         }
     }
+
+    public Utente getUtenteLoggato() {
+        return utenteLoggato;
+    }
 }
