@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class QueryUtente {
 
-    public QueryUtente() {
+    private QueryUtente() {
         throw new IllegalStateException("Utility class");
     }
 
