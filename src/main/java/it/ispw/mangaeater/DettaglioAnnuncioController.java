@@ -94,11 +94,8 @@ public class DettaglioAnnuncioController implements Initializable{
 
     @FXML
     void compraProdotto(MouseEvent event) {
-        if(cp.isLogged()){
-            //un utente si è loggato quindi avvio il caso d'uso Pagamento
-        }
-        else{
-            //non si è ancora loggato nessun utente quindi avvio il caso d'uso Login
-        }
+
+        // da fare con il pagamento
+
     }
 }
