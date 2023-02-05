@@ -1,5 +1,6 @@
 package it.ispw.mangaeater.sessione;
 
+import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
@@ -59,5 +60,23 @@ public class Sessione implements Subject {
         this.utenteLoggato = utenteLoggato;
         this.changed=true;
         notifyObservers();
+    }
+
+    public UtenteBeanFromController getUtenteLoggatoBean() {
+        UtenteBeanFromController utenteBeanFromController;
+        if(utenteLoggato == null){
+            utenteBeanFromController = null;
+        }
+        else{
+            utenteBeanFromController = UtenteBeanFromController.createBean(utenteLoggato);
+        }
+        return utenteBeanFromController;
+    }
+
+    public void resetObserver() {
+        List<Observer> observersLocal = new ArrayList<>(this.observers);
+        for (Observer obj : observersLocal) {
+            unregister(obj);
+        }
     }
 }

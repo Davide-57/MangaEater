@@ -8,6 +8,8 @@ import it.ispw.mangaeater.decorator_pattern.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
+import it.ispw.mangaeater.observer_pattern.Observer;
+import it.ispw.mangaeater.observer_pattern.Subject;
 import it.ispw.mangaeater.sessione.Sessione;
 
 import java.util.List;
@@ -34,6 +36,12 @@ public class ComprareProdotto {
             filtroAnnunci = new FiltroStandard();
             listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         }
+        return AnnuncioBean.creaBeans(listaAnnunci);
+    }
+
+    public List<AnnuncioBean> rimuoviFiltri() {
+        filtroAnnunci = new FiltroStandard();
+        listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
 
@@ -74,19 +82,20 @@ public class ComprareProdotto {
         return sessione.isLogged();
     }
 
-    public void setSessione(Sessione sessione) {
-        this.sessione = sessione;
-    }
-
     public void setUtenteLoggato(Utente utente){
         sessione.setUtenteLoggato(utente);
     }
 
-    public Sessione getSessione() {
-        return sessione;
-    }
-
     public void effettuaLogout() {
         setUtenteLoggato(null);
+    }
+
+    public void setObserverSessione(Subject sessioneBean) {
+        sessione.register((Observer) sessioneBean);
+        ((Observer) sessioneBean).setSubject(sessione);
+    }
+
+    public void resetObserverSessione() {
+        sessione.resetObserver();
     }
 }

@@ -1,12 +1,12 @@
 package it.ispw.mangaeater;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.bean.SessioneBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
-import it.ispw.mangaeater.sessione.Sessione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,22 +39,19 @@ public class HomeController implements Initializable, Observer {
     public HomeController() {
         //creo il controller applicativo
         this.cp = new ComprareProdotto();
-        //imposto questa istanza del controller grafico come Observer della sessione
-        this.setSubject(new Sessione());
-        sessione.register(this);
-        //imposto la sessione nel controller applicativo
-        //NOTA: sono consapevole che non dovrebbero esserci messaggi al controller
-        //      applicativo con oggetti che non sono Bean ma considererò la classe
-        //      Sessione come una classe particolare per cui tali messaggi sono consentiti
-        cp.setSessione((Sessione) sessione);
+        this.setSubject(new SessioneBean(this));
+        cp.setObserverSessione(sessioneBean);
     }
 
     //questo costruttore viene richiamato dal dettaglioAnnuncioController
     //dato che già esiste una sessione la devo richiamare dal controller applicativo
     public HomeController(ComprareProdotto cp) {
-        //creo il controller applicativo
+        //recupero il controller applicativo
         this.cp = cp;
-        this.setSubject(cp.getSessione());
+        this.setSubject(new SessioneBean(this));
+        // avendo ricreato un nuovo SessioneBean verrà resettato l'Observer della Sessione per poi associargli quello nuovo
+        cp.resetObserverSessione();
+        cp.setObserverSessione(sessioneBean);
     }
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();
@@ -76,7 +73,7 @@ public class HomeController implements Initializable, Observer {
 
     private final ComprareProdotto cp;
 
-    private Subject sessione;
+    private Subject sessioneBean;
 
     private static final String LOGOUT = "Logout";
 
@@ -238,7 +235,7 @@ public class HomeController implements Initializable, Observer {
         menuItem6.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciTot();
+                List<AnnuncioBean> listaAnnunciBean = cp.rimuoviFiltri();
                 inizializzaLista(listaAnnunciBean);
                 //rimuovo qualsiasi cosa nella searchbar per chiearire il fatto che vengono rimossi anche eventuali filtri sul titolo
                 searchBar.clear();
@@ -292,6 +289,8 @@ public class HomeController implements Initializable, Observer {
 
     @Override
     public void setSubject(Subject sub) {
-        sessione = sub;
+        sessioneBean = sub;
     }
+
+
 }

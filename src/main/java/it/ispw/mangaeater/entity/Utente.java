@@ -28,4 +28,20 @@ public class Utente {
     public String getPsw() {
         return psw;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
 }
