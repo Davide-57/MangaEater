@@ -3,6 +3,7 @@ package it.ispw.mangaeater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.boundary.jikan.JikanBoundary;
+import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,11 +60,19 @@ public class DettaglioAnnuncioController implements Initializable{
         image.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/"+annuncioBean.getId()+".jpg"))));
 
         //di seguito chiamo la libreria Jikan per prendere informazioni sulla trama del manga
-        JikanBoundary jikanBoundary = new JikanBoundary();
-        String descJikan = jikanBoundary.estraiDescrizioneManga(title.getText());
-        descriptionJikan.setText(Objects.requireNonNullElse(descJikan, "Non è disponibile una descrizione dalla libreria Jikan"));
-        //la seguente istruzione è utile a far andare accapo il testo
-        descriptionJikan.setWrappingWidth(495);
+        try{
+            JikanBoundary jikanBoundary = new JikanBoundary();
+            String descJikan = jikanBoundary.estraiDescrizioneManga(title.getText());
+            descriptionJikan.setText(Objects.requireNonNullElse(descJikan, "Non è disponibile una descrizione dalla libreria Jikan"));
+            //la seguente istruzione è utile a far andare accapo il testo
+            descriptionJikan.setWrappingWidth(495);
+        } catch (NoInternetConnectionException e) {
+            descriptionJikan.setText("""
+                    Connessione internet assente.
+                    Per visualzizare la descrizione fornita da Jikan connettersi\s
+                    ad una rete.""");
+        }
+
     }
 
     @FXML
