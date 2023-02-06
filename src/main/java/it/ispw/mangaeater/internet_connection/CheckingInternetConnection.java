@@ -8,6 +8,7 @@ import java.net.URLConnection;
 public class CheckingInternetConnection {
 
     public CheckingInternetConnection() {
+        //no parametri da settare
     }
 
     public void checkInternetConnection() throws NoInternetConnectionException {
