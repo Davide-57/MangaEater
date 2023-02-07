@@ -9,6 +9,7 @@ import it.ispw.mangaeater.decorator_pattern.FiltroPerTitoloDecorator;
 import it.ispw.mangaeater.decorator_pattern.FiltroStandard;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
+import it.ispw.mangaeater.exception.EmailNotFoundException;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
@@ -110,9 +111,12 @@ public class ComprareProdotto {
         return sessione;
     }
 
-    public void concludiAcquisto(String emailVenditore) {
-        VenditoreBoundaryCP vb = new VenditoreBoundaryCP(emailVenditore);
-        CorriereBoundaryCP cb = new CorriereBoundaryCP();
+    public void concludiAcquisto(String titoloAnnuncio, String emailVenditore, String emailAcquirente) throws EmailNotFoundException {
+        VenditoreBoundaryCP vb = new VenditoreBoundaryCP(titoloAnnuncio, emailVenditore, emailAcquirente);
+        CorriereBoundaryCP cb = new CorriereBoundaryCP(emailVenditore, emailAcquirente);
+
+        vb.inviaEmail();
+        cb.inviaEmail();
 
     }
 }
