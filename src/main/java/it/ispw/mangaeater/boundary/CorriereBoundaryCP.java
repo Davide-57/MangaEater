@@ -17,7 +17,7 @@ public class CorriereBoundaryCP implements BoundaryEmail{
 
     private static final String FILE_NAME = "src/main/resources/emailDummy/corriere.txt";
 
-    private static final String terminatoreEmail = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
+    private static final String TERMINATORE_EMAIL = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
 
     public CorriereBoundaryCP(String emailVenditore, String emailAcquirente){
         this.emailVenditore = emailVenditore;
@@ -40,7 +40,7 @@ public class CorriereBoundaryCP implements BoundaryEmail{
 
             PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(FILE_NAME, true)));
             output.println(testoEmail);
-            output.println(terminatoreEmail);
+            output.println(TERMINATORE_EMAIL);
 
             output.close();
 
