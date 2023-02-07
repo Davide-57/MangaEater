@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.controller_grafici.PagamentoCPController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="932.0">
+         <children>
+            <HBox alignment="CENTER" onMouseClicked="#backHome" prefHeight="64.0" prefWidth="60.0">
+               <children>
+                  <ImageView fx:id="imgBackDettaglio" fitHeight="22.0" fitWidth="28.0">
+                     <image>
+                        <Image url="@../../../images/left-arrow-o.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="849.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="titolo" text="Title">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="932.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="604.0" prefWidth="387.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="320.0" style="-fx-border-color: #ffb84d; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="image" fitHeight="350.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #ffb84d; -fx-border-radius: 20;" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="35.0" right="35.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="604.0" prefWidth="549.0" translateY="30.0">
+               <children>
+                  <VBox prefHeight="137.0" prefWidth="547.0">
+                     <children>
+                        <HBox prefHeight="15.0" prefWidth="547.0">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Attenzione:">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="188.0" prefWidth="547.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stai procedendo con l'acquisto di questo prodotto. Una volta acquistato sarà inviata una email al venditore, il quale si occuperà quanto prima di programmare la spedizione. Per qualsiasi dubbio contattare il venditore all'email sotto indicata." wrappingWidth="530.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="547.0">
+                     <children>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="164.0">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Email venditore:">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="emailVend" strokeType="OUTSIDE" strokeWidth="0.0" text="email" translateY="-4.0" wrappingWidth="350.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="547.0">
+                     <children>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Costo:" translateY="-3.0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="costo" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #ffb84d;" text="Saldo rimasto:" translateY="-3.0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="saldo" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text fill="#ffb84d" strokeType="OUTSIDE" strokeWidth="0.0" text="Se vuoi procedere all'acquisto clicca l'icona qui accanto:" wrappingWidth="300.0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" onMouseClicked="#procediAlPagamento" translateX="30.0">
+                           <image>
+                              <Image url="@../../../images/Logo_MangaEater.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="145.0" prefWidth="547.0">
+                     <children>
+                        <Button fx:id="confermaButton" mnemonicParsing="false" onMouseClicked="#confermaPagamento" prefHeight="72.0" prefWidth="251.0" style="-fx-background-color: white; -fx-border-color: #ffb84d; -fx-text-fill: #ffb84d; -fx-border-radius: 20; -fx-background-radius: 20;" text="Conferma pagamento">
+                           <effect>
+                              <InnerShadow radius="18.7925" width="56.17">
+                                 <color>
+                                    <Color red="1.0" green="0.7215686440467834" blue="0.3019607961177826" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
