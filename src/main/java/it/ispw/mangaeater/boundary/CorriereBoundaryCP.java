@@ -11,13 +11,13 @@ import java.time.format.DateTimeFormatter;
 
 public class CorriereBoundaryCP implements BoundaryEmail{
 
-    private String emailVenditore;
+    private final String emailVenditore;
 
-    private String emailAcquirente;
+    private final String emailAcquirente;
 
-    private final String FILE_NAME = "src/main/resources/emailDummy/venditore.txt";
+    private static final String FILE_NAME = "src/main/resources/emailDummy/corriere.txt";
 
-    private final String terminatoreEmail = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
+    private static final String terminatoreEmail = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
 
     public CorriereBoundaryCP(String emailVenditore, String emailAcquirente){
         this.emailVenditore = emailVenditore;

@@ -8,15 +8,15 @@ import java.time.format.DateTimeFormatter;
 
 public class VenditoreBoundaryCP implements BoundaryEmail{
 
-    private String emailVenditore;
+    private final String emailVenditore;
     
-    private String titoloAnnuncio;
+    private final String titoloAnnuncio;
 
-    private String emailAcquirente;
+    private final String emailAcquirente;
 
-    private final String FILE_NAME = "src/main/resources/emailDummy/venditore.txt";
+    private static final String FILE_NAME = "src/main/resources/emailDummy/venditore.txt";
 
-    private final String terminatoreEmail = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
+    private static final String terminatoreEmail = "\n\n--------------------------------------------------------------------------------------------------------\n\n";
 
     public VenditoreBoundaryCP(String titoloAnnuncio, String emailVenditore, String emailAcquirente) {
         this.titoloAnnuncio = titoloAnnuncio;
