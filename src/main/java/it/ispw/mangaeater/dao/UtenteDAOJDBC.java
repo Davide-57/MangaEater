@@ -57,16 +57,14 @@ public class UtenteDAOJDBC implements UtenteDAO{
     }
 
     @Override
-    public void updateCosto(Utente utenteLoggato, double nuovoCosto) throws SQLUtenteException {
-
-        // STEP 1: dichiarazioni
+    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws SQLUtenteException {
 
         try {
             Connection conn = DbConnection.getConnection();
 
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-            QueryUtente.updateSaldo(stmt, utenteLoggato, nuovoCosto);
+            QueryUtente.updateSaldo(stmt, utenteLoggato, nuovoSaldo);
 
         } catch (SQLException e) {
             throw new SQLUtenteException(e.getMessage());

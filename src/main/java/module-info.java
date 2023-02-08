@@ -16,4 +16,10 @@ module it.ispw.mangaeater {
     exports it.ispw.mangaeater.boundary.jikan;
     opens it.ispw.mangaeater.boundary.jikan to javafx.fxml;
     exports it.ispw.mangaeater.controller_grafici;
+    exports it.ispw.mangaeater.controller;
+    exports it.ispw.mangaeater.controller.pagamento;
+    exports it.ispw.mangaeater.exception;
+    exports it.ispw.mangaeater.bean;
+    exports it.ispw.mangaeater.myenum;
+    exports it.ispw.mangaeater.decorator_pattern;
 }

@@ -1,7 +1,12 @@
 package it.ispw.mangaeater.controller.pagamento;
 
+import com.opencsv.exceptions.CsvException;
+import it.ispw.mangaeater.bean.InfoPagamentoBean;
+import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.controller.Login;
 import it.ispw.mangaeater.dao.UtenteDAO;
+import it.ispw.mangaeater.dao.UtenteDAOCSV;
 import it.ispw.mangaeater.dao.UtenteDAOJDBC;
 import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.entity.Utente;
@@ -11,9 +16,13 @@ import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
 import it.ispw.mangaeater.sessione.Sessione;
 
+import java.io.IOException;
+
 public class PagamentoCompraProdotto implements Pagamento {
 
     private final ComprareProdotto cp;
+
+    private int idAnnuncio;
 
     private String titoloAnnuncio;
 
@@ -23,47 +32,68 @@ public class PagamentoCompraProdotto implements Pagamento {
 
     private String emailVenditore;
 
+    private double saldoAcquirente;
+
     public PagamentoCompraProdotto(ComprareProdotto cp) {
         this.cp = cp;
     }
 
     @Override
-    public void estraiInfoPagamento() throws UserNotLoggedException {
+    public InfoPagamentoBean estraiInfoPagamento() throws UserNotLoggedException {
         estraiInfoAnnuncio();
         estraiInfoAcquirente();
+        return new InfoPagamentoBean(idAnnuncio, titoloAnnuncio, emailVenditore, costo, saldoAcquirente);
     }
 
     private void estraiInfoAcquirente() throws UserNotLoggedException {
         Sessione sessione = cp.getSessione();
         if(sessione.isLogged()){
-            throw new UserNotLoggedException("L'utente non si è autenticato. Per procedere al pagamento occorre autenticarsi.");
+            acquirente = sessione.getUtenteLoggato();
+            saldoAcquirente = acquirente.getSaldo();
         }
         else{
-            acquirente = sessione.getUtenteLoggato();
+            throw new UserNotLoggedException("L'utente non si è autenticato. Per procedere al pagamento occorre autenticarsi.");
         }
     }
 
     private void estraiInfoAnnuncio() {
         Annuncio annuncio = cp.getAnnuncioInDettaglio();
+        idAnnuncio = annuncio.getId();
         titoloAnnuncio = annuncio.getTitolo();
         costo = annuncio.getCosto();
         emailVenditore = annuncio.getVenditoreEmail();
     }
 
     @Override
-    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException {
+    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException, IOException, CsvException {
 
-        if(acquirente.getSaldo() < costo){
-            throw new InsufficientCreditException("L'utente non si è autenticato. Per procedere al pagamento occorre autenticarsi.");
+        if(saldoAcquirente < costo){
+            throw new InsufficientCreditException("L'utente non ha saldo sufficiente.");
         }
 
         UtenteDAO utenteDAO = new UtenteDAOJDBC();
-        double nuovoSaldo = acquirente.getSaldo() - costo;
+        double nuovoSaldo = saldoAcquirente - costo;
 
-        utenteDAO.updateCosto(acquirente, nuovoSaldo);
+        utenteDAO.updateSaldo(acquirente, nuovoSaldo);
 
+        //le seguenti due istruzioni sono effettuate solo per mantenere la consistenza tra la persistenza nel DB e quella in file system
+        utenteDAO = new UtenteDAOCSV();
+        utenteDAO.updateSaldo(acquirente, nuovoSaldo);
+
+
+        acquirente.setSaldo(nuovoSaldo);
         inviaEmail();
 
+    }
+
+    @Override
+    public Login creaLoginController() {
+        return cp.creaControllerLogin();
+    }
+
+    @Override
+    public UtenteBeanFromController getUtenteLoggatoBean() {
+        return UtenteBeanFromController.createBean(acquirente);
     }
 
     private void inviaEmail() throws EmailNotFoundException {

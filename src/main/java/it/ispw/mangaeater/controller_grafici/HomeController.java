@@ -3,15 +3,15 @@ package it.ispw.mangaeater.controller_grafici;
 import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.bean.SessioneBean;
+import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
+import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,6 +53,14 @@ public class HomeController implements Initializable, Observer {
         // avendo ricreato un nuovo SessioneBean verrà resettato l'Observer della Sessione per poi associargli quello nuovo
         cp.resetObserverSessione();
         cp.setObserverSessione(sessioneBean);
+    }
+
+    //costruttore richiamato da PagamentoCompraProdController quando si termina un pagamento
+    public HomeController(UtenteBeanFromController utenteBean) {
+        this.cp = new ComprareProdotto();
+        this.setSubject(new SessioneBean(this));
+        cp.setObserverSessione(sessioneBean);
+        cp.setUtenteLoggato(new Utente(utenteBean.getId(), utenteBean.getNome(), utenteBean.getCognome(), utenteBean.getEmail(), utenteBean.getTipo()));
     }
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();
@@ -144,36 +152,24 @@ public class HomeController implements Initializable, Observer {
         MenuItem menuItem3 = new MenuItem("Costo Crescente");
         MenuItem menuItem4 = new MenuItem("Costo Decrescente");
 
-        menuItem1.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem1.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem2.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem2.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem3.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_CRESCENTE);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem3.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_CRESCENTE);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem4.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_DECRESCENTE);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem4.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_DECRESCENTE);
+            inizializzaLista(listaAnnunciBean);
         });
 
         //di seguito vengono aggiunti i menu item appena creati al bottone
@@ -193,54 +189,36 @@ public class HomeController implements Initializable, Observer {
         MenuItem menuItem5 = new MenuItem("Seinen");
         MenuItem menuItem6 = new MenuItem("Tutti");
 
-        menuItem1.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHONEN);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem1.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHONEN);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem2.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.KODOMO);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem2.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.KODOMO);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem3.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHOUJO);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem3.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHOUJO);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem4.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.JOSEI);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem4.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.JOSEI);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem5.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SEINEN);
-                inizializzaLista(listaAnnunciBean);
-            }
+        menuItem5.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SEINEN);
+            inizializzaLista(listaAnnunciBean);
         });
 
-        menuItem6.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<AnnuncioBean> listaAnnunciBean = cp.rimuoviFiltri();
-                inizializzaLista(listaAnnunciBean);
-                //rimuovo qualsiasi cosa nella searchbar per chiearire il fatto che vengono rimossi anche eventuali filtri sul titolo
-                searchBar.clear();
-            }
+        menuItem6.setOnAction(event -> {
+            List<AnnuncioBean> listaAnnunciBean = cp.rimuoviFiltri();
+            inizializzaLista(listaAnnunciBean);
+            //rimuovo qualsiasi cosa nella searchbar per chiearire il fatto che vengono rimossi anche eventuali filtri sul titolo
+            searchBar.clear();
         });
 
 

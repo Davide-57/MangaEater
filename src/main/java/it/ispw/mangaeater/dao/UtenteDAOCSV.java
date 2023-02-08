@@ -2,13 +2,12 @@ package it.ispw.mangaeater.dao;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.entity.Utente;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +60,20 @@ public class UtenteDAOCSV implements UtenteDAO{
     }
 
     @Override
-    public void updateCosto(Utente utenteLoggato, double nuovoCosto) {
+    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws IOException, CsvException {
+
+        CSVReader reader = new CSVReader(new FileReader(fd));
+        List<String[]> csvBody = reader.readAll();
+
+        //considerare come numero di riga utenteLoggato.getId() non è una buona scelta a lungo andare
+        csvBody.get(utenteLoggato.getId())[UtenteIndiceAttributi.INDEX_SALDO] = String.valueOf(nuovoSaldo);
+        reader.close();
+
+
+        CSVWriter writer = new CSVWriter(new FileWriter(fd));
+        writer.writeAll(csvBody);
+        writer.flush();
+        writer.close();
 
     }
 

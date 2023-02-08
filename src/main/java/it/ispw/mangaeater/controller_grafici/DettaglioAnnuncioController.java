@@ -100,10 +100,10 @@ public class DettaglioAnnuncioController implements Initializable{
 
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("pagamento-cp.fxml")));
-            loader.setControllerFactory(aClass -> new PagamentoCPController(cp.creaControllerPagamento()));
+            loader.setControllerFactory(aClass -> new PagamentoCompraProdController(cp.creaControllerPagamento(), this));
             Parent root = loader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Manga Eater - Conferma pagamento");
 

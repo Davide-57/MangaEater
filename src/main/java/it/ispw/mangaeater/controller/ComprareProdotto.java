@@ -126,4 +126,8 @@ public class ComprareProdotto {
         FactoryPagamento factoryPagamento = FactoryPagamento.getFactoryPagamento();
         return factoryPagamento.getPagamentoCompraProdotto(this);
     }
+
+    public Login creaControllerLogin() {
+        return new Login(this);
+    }
 }

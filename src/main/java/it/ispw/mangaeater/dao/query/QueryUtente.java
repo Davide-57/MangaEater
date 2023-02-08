@@ -18,8 +18,8 @@ public class QueryUtente {
         return stmt.executeQuery(sql);
     }
 
-    public static int updateSaldo(Statement stmt, Utente acquirente, double nuovoSaldo) throws SQLException  {
-        String updateStatement = String.format("UPDATE utente set saldo='%s' WHERE idUtente = %s", acquirente.getSaldo(), acquirente.getId());
-        return stmt.executeUpdate(updateStatement);
+    public static void updateSaldo(Statement stmt, Utente acquirente, double nuovoSaldo) throws SQLException  {
+        String updateStatement = String.format("UPDATE utente set saldo=%s WHERE idUtente = %s", nuovoSaldo, acquirente.getId());
+        stmt.executeUpdate(updateStatement);
     }
 }

@@ -28,19 +28,18 @@ public class LoginController implements Initializable {
         this.cp = cp;
     }
 
-    public LoginController() {
+    public LoginController(Login controllerLogin) {
+        this.login = controllerLogin;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         if (cp != null) {
-            // è in corso il caso d'uso dell'acquisto di un prodotto
+            // login avviato dal HomeController
             login = new Login(cp);
         }
-        else{
-            login = new Login();
-        }
+        //  else {login avviato dal PagamentoCompraProdController}
 
         login.estraiUtenti();
     }
