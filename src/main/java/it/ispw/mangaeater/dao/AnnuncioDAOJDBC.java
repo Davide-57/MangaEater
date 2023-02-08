@@ -48,7 +48,7 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
             }while(rs.next());
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Errore durante query al DB");
         } finally {
                 if (stmt != null) {
                     try {

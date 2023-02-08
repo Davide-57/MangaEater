@@ -5,10 +5,7 @@ import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.InfoPagamentoBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.pagamento.Pagamento;
-import it.ispw.mangaeater.exception.EmailNotFoundException;
-import it.ispw.mangaeater.exception.InsufficientCreditException;
-import it.ispw.mangaeater.exception.SQLUtenteException;
-import it.ispw.mangaeater.exception.UserNotLoggedException;
+import it.ispw.mangaeater.exception.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,7 +112,7 @@ public class PagamentoCompraProdController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            System.err.println("Errore nell'apertura di un file FXML");
         }
     }
 

@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
             // login avviato dal HomeController
             login = new Login(cp);
         }
-        //  else {login avviato dal PagamentoCompraProdController}
+        //  altrimenti login avviato dal PagamentoCompraProdController, quindi non faccio nulla
 
         login.estraiUtenti();
     }

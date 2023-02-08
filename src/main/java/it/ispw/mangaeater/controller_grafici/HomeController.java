@@ -57,13 +57,10 @@ public class HomeController implements Initializable, Observer {
     //costruttore richiamato da PagamentoCompraProdController quando si termina un pagamento
     public HomeController(UtenteBeanFromController utenteBean) {
         this.cp = new ComprareProdotto();
-        //new Utente(utenteBean.getId(), utenteBean.getNome(), utenteBean.getCognome(), utenteBean.getEmail(), utenteBean.getTipo())
-        System.out.println(utenteBean.getSaldo());
+        // avendo acquistato un prodotto significa che un utente è loggato, quindi viene settato nella sessione (appena ricreata) prima di attivare gli Observer
         cp.setUtenteLoggato(utenteBean);
-        System.out.println(cp.getSessione().getUtenteLoggato().getSaldo());
         this.setSubject(new SessioneBean(this));
         cp.setObserverSessione(sessioneBean);
-        System.out.println(cp.getSessione().getUtenteLoggato().getSaldo());
     }
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();

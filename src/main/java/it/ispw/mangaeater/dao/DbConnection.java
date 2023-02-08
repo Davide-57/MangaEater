@@ -32,10 +32,8 @@ public class DbConnection {
                 Class.forName(driverClassName);
                 conn = DriverManager.getConnection(dbUrl, user, password);
             }
-            catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            catch (ClassNotFoundException | SQLException | IOException e) {
+                System.err.println("Errore durante la connessione al DB");
             }
         }
         return conn;
