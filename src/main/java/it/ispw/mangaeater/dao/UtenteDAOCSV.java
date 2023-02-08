@@ -10,6 +10,8 @@ import it.ispw.mangaeater.entity.Utente;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UtenteDAOCSV implements UtenteDAO{
 
@@ -51,7 +53,8 @@ public class UtenteDAOCSV implements UtenteDAO{
             }
         }
         catch (CsvValidationException e) {
-            throw new RuntimeException(e);
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore nell'apertura di un file CSV");
         }
 
         csvReader.close();

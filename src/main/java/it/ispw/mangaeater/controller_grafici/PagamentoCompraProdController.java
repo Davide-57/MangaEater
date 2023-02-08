@@ -5,6 +5,7 @@ import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.InfoPagamentoBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.pagamento.Pagamento;
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.exception.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PagamentoCompraProdController implements Initializable {
 
@@ -112,7 +115,8 @@ public class PagamentoCompraProdController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
-            System.err.println("Errore nell'apertura di un file FXML");
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore nell'apertura di un file FXML");
         }
     }
 

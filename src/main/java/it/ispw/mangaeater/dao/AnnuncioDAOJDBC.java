@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
@@ -48,7 +50,8 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
             }while(rs.next());
 
         } catch (SQLException e) {
-            System.err.println("Errore durante query al DB");
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante l'esecuzione di una query al DB");
         } finally {
                 if (stmt != null) {
                     try {

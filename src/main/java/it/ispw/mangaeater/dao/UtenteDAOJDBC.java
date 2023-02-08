@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UtenteDAOJDBC implements UtenteDAO{
     @Override
@@ -43,7 +45,8 @@ public class UtenteDAOJDBC implements UtenteDAO{
             }while(rs.next());
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante una query al DB");
         } finally {
             if (stmt != null) {
                 try {
