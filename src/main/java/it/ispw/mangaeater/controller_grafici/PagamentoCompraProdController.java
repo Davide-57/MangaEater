@@ -154,7 +154,8 @@ public class PagamentoCompraProdController implements Initializable {
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace();
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
 
     }
@@ -209,7 +210,8 @@ public class PagamentoCompraProdController implements Initializable {
                 stage.show();
             }
             catch (IOException ex) {
-                ex.printStackTrace();
+                Logger logger = Logger.getLogger(DbConnection.class.getName());
+                logger.log(Level.WARNING, "Errore durante apertura file FXML");
             }
 
         });

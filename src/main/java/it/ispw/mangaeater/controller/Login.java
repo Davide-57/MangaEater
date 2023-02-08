@@ -1,12 +1,15 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.UtenteBeanFromView;
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.dao.UtenteDAO;
 import it.ispw.mangaeater.dao.UtenteDAOCSV;
 import it.ispw.mangaeater.entity.Utente;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Login {
 
@@ -14,8 +17,8 @@ public class Login {
     List<Utente> listaUtenti;
 
 
+    // questo costruttore viene richiamato solo quando è in corso il caso d'uso ComprareProdotto
     public Login(ComprareProdotto cp) {
-        // questo costruttore viene richiamato solo quando è in corso il caso d'uso ComprareProdotto
         this.cp = cp;
     }
 
@@ -31,7 +34,8 @@ public class Login {
             listaUtenti = annuncioDAO.selectUtentiTot();
         }
         catch (IOException e){
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante esportazione degli utenti dalla persistenza");
         }
 
     }

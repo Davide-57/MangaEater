@@ -57,7 +57,8 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
                     try {
                         stmt.close();
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        Logger logger = Logger.getLogger(DbConnection.class.getName());
+                        logger.log(Level.WARNING, "Errore durante chiusura dello statement DB");
                     }
                 }
         }

@@ -3,10 +3,13 @@ package it.ispw.mangaeater.decorator_pattern;
 import com.opencsv.exceptions.CsvValidationException;
 import it.ispw.mangaeater.dao.AnnuncioDAO;
 import it.ispw.mangaeater.dao.AnnuncioDAOJDBC;
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.entity.Annuncio;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FiltroStandard extends FiltroAnnunci{
 
@@ -20,11 +23,9 @@ public class FiltroStandard extends FiltroAnnunci{
             AnnuncioDAO annuncioDAO = new AnnuncioDAOJDBC();
             listaAnnunci = annuncioDAO.selectAnnunciOrdinati(ordineAnnunci);
 
-        } catch (CsvValidationException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        } catch (CsvValidationException | IOException e) {
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante estgrazione annunci da CSV");
         }
 
 

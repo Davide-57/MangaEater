@@ -21,5 +21,7 @@ module it.ispw.mangaeater {
     exports it.ispw.mangaeater.exception;
     exports it.ispw.mangaeater.bean;
     exports it.ispw.mangaeater.myenum;
+    exports it.ispw.mangaeater.entity;
+    exports it.ispw.mangaeater.sessione;
     exports it.ispw.mangaeater.decorator_pattern;
 }

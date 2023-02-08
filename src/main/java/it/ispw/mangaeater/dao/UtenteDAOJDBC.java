@@ -52,7 +52,8 @@ public class UtenteDAOJDBC implements UtenteDAO{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logger logger = Logger.getLogger(DbConnection.class.getName());
+                    logger.log(Level.WARNING, "Errore durante una query al DB");
                 }
             }
         }

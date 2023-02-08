@@ -4,6 +4,7 @@ import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.boundary.jikan.JikanBoundary;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DettaglioAnnuncioController implements Initializable{
 
@@ -91,7 +94,8 @@ public class DettaglioAnnuncioController implements Initializable{
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace();
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
     }
 
@@ -110,7 +114,8 @@ public class DettaglioAnnuncioController implements Initializable{
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace();
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
 
     }

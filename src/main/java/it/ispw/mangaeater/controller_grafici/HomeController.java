@@ -5,6 +5,7 @@ import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.bean.SessioneBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
@@ -31,6 +32,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HomeController implements Initializable, Observer {
 
@@ -126,7 +129,8 @@ public class HomeController implements Initializable, Observer {
             }
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
     }
 
