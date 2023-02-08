@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DbConnection {
     private static Connection conn = null;
@@ -33,7 +35,8 @@ public class DbConnection {
                 conn = DriverManager.getConnection(dbUrl, user, password);
             }
             catch (ClassNotFoundException | SQLException | IOException e) {
-                System.err.println("Errore durante la connessione al DB");
+                Logger logger = Logger.getLogger(DbConnection.class.getName());
+                logger.log(Level.WARNING, "Errore durante la connessione al DB");
             }
         }
         return conn;
