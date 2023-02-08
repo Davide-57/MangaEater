@@ -54,7 +54,7 @@ public class UtenteDAOCSV implements UtenteDAO{
         }
         catch (CsvValidationException e) {
             Logger logger = Logger.getLogger(DbConnection.class.getName());
-            logger.log(Level.WARNING, "Errore nell'apertura di un file CSV");
+            logger.log(Level.WARNING, "Errore nell apertura di un file CSV");
         }
 
         csvReader.close();
