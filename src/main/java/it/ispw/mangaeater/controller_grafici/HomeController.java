@@ -6,7 +6,6 @@ import it.ispw.mangaeater.bean.SessioneBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
-import it.ispw.mangaeater.entity.Utente;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
@@ -58,9 +57,13 @@ public class HomeController implements Initializable, Observer {
     //costruttore richiamato da PagamentoCompraProdController quando si termina un pagamento
     public HomeController(UtenteBeanFromController utenteBean) {
         this.cp = new ComprareProdotto();
+        //new Utente(utenteBean.getId(), utenteBean.getNome(), utenteBean.getCognome(), utenteBean.getEmail(), utenteBean.getTipo())
+        System.out.println(utenteBean.getSaldo());
+        cp.setUtenteLoggato(utenteBean);
+        System.out.println(cp.getSessione().getUtenteLoggato().getSaldo());
         this.setSubject(new SessioneBean(this));
         cp.setObserverSessione(sessioneBean);
-        cp.setUtenteLoggato(new Utente(utenteBean.getId(), utenteBean.getNome(), utenteBean.getCognome(), utenteBean.getEmail(), utenteBean.getTipo()));
+        System.out.println(cp.getSessione().getUtenteLoggato().getSaldo());
     }
 
     private final ObservableList<Card> list = FXCollections.observableArrayList();

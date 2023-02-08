@@ -3,7 +3,7 @@ package it.ispw.mangaeater.entity;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 public class Annuncio {
-    private int id;
+    private final int id;
     private String titolo;
     private String descrizione;
     private double costo;

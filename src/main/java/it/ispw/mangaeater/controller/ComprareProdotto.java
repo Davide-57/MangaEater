@@ -1,6 +1,7 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.boundary.CorriereBoundaryCP;
 import it.ispw.mangaeater.boundary.VenditoreBoundaryCP;
 import it.ispw.mangaeater.controller.pagamento.FactoryPagamento;
@@ -93,7 +94,11 @@ public class ComprareProdotto {
     }
 
     public void effettuaLogout() {
-        setUtenteLoggato(null);
+        setUtenteLoggato((Utente) null);
+    }
+
+    public void setUtenteLoggato(UtenteBeanFromController utenteBean){
+        sessione.setUtenteLoggato(new Utente(utenteBean.getId(), utenteBean.getNome(), utenteBean.getCognome(), utenteBean.getEmail(), utenteBean.getTipo(), utenteBean.getPsw(), utenteBean.getSaldo()));
     }
 
     public void setObserverSessione(Subject sessioneBean) {

@@ -63,18 +63,15 @@ public class PagamentoCompraProdController implements Initializable {
     private ImageView image;
 
     @FXML
-    private ImageView imgBackDettaglio;
-
-    @FXML
     private Text saldo;
 
     @FXML
     private Label titolo;
 
-    private Pagamento controllerPagamento;
+    private final Pagamento controllerPagamento;
 
     //riferimento al controller grafico del dettaglio
-    private DettaglioAnnuncioController dettaglioControllerGrafico;
+    private final DettaglioAnnuncioController dettaglioControllerGrafico;
 
 
     public PagamentoCompraProdController(Pagamento controllerPagamento, DettaglioAnnuncioController dettaglioControllerGrafico) {
