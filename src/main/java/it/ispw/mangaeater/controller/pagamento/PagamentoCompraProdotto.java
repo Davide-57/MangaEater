@@ -1,5 +1,6 @@
-package it.ispw.mangaeater.controller;
+package it.ispw.mangaeater.controller.pagamento;
 
+import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.dao.UtenteDAO;
 import it.ispw.mangaeater.dao.UtenteDAOJDBC;
 import it.ispw.mangaeater.entity.Annuncio;
@@ -10,7 +11,7 @@ import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
 import it.ispw.mangaeater.sessione.Sessione;
 
-public class PagamentoCP implements Pagamento {
+public class PagamentoCompraProdotto implements Pagamento {
 
     private final ComprareProdotto cp;
 
@@ -22,7 +23,7 @@ public class PagamentoCP implements Pagamento {
 
     private String emailVenditore;
 
-    public PagamentoCP(ComprareProdotto cp) {
+    public PagamentoCompraProdotto(ComprareProdotto cp) {
         this.cp = cp;
     }
 

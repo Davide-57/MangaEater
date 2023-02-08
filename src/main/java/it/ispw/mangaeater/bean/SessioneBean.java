@@ -1,6 +1,6 @@
 package it.ispw.mangaeater.bean;
 
-import it.ispw.mangaeater.HomeController;
+import it.ispw.mangaeater.controller_grafici.HomeController;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
 import it.ispw.mangaeater.sessione.Sessione;

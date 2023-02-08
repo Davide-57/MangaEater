@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="932.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.controller_grafici.PagamentoCPController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="932.0">
@@ -22,7 +21,7 @@
                <children>
                   <ImageView fx:id="imgBackDettaglio" fitHeight="22.0" fitWidth="28.0">
                      <image>
-                        <Image url="@../../../images/left-arrow-o.png" />
+                        <Image url="@../../../../images/left-arrow-o.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -158,7 +157,7 @@
                         </VBox>
                         <ImageView fitHeight="80.0" fitWidth="80.0" onMouseClicked="#procediAlPagamento" translateX="30.0">
                            <image>
-                              <Image url="@../../../images/Logo_MangaEater.png" />
+                              <Image url="@../../../../images/Logo_MangaEater.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -168,11 +167,11 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="145.0" prefWidth="547.0">
                      <children>
-                        <Button fx:id="confermaButton" mnemonicParsing="false" onMouseClicked="#confermaPagamento" prefHeight="72.0" prefWidth="251.0" style="-fx-background-color: white; -fx-border-color: #ffb84d; -fx-text-fill: #ffb84d; -fx-border-radius: 20; -fx-background-radius: 20;" text="Conferma pagamento">
+                        <Button fx:id="confermaButton" mnemonicParsing="false" prefHeight="72.0" prefWidth="251.0" style="-fx-background-color: white; -fx-border-color: #b2abab; -fx-text-fill: #b2abab; -fx-border-radius: 20; -fx-background-radius: 20;" text="Conferma pagamento">
                            <effect>
-                              <InnerShadow radius="18.7925" width="56.17">
+                              <InnerShadow height="38.59" radius="23.19" width="56.17">
                                  <color>
-                                    <Color red="1.0" green="0.7215686440467834" blue="0.3019607961177826" />
+                                    <Color red="0.6980392336845398" green="0.6705882549285889" blue="0.6705882549285889" />
                                  </color>
                               </InnerShadow>
                            </effect>

@@ -3,6 +3,8 @@ package it.ispw.mangaeater.controller;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.boundary.CorriereBoundaryCP;
 import it.ispw.mangaeater.boundary.VenditoreBoundaryCP;
+import it.ispw.mangaeater.controller.pagamento.FactoryPagamento;
+import it.ispw.mangaeater.controller.pagamento.PagamentoCompraProdotto;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.decorator_pattern.FiltroPerCategoriaDecorator;
 import it.ispw.mangaeater.decorator_pattern.FiltroPerTitoloDecorator;
@@ -118,5 +120,10 @@ public class ComprareProdotto {
         vb.inviaEmail();
         cb.inviaEmail();
 
+    }
+
+    public PagamentoCompraProdotto creaControllerPagamento() {
+        FactoryPagamento factoryPagamento = FactoryPagamento.getFactoryPagamento();
+        return factoryPagamento.getPagamentoCompraProdotto(this);
     }
 }

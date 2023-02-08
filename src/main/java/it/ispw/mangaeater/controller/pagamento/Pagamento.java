@@ -1,4 +1,4 @@
-package it.ispw.mangaeater.controller;
+package it.ispw.mangaeater.controller.pagamento;
 
 import it.ispw.mangaeater.exception.EmailNotFoundException;
 import it.ispw.mangaeater.exception.InsufficientCreditException;

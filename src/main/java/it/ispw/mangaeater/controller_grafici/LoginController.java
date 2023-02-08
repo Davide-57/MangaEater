@@ -1,4 +1,4 @@
-package it.ispw.mangaeater;
+package it.ispw.mangaeater.controller_grafici;
 
 import it.ispw.mangaeater.bean.UtenteBeanFromView;
 import it.ispw.mangaeater.controller.ComprareProdotto;

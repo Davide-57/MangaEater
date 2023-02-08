@@ -1,5 +1,6 @@
-package it.ispw.mangaeater;
+package it.ispw.mangaeater.controller_grafici;
 
+import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
@@ -85,7 +86,7 @@ public class Card extends Pane {
                 cp.mostraDettaglioAnnuncio(bean);
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio.fxml")));
 
-                loader.setControllerFactory(aClass -> new DettaglioAnnuncioController (cp));
+                loader.setControllerFactory(aClass -> new DettaglioAnnuncioController(cp));
 
                 Parent root = loader.load();
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();

@@ -11,7 +11,9 @@ module it.ispw.mangaeater {
     requires com.opencsv;
 
     opens it.ispw.mangaeater to javafx.fxml;
+    opens it.ispw.mangaeater.controller_grafici to javafx.fxml;
     exports it.ispw.mangaeater;
     exports it.ispw.mangaeater.boundary.jikan;
     opens it.ispw.mangaeater.boundary.jikan to javafx.fxml;
+    exports it.ispw.mangaeater.controller_grafici;
 }

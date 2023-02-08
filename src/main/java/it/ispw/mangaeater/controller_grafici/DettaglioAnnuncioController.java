@@ -1,8 +1,9 @@
-package it.ispw.mangaeater;
+package it.ispw.mangaeater.controller_grafici;
 
+import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
-import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.boundary.jikan.JikanBoundary;
+import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,9 +78,10 @@ public class DettaglioAnnuncioController implements Initializable{
 
     @FXML
     void backHome(MouseEvent event) {
+
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("home.fxml")));
-            loader.setControllerFactory(aClass -> new HomeController (cp));
+            loader.setControllerFactory(aClass -> new HomeController(cp));
             Parent root = loader.load();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -96,7 +98,20 @@ public class DettaglioAnnuncioController implements Initializable{
     @FXML
     void compraProdotto(MouseEvent event) {
 
-        // da fare con il pagamento
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("pagamento-cp.fxml")));
+            loader.setControllerFactory(aClass -> new PagamentoCPController(cp.creaControllerPagamento()));
+            Parent root = loader.load();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Manga Eater - Conferma pagamento");
+
+            stage.show();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
     }
 }
