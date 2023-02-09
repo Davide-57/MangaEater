@@ -73,8 +73,8 @@ public class DettaglioAnnuncioController implements Initializable{
         } catch (NoInternetConnectionException e) {
             descriptionJikan.setText("""
                     Connessione internet assente.
-                    Per visualzizare la descrizione fornita da Jikan connettersi\s
-                    ad una rete.""");
+                    Per visualizzare la descrizione fornita da Jikan connettersi\s
+                    ad una rete internet.""");
         }
 
     }

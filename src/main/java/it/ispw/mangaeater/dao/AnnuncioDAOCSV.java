@@ -35,7 +35,7 @@ public class AnnuncioDAOCSV implements AnnuncioDAO {
 
         List<Annuncio> listaAnnunci = new ArrayList<>();
 
-        //scarto la prima riga perché è di intestazione
+        //scarto la prima riga perché è d'intestazione
         csvReader.readNext();
         while ((line = csvReader.readNext()) != null) {
             //le righe successive alla prima contengono le informazioni sugli annunci che vengono utilizzate per aggiungere un nuovo annuncio alla lista

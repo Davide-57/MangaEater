@@ -7,6 +7,7 @@ import it.ispw.mangaeater.controller_grafici.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -121,7 +122,27 @@ public class HomeCliController implements Initializable {
                     mostraComandi();
                     break;
                 default:
-                    //Dettaglio annuncio da fare
+                    AnnuncioBean annuncioBean = verificaAnnuncio(input);
+                    if(annuncioBean != null){
+                        try {
+                            cp.mostraDettaglioAnnuncio(annuncioBean);
+                            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio-cli.fxml")));
+                            loader.setControllerFactory(aClass -> new DettaglioAnnuncioCliController(cp));
+                            Parent root = loader.load();
+                            Stage stage = (Stage)inputText.getScene().getWindow();
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.setTitle("Manga Eater - Dettaglio annuncio Cli");
+                            stage.show();
+
+                        } catch (IOException e) {
+                            Logger logger = Logger.getLogger(HomeCliController.class.getName());
+                            logger.log(Level.WARNING, "Errore durante apertura file FXML");
+                        }
+                    }
+                    else{
+                        outputText.appendText(SEPARATORE + "\nINPUT ERRATO, COMANDO NON RILEVATO.\n" + SEPARATORE);
+                    }
                     break;
 
             }
@@ -130,6 +151,28 @@ public class HomeCliController implements Initializable {
 
         }
 
+    }
+
+    private AnnuncioBean verificaAnnuncio(String input) {
+        AnnuncioBean annuncioBean = null;
+
+        try {
+            int inputInt = Integer.parseInt(input);
+
+            for(AnnuncioBean a: listaAnnunciBean){
+                if(a.getId() == inputInt){
+                    annuncioBean = a;
+                    break;
+                }
+            }
+        }
+        catch(Exception e){
+            // nel caso in cui la variabile "input" non sia un numero
+            Logger logger = Logger.getLogger(HomeCliController.class.getName());
+            logger.log(Level.WARNING, "Input non corretto");
+        }
+
+        return annuncioBean;
     }
 
 
