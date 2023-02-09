@@ -15,7 +15,7 @@ public class MangaEaterCLI extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MangaEater.class.getResource("controller_grafici/cli/home-cli.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Manga Eater");
+        stage.setTitle("Manga Eater - Cli");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));

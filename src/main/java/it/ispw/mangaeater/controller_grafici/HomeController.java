@@ -113,7 +113,7 @@ public class HomeController implements Initializable, Observer {
                 //se l'utente non è loggato va fatto il login
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login.fxml")));
                 // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
-                loader.setControllerFactory(aClass -> new LoginController(cp));
+                loader.setControllerFactory(aClass -> new LoginController(cp.creaControllerLogin()));
 
                 Stage stage = new Stage();
                 stage.setTitle("Manga Eater - Login");

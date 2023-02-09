@@ -1,7 +1,6 @@
 package it.ispw.mangaeater.controller_grafici;
 
 import it.ispw.mangaeater.bean.UtenteBeanFromView;
-import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.controller.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,18 +14,13 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    Login login;            // controller applicativo del login
-    ComprareProdotto cp = null;    // controller applicativo dell'acquisto di un prodotto
+    private final Login login;            // controller applicativo del login
 
     @FXML
     private TextField email;
 
     @FXML
     private TextField password;
-
-    public LoginController(ComprareProdotto cp) {
-        this.cp = cp;
-    }
 
     public LoginController(Login controllerLogin) {
         this.login = controllerLogin;
@@ -35,13 +29,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (cp != null) {
-            // login avviato dal HomeController
-            login = new Login(cp);
-        }
-        //  altrimenti login avviato dal PagamentoCompraProdController, quindi non faccio nulla
-
         login.estraiUtenti();
+
     }
 
     @FXML
