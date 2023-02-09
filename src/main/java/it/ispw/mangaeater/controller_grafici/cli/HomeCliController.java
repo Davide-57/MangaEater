@@ -46,6 +46,10 @@ public class HomeCliController implements Initializable {
         this.cp = new ComprareProdotto();
     }
 
+    public HomeCliController(ComprareProdotto cp) {
+        this.cp = cp;
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,33 +86,23 @@ public class HomeCliController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             // codice da eseguire quando viene premuto il tasto "invio" mentre la inputText è selezionata
             String input = inputText.getText();
-            switch (input){
-                case "log":
-                    startLogin();
-                    break;
-                case "fil":
-                    System.out.println("Filtro da fare");
-                    break;
-                case "ord":
-                    System.out.println("Ordinamento da fare");
-                    break;
-                case "reset":
-                    System.out.println("Reset filtro da fare");
-                    break;
-                case "cmd":
+            switch (input) {
+                case "log" -> startLogin();
+                case "fil" -> System.out.println("Filtro da fare");
+                case "ord" -> System.out.println("Ordinamento da fare");
+                case "reset" -> System.out.println("Reset filtro da fare");
+                case "cmd" -> {
                     outputText.appendText("\n" + SEPARATORE);
                     mostraComandi();
-                    break;
-                default:
+                }
+                default -> {
                     AnnuncioBean annuncioBean = verificaAnnuncio(input);
-                    if(annuncioBean != null){
+                    if (annuncioBean != null) {
                         startDettaglioAnnuncio(annuncioBean);
-                    }
-                    else{
+                    } else {
                         outputText.appendText(SEPARATORE + "\nINPUT ERRATO, COMANDO NON RILEVATO.\n" + SEPARATORE);
                     }
-                    break;
-
+                }
             }
 
             inputText.clear();

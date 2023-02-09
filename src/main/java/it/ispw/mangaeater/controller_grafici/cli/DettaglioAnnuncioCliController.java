@@ -6,16 +6,24 @@ import it.ispw.mangaeater.boundary.jikan.JikanBoundary;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DettaglioAnnuncioCliController implements Initializable {
 
@@ -85,6 +93,53 @@ public class DettaglioAnnuncioCliController implements Initializable {
     @FXML
     void ottieniInput(KeyEvent event) {
 
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            // codice da eseguire quando viene premuto il tasto "invio" mentre la inputText è selezionata
+            String input = inputText.getText();
+            switch (input) {
+                case "home" -> backHome();
+                case "compra" -> compraProdotto();
+                default -> comandiText.appendText("\nATTENZIONE: comando non esistente.");
+            }
+            inputText.clear();
+        }
+
+    }
+
+    private void compraProdotto() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("pagamento-cp-cli.fxml")));
+            loader.setControllerFactory(aClass -> new PagamentoCompraProdCliController(cp.creaControllerPagamento(), this));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)inputText.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Manga Eater - Conferma pagamento");
+
+            stage.show();
+        }
+        catch (IOException ex) {
+            Logger logger = Logger.getLogger(DettaglioAnnuncioCliController.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
+        }
+    }
+
+    private void backHome() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("home-cli.fxml")));
+            loader.setControllerFactory(aClass -> new HomeCliController(cp));
+            Parent root = loader.load();
+            Stage stage = (Stage)inputText.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Manga Eater");
+
+            stage.show();
+        }
+        catch (IOException ex) {
+            Logger logger = Logger.getLogger(DettaglioAnnuncioCliController.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
+        }
     }
 
 }

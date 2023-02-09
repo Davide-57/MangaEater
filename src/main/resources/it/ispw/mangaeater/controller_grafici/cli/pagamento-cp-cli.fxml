@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.mangaeater.controller_grafici.cli.PagamentoCompraProdCliController">
+  <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="535.0" prefWidth="732.0" style="-fx-background-color: white; -fx-border-color: #ffd699; -fx-border-width: 2 0 2 2; -fx-text-box-border: -fx-control-inner-background;" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="351.0" prefWidth="292.0" style="-fx-border-color: #ffb84d; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="image" fitHeight="306.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #ffb84d; -fx-border-radius: 20;" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="107.0" prefWidth="318.0" translateY="20.0">
+                     <children>
+                        <TextArea fx:id="comandiText" focusTraversable="false" prefHeight="79.0" prefWidth="358.0" style="-fx-border-color: #ffb84d; -fx-focus-color: transparent;" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ScrollPane prefHeight="535.0" prefWidth="901.0" style="-fx-border-color: #FFD699; -fx-border-width: 2; -fx-background-color: #FFD699;">
+               <content>
+                  <VBox prefHeight="527.0" prefWidth="527.0">
+                     <children>
+                        <TextArea fx:id="outputText" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="814.0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+    <HBox id="HBox" alignment="CENTER" prefHeight="65.0" prefWidth="900.0" spacing="5.0" style="-fx-background-color: #FFD699;" VBox.vgrow="NEVER">
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+         <children>
+            <TextField fx:id="inputText" onKeyPressed="#ottieniInput" prefHeight="35.0" prefWidth="880.0" promptText="Inserisci l'input" style="-fx-border-color: #ffb84d; -fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #ffb84d; -fx-prompt-text-fill: #ffd699;">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="1.0" green="0.7215686440467834" blue="0.3019607961177826" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </TextField>
+         </children>
+    </HBox>
+  </children>
+</VBox>
