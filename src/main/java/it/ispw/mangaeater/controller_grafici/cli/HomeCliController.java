@@ -27,7 +27,7 @@ public class HomeCliController implements Initializable {
 
     private List<AnnuncioBean> listaAnnunciBean;
 
-    private final static String SEPARATORE = "-------------------------------------------------------------------------" +
+    private static final String SEPARATORE = "-------------------------------------------------------------------------" +
             "----------------------------------------------------------------------------------------------------------";
 
 
