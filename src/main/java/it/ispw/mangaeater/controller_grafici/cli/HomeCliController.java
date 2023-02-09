@@ -84,29 +84,7 @@ public class HomeCliController implements Initializable {
             String input = inputText.getText();
             switch (input){
                 case "log":
-                    try {
-                        if(!cp.isLogged()){
-                            //se l'utente non è loggato va fatto il login
-                            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login-cli.fxml")));
-                            // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
-                            loader.setControllerFactory(aClass -> new LoginCliController(cp.creaControllerLogin()));
-                            Stage stage = new Stage();
-                            stage.setTitle("Manga Eater - Login - Cli");
-                            stage.setScene(new Scene(loader.load()));
-                            stage.setResizable(false);
-                            stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
-                            stage.initModality(Modality.APPLICATION_MODAL);
-                            stage.show();
-                        }
-                        else{
-                            //altrimenti c'è un utente loggato e quindi si vuole effettuare il logout
-                            cp.effettuaLogout();
-                        }
-                    }
-                    catch (IOException e) {
-                        Logger logger = Logger.getLogger(HomeController.class.getName());
-                        logger.log(Level.WARNING, "Errore durante apertura file FXML");
-                    }
+                    startLogin();
                     break;
                 case "fil":
                     System.out.println("Filtro da fare");
@@ -124,21 +102,7 @@ public class HomeCliController implements Initializable {
                 default:
                     AnnuncioBean annuncioBean = verificaAnnuncio(input);
                     if(annuncioBean != null){
-                        try {
-                            cp.mostraDettaglioAnnuncio(annuncioBean);
-                            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio-cli.fxml")));
-                            loader.setControllerFactory(aClass -> new DettaglioAnnuncioCliController(cp));
-                            Parent root = loader.load();
-                            Stage stage = (Stage)inputText.getScene().getWindow();
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.setTitle("Manga Eater - Dettaglio annuncio Cli");
-                            stage.show();
-
-                        } catch (IOException e) {
-                            Logger logger = Logger.getLogger(HomeCliController.class.getName());
-                            logger.log(Level.WARNING, "Errore durante apertura file FXML");
-                        }
+                        startDettaglioAnnuncio(annuncioBean);
                     }
                     else{
                         outputText.appendText(SEPARATORE + "\nINPUT ERRATO, COMANDO NON RILEVATO.\n" + SEPARATORE);
@@ -151,6 +115,50 @@ public class HomeCliController implements Initializable {
 
         }
 
+    }
+
+    private void startDettaglioAnnuncio(AnnuncioBean annuncioBean) {
+        try {
+            cp.mostraDettaglioAnnuncio(annuncioBean);
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("dettaglio-annuncio-cli.fxml")));
+            loader.setControllerFactory(aClass -> new DettaglioAnnuncioCliController(cp));
+            Parent root = loader.load();
+            Stage stage = (Stage)inputText.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Manga Eater - Dettaglio annuncio Cli");
+            stage.show();
+
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(HomeCliController.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
+        }
+    }
+
+    private void startLogin() {
+        try {
+            if(!cp.isLogged()){
+                //se l'utente non è loggato va fatto il login
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("login-cli.fxml")));
+                // viene passato il controller applicativo dell'acquisto di un prodotto per settare eventualmente la Sessione con l'utente che si loggerà
+                loader.setControllerFactory(aClass -> new LoginCliController(cp.creaControllerLogin()));
+                Stage stage = new Stage();
+                stage.setTitle("Manga Eater - Login - Cli");
+                stage.setScene(new Scene(loader.load()));
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/Logo_MangaEater.png"))));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+            }
+            else{
+                //altrimenti c'è un utente loggato e quindi si vuole effettuare il logout
+                cp.effettuaLogout();
+            }
+        }
+        catch (IOException e) {
+            Logger logger = Logger.getLogger(HomeController.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file FXML");
+        }
     }
 
     private AnnuncioBean verificaAnnuncio(String input) {
