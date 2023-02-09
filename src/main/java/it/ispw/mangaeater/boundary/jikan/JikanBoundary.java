@@ -1,5 +1,6 @@
 package it.ispw.mangaeater.boundary.jikan;
 
+import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import it.ispw.mangaeater.internet_connection.CheckingInternetConnection;
 import net.sandrohc.jikan.Jikan;
@@ -9,6 +10,8 @@ import net.sandrohc.jikan.model.manga.MangaType;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JikanBoundary {
 
@@ -27,7 +30,8 @@ public class JikanBoundary {
                     .collectList()
                     .block();
         } catch (JikanQueryException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(JikanBoundary.class.getName());
+            logger.log(Level.WARNING, "Errore durante la richiesta alle Jikan API");
         }
 
         for(Manga manga : Objects.requireNonNull(results)){

@@ -72,7 +72,7 @@ public class PagamentoCompraProdotto implements Pagamento {
         }
 
         UtenteDAO utenteDAO = new UtenteDAOJDBC();
-        double nuovoSaldo = saldoAcquirente - costo;
+        double nuovoSaldo = calcolaNuovoSaldo();
 
         utenteDAO.updateSaldo(acquirente, nuovoSaldo);
 
@@ -84,6 +84,10 @@ public class PagamentoCompraProdotto implements Pagamento {
         acquirente.setSaldo(nuovoSaldo);
         inviaEmail();
 
+    }
+
+    public double calcolaNuovoSaldo() {
+        return saldoAcquirente - costo;
     }
 
     @Override
@@ -101,4 +105,6 @@ public class PagamentoCompraProdotto implements Pagamento {
         String emailAcquirente = acquirente.getEmail();
         cp.concludiAcquisto(titoloAnnuncio, emailVenditore, emailAcquirente);
     }
+
+
 }

@@ -35,6 +35,11 @@ public class ComprareProdotto {
         sessione = new Sessione();
     }
 
+    public ComprareProdotto(Annuncio annuncio){
+        sessione = new Sessione();
+        annuncioInDettaglio = annuncio;
+    }
+
     public List<AnnuncioBean> estraiAnnunciTot() {
 
         //se filtro annunci è diverso da null utilizzo la lista generata precedentemente in modo da non resettare il filtro

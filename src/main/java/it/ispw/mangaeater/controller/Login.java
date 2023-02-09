@@ -1,7 +1,6 @@
 package it.ispw.mangaeater.controller;
 
 import it.ispw.mangaeater.bean.UtenteBeanFromView;
-import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.dao.UtenteDAO;
 import it.ispw.mangaeater.dao.UtenteDAOCSV;
 import it.ispw.mangaeater.entity.Utente;
@@ -34,7 +33,7 @@ public class Login {
             listaUtenti = annuncioDAO.selectUtentiTot();
         }
         catch (IOException e){
-            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            Logger logger = Logger.getLogger(Login.class.getName());
             logger.log(Level.WARNING, "Errore durante esportazione degli utenti dalla persistenza");
         }
 
