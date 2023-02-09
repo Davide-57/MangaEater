@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Card extends Pane {
 
@@ -97,7 +99,8 @@ public class Card extends Pane {
                 stage.show();
             }
             catch (IOException ex) {
-                ex.printStackTrace();
+                Logger logger = Logger.getLogger(Card.class.getName());
+                logger.log(Level.WARNING, "Errore durante apertura file FXML");
             }
         });
 

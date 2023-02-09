@@ -5,7 +5,6 @@ import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.bean.SessioneBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
-import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import it.ispw.mangaeater.observer_pattern.Observer;
@@ -37,6 +36,30 @@ import java.util.logging.Logger;
 
 public class HomeController implements Initializable, Observer {
 
+    private final ObservableList<Card> list = FXCollections.observableArrayList();
+
+    @FXML
+    private GridPane cardHolder;
+
+    @FXML
+    private MenuButton categorieButton;
+
+    @FXML
+    private MenuButton iconaOrdinamento;
+
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private TextField loginButton;
+
+    private final ComprareProdotto cp;
+
+    private Subject sessioneBean;
+
+    private static final String LOGOUT = "Logout";
+
+
     //questo costruttore è quello richiamato dal main
     //per questo motivo dovrà essere creata una nuova sessione e impostata come Subject di questa istanza
     public HomeController() {
@@ -65,29 +88,6 @@ public class HomeController implements Initializable, Observer {
         this.setSubject(new SessioneBean(this));
         cp.setObserverSessione(sessioneBean);
     }
-
-    private final ObservableList<Card> list = FXCollections.observableArrayList();
-
-    @FXML
-    private GridPane cardHolder;
-
-    @FXML
-    private MenuButton categorieButton;
-
-    @FXML
-    private MenuButton iconaOrdinamento;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private TextField loginButton;
-
-    private final ComprareProdotto cp;
-
-    private Subject sessioneBean;
-
-    private static final String LOGOUT = "Logout";
 
 
     @Override
@@ -129,7 +129,7 @@ public class HomeController implements Initializable, Observer {
             }
         }
         catch (IOException e) {
-            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            Logger logger = Logger.getLogger(HomeController.class.getName());
             logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
     }
@@ -240,7 +240,7 @@ public class HomeController implements Initializable, Observer {
         if(listaAnnunciBean.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setContentText("La ricerca non ha avuto risultati\n Immetere un altro filtro");
+            alert.setContentText("La ricerca non ha avuto risultati\nInserire un altro filtro");
             alert.setTitle("NESSUN RISULTATO");
             alert.showAndWait();
         } else {

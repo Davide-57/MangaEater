@@ -24,4 +24,6 @@ module it.ispw.mangaeater {
     exports it.ispw.mangaeater.entity;
     exports it.ispw.mangaeater.sessione;
     exports it.ispw.mangaeater.decorator_pattern;
+    exports it.ispw.mangaeater.controller_grafici.cli;
+    opens it.ispw.mangaeater.controller_grafici.cli to javafx.fxml;
 }

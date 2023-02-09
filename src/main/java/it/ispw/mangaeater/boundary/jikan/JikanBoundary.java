@@ -1,6 +1,5 @@
 package it.ispw.mangaeater.boundary.jikan;
 
-import it.ispw.mangaeater.dao.DbConnection;
 import it.ispw.mangaeater.exception.NoInternetConnectionException;
 import it.ispw.mangaeater.internet_connection.CheckingInternetConnection;
 import net.sandrohc.jikan.Jikan;
