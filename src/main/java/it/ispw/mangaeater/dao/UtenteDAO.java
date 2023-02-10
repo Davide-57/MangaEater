@@ -9,6 +9,6 @@ import java.util.List;
 public interface UtenteDAO {
     List<Utente> selectUtentiTot() throws IOException;
 
-    void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws SQLUtenteException;
+    void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws SQLUtenteException, IOException;
 
 }

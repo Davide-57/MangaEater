@@ -35,7 +35,7 @@ public class HomeCliController implements Initializable {
     @FXML
     private TextArea outputText;
 
-    private ComprareProdotto cp;
+    private final ComprareProdotto cp;
 
     private List<AnnuncioBean> listaAnnunciBean;
 

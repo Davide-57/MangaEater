@@ -63,12 +63,13 @@ public class UtenteDAOCSV implements UtenteDAO{
     }
 
     @Override
-    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) {
+    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws IOException {
 
-        CSVReader reader = null;
+        CSVReader reader = new CSVReader(new FileReader(fd));
         CSVWriter writer = null;
+
         try{
-            reader = new CSVReader(new FileReader(fd));
+
             List<String[]> csvBody = reader.readAll();
 
             //considerare come numero di riga utenteLoggato.getId() non è una buona scelta a lungo andare
@@ -77,29 +78,16 @@ public class UtenteDAOCSV implements UtenteDAO{
             writer = new CSVWriter(new FileWriter(fd));
             writer.writeAll(csvBody);
             writer.flush();
-        } catch (IOException | CsvException e) {
+        } catch (CsvException e) {
             Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
             logger.log(Level.WARNING, "Errore durante apertura file CSV");
         }
         finally {
-            try{
-                assert reader != null;
-                reader.close();
-            } catch (IOException e) {
-                Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
-                logger.log(Level.WARNING, "Errore durante chiusura stream su file CSV");
-            }
-            finally{
-                try{
-                    assert writer != null;
-                    writer.close();
-                } catch (IOException e) {
-                    Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
-                    logger.log(Level.WARNING, "Errore durante chiusura stream su file CSV");
-                }
-            }
-
+            assert writer != null;
+            writer.close();
         }
+
+        reader.close();
 
 
     }

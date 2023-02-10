@@ -191,7 +191,7 @@ public class PagamentoCompraProdController implements Initializable {
                 String titoloErrore = "SALDO INSUFFICIENTE";
                 String descrizioneErrore = "Prima di procedere con l'acquisto occorre ricaricare il conto MangaEater.";
                 mostraErrore(titoloErrore, descrizioneErrore);
-            } catch (SQLUtenteException e) {
+            } catch (SQLUtenteException | IOException e) {
                 String titoloErrore = "ERRORE INTERNO SISTEMA";
                 String descrizioneErrore = "Errore interno del sistema: dispositivi di I/O non raggiungibile.\nContattare il gestore del sistema all'email gestore.mangaeater@gmail.com";
                 mostraErrore(titoloErrore, descrizioneErrore);

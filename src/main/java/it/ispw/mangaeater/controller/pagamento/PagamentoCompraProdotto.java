@@ -15,6 +15,8 @@ import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
 import it.ispw.mangaeater.sessione.Sessione;
 
+import java.io.IOException;
+
 public class PagamentoCompraProdotto implements Pagamento {
 
     private final ComprareProdotto cp;
@@ -62,7 +64,7 @@ public class PagamentoCompraProdotto implements Pagamento {
     }
 
     @Override
-    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException{
+    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException, IOException {
 
         if(saldoAcquirente < costo){
             throw new InsufficientCreditException("L'utente non ha saldo sufficiente.");

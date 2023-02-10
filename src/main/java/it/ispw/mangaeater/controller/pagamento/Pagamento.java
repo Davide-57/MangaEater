@@ -8,11 +8,13 @@ import it.ispw.mangaeater.exception.InsufficientCreditException;
 import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
 
+import java.io.IOException;
+
 public interface Pagamento {
 
     public InfoPagamentoBean estraiInfoPagamento() throws UserNotLoggedException;
 
-    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException;
+    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException, IOException;
 
     public Login creaLoginController();
 
