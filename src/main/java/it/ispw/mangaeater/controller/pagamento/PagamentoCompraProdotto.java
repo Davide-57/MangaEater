@@ -1,6 +1,5 @@
 package it.ispw.mangaeater.controller.pagamento;
 
-import com.opencsv.exceptions.CsvException;
 import it.ispw.mangaeater.bean.InfoPagamentoBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
@@ -15,8 +14,6 @@ import it.ispw.mangaeater.exception.InsufficientCreditException;
 import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
 import it.ispw.mangaeater.sessione.Sessione;
-
-import java.io.IOException;
 
 public class PagamentoCompraProdotto implements Pagamento {
 
@@ -65,7 +62,7 @@ public class PagamentoCompraProdotto implements Pagamento {
     }
 
     @Override
-    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException, IOException, CsvException {
+    public void finalizzaPagamento() throws InsufficientCreditException, SQLUtenteException, EmailNotFoundException{
 
         if(saldoAcquirente < costo){
             throw new InsufficientCreditException("L'utente non ha saldo sufficiente.");

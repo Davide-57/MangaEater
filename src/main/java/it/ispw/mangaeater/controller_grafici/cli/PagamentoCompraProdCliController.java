@@ -1,6 +1,5 @@
 package it.ispw.mangaeater.controller_grafici.cli;
 
-import com.opencsv.exceptions.CsvException;
 import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.InfoPagamentoBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
@@ -172,7 +171,7 @@ public class PagamentoCompraProdCliController implements Initializable {
             String titoloErrore = "SALDO INSUFFICIENTE";
             String descrizioneErrore = "Prima di procedere con l'acquisto occorre ricaricare il conto MangaEater.";
             mostraErrore(titoloErrore, descrizioneErrore);
-        } catch (SQLUtenteException | CsvException | IOException e) {
+        } catch (SQLUtenteException e) {
             String titoloErrore = "ERRORE INTERNO SISTEMA";
             String descrizioneErrore = "Errore interno del sistema: dispositivi di I/O non raggiungibile.\nContattare il gestore del sistema all'email gestore.mangaeater@gmail.com";
             mostraErrore(titoloErrore, descrizioneErrore);

@@ -63,20 +63,37 @@ public class UtenteDAOCSV implements UtenteDAO{
     }
 
     @Override
-    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) throws IOException, CsvException {
+    public void updateSaldo(Utente utenteLoggato, double nuovoSaldo) {
 
-        CSVReader reader = new CSVReader(new FileReader(fd));
-        List<String[]> csvBody = reader.readAll();
+        CSVReader reader = null;
+        CSVWriter writer = null;
+        try{
+            reader = new CSVReader(new FileReader(fd));
+            List<String[]> csvBody = reader.readAll();
 
-        //considerare come numero di riga utenteLoggato.getId() non è una buona scelta a lungo andare
-        csvBody.get(utenteLoggato.getId())[UtenteIndiceAttributi.INDEX_SALDO] = String.valueOf(nuovoSaldo);
-        reader.close();
+            //considerare come numero di riga utenteLoggato.getId() non è una buona scelta a lungo andare
+            csvBody.get(utenteLoggato.getId())[UtenteIndiceAttributi.INDEX_SALDO] = String.valueOf(nuovoSaldo);
 
+            writer = new CSVWriter(new FileWriter(fd));
+            writer.writeAll(csvBody);
+            writer.flush();
+        } catch (IOException | CsvException e) {
+            Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
+            logger.log(Level.WARNING, "Errore durante apertura file CSV");
+        }
+        finally {
+            try{
+                assert reader != null;
+                reader.close();
+                assert writer != null;
+                writer.close();
+            } catch (IOException e) {
+                Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
+                logger.log(Level.WARNING, "Errore durante chiusura stream su file CSV");
+            }
 
-        CSVWriter writer = new CSVWriter(new FileWriter(fd));
-        writer.writeAll(csvBody);
-        writer.flush();
-        writer.close();
+        }
+
 
     }
 
