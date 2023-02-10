@@ -83,11 +83,12 @@ public class UtenteDAOCSV implements UtenteDAO{
             logger.log(Level.WARNING, "Errore durante apertura file CSV");
         }
         finally {
+            reader.close();
             assert writer != null;
             writer.close();
         }
 
-        reader.close();
+
 
 
     }
