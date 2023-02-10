@@ -98,7 +98,6 @@ public class HomeCliController implements Initializable {
                 case "ord" -> System.out.println("Ordinamento da fare");
                 case "reset" -> System.out.println("Reset filtro da fare");
                 case "cmd" -> {
-                    System.out.println("PROVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                     outputText.appendText("\n" + SEPARATORE);
                     mostraComandi();
                 }
