@@ -25,7 +25,7 @@ public class FiltroStandard extends FiltroAnnunci{
 
         } catch (CsvValidationException | IOException e) {
             Logger logger = Logger.getLogger(DbConnection.class.getName());
-            logger.log(Level.WARNING, "Errore durante estgrazione annunci da CSV");
+            logger.log(Level.WARNING, "Errore durante estrazione annunci da CSV");
         }
 
 

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TestPagamentoCompraProdotto {
 
     @Test
-    void calcolaNuovoSaldo() {
+    void testCalcolaNuovoSaldo() {
         ComprareProdotto comprareProdotto = new ComprareProdotto(new Annuncio(1, "test", "test", 15, "test", CategoriaAnnuncio.SHONEN));
         comprareProdotto.setUtenteLoggato(new Utente(1, "test", "test", "test", "test", "test", 100));
         PagamentoCompraProdotto pagamentoCompraProdotto = new PagamentoCompraProdotto(comprareProdotto);
@@ -26,6 +26,6 @@ class TestPagamentoCompraProdotto {
             logger.log(Level.WARNING, "Errore durante test: utente non loggato");
         }
         double actualSaldo = pagamentoCompraProdotto.calcolaNuovoSaldo();
-        assertEquals(95.0, actualSaldo, 0);
+        assertEquals(85.0, actualSaldo, 0);
     }
 }
