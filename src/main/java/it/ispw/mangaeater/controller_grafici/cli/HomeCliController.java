@@ -5,6 +5,7 @@ import it.ispw.mangaeater.bean.AnnuncioBean;
 import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.controller_grafici.HomeController;
+import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -62,6 +63,7 @@ public class HomeCliController implements Initializable {
         outputText.setWrapText(true);
         mostraComandi();
 
+        listaAnnunciBean = cp.estraiAnnunciTot();
         inizializzaLista();
 
     }
@@ -74,11 +76,14 @@ public class HomeCliController implements Initializable {
                 1) Ogni tipo di input va inserito nella barra in basso
                 2) Per entrare nel dettaglio di un annuncio inserire il suo ID
                 3) Per effettuare il login o il logout, inserire il comando "log"
-                4) Per accedere alla modalità filtro, inserire il comando "fil"
-                5) Dopo essere entrati nella modalità filtro, inserire il comando "tit" per filtrare in base al titolo e "cat" per filtrare in base alla categoria
-                6) Per accedere alla modalità ordinamento, inserire il comando "ord"
-                7) Per rimuovere tutti i filtri e ordinamenti, inserire il comando "reset"
-                8) Per  visualizzare di nuovo i comandi disponibili inserisci "cmd"
+                4) Per ordinare in base alla data di inserimento dell'annuncio inserire "ord-ins"
+                5) Per ordinare in base al titolo dell'annuncio inserire "ord-tit"
+                6) Per ordinare in base al costo crescente del prodotto inserire "ord-cc"
+                7) Per ordinare in base al costo decrescente del prodotto inserire "ord-cd"
+                8) Per filtrare in base alla categoria inserire il comando "fil-cat-" seguito dalla categoria, la quale può essere: shonen, kodomo, shoujo, josei, seinen
+                9) Per filtrare in base al titolo inserire il comando "fil-tit". Tale comando avvierà la modalità di filtro in base al titolo con la quale il prossimo testo che viene inserito verrà considerato dal programma per il filtro degli annunci.
+                10) Per rimuovere tutti i filtri e ordinamenti, inserire il comando "reset"
+                11) Per  visualizzare di nuovo i comandi disponibili inserisci "cmd"
                 
                 I comandi sono terminati, di seguito verranno visualizzati gli annunci disponibili.
                 
@@ -94,6 +99,18 @@ public class HomeCliController implements Initializable {
             String input = inputText.getText();
             switch (input) {
                 case "log" -> startLogin();
+                case "ord-ins" -> {
+                    listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
+                    inizializzaLista();
+                }
+                case "ord-tit" -> {
+                    listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
+                    inizializzaLista();
+                }
+                case "ord-cc" -> System.out.println("Reset filtro da fare");
+                case "ord-cd" -> System.out.println("Reset filtro da fare");
+
+
                 case "fil" -> System.out.println("Filtro da fare");
                 case "ord" -> System.out.println("Ordinamento da fare");
                 case "reset" -> System.out.println("Reset filtro da fare");
@@ -186,7 +203,6 @@ public class HomeCliController implements Initializable {
 
     private void inizializzaLista() {
 
-        listaAnnunciBean = cp.estraiAnnunciTot();
         if(listaAnnunciBean.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
@@ -203,6 +219,7 @@ public class HomeCliController implements Initializable {
                         "\nCosto: " + annuncioBean.getCosto());
                 outputText.appendText("\n\n" + SEPARATORE);
             }
+            outputText.appendText(SEPARATORE + SEPARATORE);
         }
     }
 }
