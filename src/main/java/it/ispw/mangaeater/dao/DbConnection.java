@@ -26,6 +26,7 @@ public class DbConnection {
                 String line;
                 String[] userPasswordArray;
                 line = in.readLine();
+                in.close();
                 userPasswordArray = line.split(" ");
                 user = userPasswordArray[0];
                 password = userPasswordArray[1];

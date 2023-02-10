@@ -49,8 +49,8 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             }while(rs.next());
 
-        } catch (SQLException e) {
-            Logger logger = Logger.getLogger(DbConnection.class.getName());
+        } catch (SQLException | NullPointerException e) {
+            Logger logger = Logger.getLogger(AnnuncioDAOJDBC.class.getName());
             logger.log(Level.WARNING, "Errore durante query al DB");
         } finally {
                 if (stmt != null) {
