@@ -66,7 +66,7 @@ public class DettaglioAnnuncioCliController implements Initializable {
         AnnuncioBean annuncioBean = cp.getBeanDettaglioAnnuncio();
         outputText.appendText("TITOLO: " + annuncioBean.getTitolo() +
                 "\n\nDESCRIZIONE: " + annuncioBean.getDescrizione() +
-                "\n\nCOSTO: " + annuncioBean.getCosto() +
+                "\n\nCOSTO: " + annuncioBean.getCosto() + "€" +
                 "\n\nEMAIL VENDITORE: " + annuncioBean.getVenditoreEmail());
 
         image.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/"+annuncioBean.getId()+".jpg"))));

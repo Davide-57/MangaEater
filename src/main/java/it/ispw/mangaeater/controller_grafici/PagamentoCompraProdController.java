@@ -89,8 +89,8 @@ public class PagamentoCompraProdController implements Initializable {
             image.setImage(new Image(Objects.requireNonNull(MangaEater.class.getResourceAsStream("/images/" + infoPagamentoBean.getIdAnnuncio() + ".jpg"))));
             titolo.setText(infoPagamentoBean.getTitoloAnnuncio());
             emailVend.setText(infoPagamentoBean.getEmailVenditore());
-            costo.setText("" + infoPagamentoBean.getCosto());
-            saldo.setText("" + infoPagamentoBean.getSaldoAcquirente());
+            costo.setText("" + infoPagamentoBean.getCosto() + "€");
+            saldo.setText("" + infoPagamentoBean.getSaldoAcquirente() + "€");
 
         } catch (UserNotLoggedException e) {
 
@@ -115,7 +115,7 @@ public class PagamentoCompraProdController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
-            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            Logger logger = Logger.getLogger(PagamentoCompraProdController.class.getName());
             logger.log(Level.WARNING, "Errore nell apertura di un file FXML");
         }
     }
@@ -154,7 +154,7 @@ public class PagamentoCompraProdController implements Initializable {
             stage.show();
         }
         catch (IOException ex) {
-            Logger logger = Logger.getLogger(DbConnection.class.getName());
+            Logger logger = Logger.getLogger(PagamentoCompraProdController.class.getName());
             logger.log(Level.WARNING, "Errore durante apertura file FXML");
         }
 

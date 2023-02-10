@@ -2,6 +2,7 @@ package it.ispw.mangaeater.controller_grafici.cli;
 
 import it.ispw.mangaeater.MangaEater;
 import it.ispw.mangaeater.bean.AnnuncioBean;
+import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.controller_grafici.HomeController;
 import javafx.fxml.FXML;
@@ -50,6 +51,11 @@ public class HomeCliController implements Initializable {
         this.cp = cp;
     }
 
+    public HomeCliController(UtenteBeanFromController utenteBean) {
+        this.cp = new ComprareProdotto();
+        cp.setUtenteLoggato(utenteBean);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -64,7 +70,7 @@ public class HomeCliController implements Initializable {
 
         outputText.appendText("""
                 Benvenuto nell'app MangaEater.
-                Di seguito verranno delle indicazioni ed i comandi disponibili per interagire con il programma:
+                Di seguito sono elencate delle indicazioni ed i comandi disponibili per interagire con il programma:
                 1) Ogni tipo di input va inserito nella barra in basso
                 2) Per entrare nel dettaglio di un annuncio inserire il suo ID
                 3) Per effettuare il login o il logout, inserire il comando "log"
