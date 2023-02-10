@@ -6,6 +6,7 @@ import it.ispw.mangaeater.bean.UtenteBeanFromController;
 import it.ispw.mangaeater.controller.ComprareProdotto;
 import it.ispw.mangaeater.controller_grafici.HomeController;
 import it.ispw.mangaeater.decorator_pattern.FiltroAnnunci;
+import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,7 +41,9 @@ public class HomeCliController implements Initializable {
 
     private List<AnnuncioBean> listaAnnunciBean;
 
-    private static final String SEPARATORE = "-------------------------------------------------------------------------" +
+    private boolean filtroPerTitolo = false;
+
+    private static final String SEPARATORE = "--------------------------------------------------------------------------" +
             "----------------------------------------------------------------------------------------------------------";
 
 
@@ -97,42 +100,95 @@ public class HomeCliController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             // codice da eseguire quando viene premuto il tasto "invio" mentre la inputText è selezionata
             String input = inputText.getText();
-            switch (input) {
-                case "log" -> startLogin();
-                case "ord-ins" -> {
-                    listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
-                    inizializzaLista();
-                }
-                case "ord-tit" -> {
-                    listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
-                    inizializzaLista();
-                }
-                case "ord-cc" -> System.out.println("Reset filtro da fare");
-                case "ord-cd" -> System.out.println("Reset filtro da fare");
-
-
-                case "fil" -> System.out.println("Filtro da fare");
-                case "ord" -> System.out.println("Ordinamento da fare");
-                case "reset" -> System.out.println("Reset filtro da fare");
-                case "cmd" -> {
-                    outputText.appendText("\n" + SEPARATORE);
-                    mostraComandi();
-                }
-                default -> {
-                    AnnuncioBean annuncioBean = verificaAnnuncio(input);
-                    if (annuncioBean != null) {
-                        startDettaglioAnnuncio(annuncioBean);
-                    } else {
-                        outputText.appendText(SEPARATORE + "\nINPUT ERRATO, COMANDO NON RILEVATO.\n" + SEPARATORE);
-                    }
-                }
+            if(!filtroPerTitolo){
+                modalitaNormale(input);
             }
-
+            else{
+                modalitaFiltroPerTitolo(input);
+            }
             inputText.clear();
-
         }
 
     }
+
+    private void modalitaFiltroPerTitolo(String input) {
+        filtroPerTitolo = false;
+        listaAnnunciBean = cp.estraiAnnunciPerTitolo(input);
+        inizializzaLista();
+    }
+
+    private void modalitaNormale(String input) {
+        switch (input) {
+            //login
+            case "log" -> startLogin();
+            //ordinamento
+            case "ord-ins" -> {
+                listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.ID);
+                inizializzaLista();
+            }
+            case "ord-tit" -> {
+                listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.TITOLO);
+                inizializzaLista();
+            }
+            case "ord-cc" -> {
+                listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_CRESCENTE);
+                inizializzaLista();
+            }
+            case "ord-cd" -> {
+                listaAnnunciBean = cp.cambiaOrdinamento(FiltroAnnunci.OrdineAnnunci.COSTO_DECRESCENTE);
+                inizializzaLista();
+            }
+
+            //filtro per categoria
+            case "fil-cat-shonen" -> {
+                listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHONEN);
+                inizializzaLista();
+            }
+            case "fil-cat-kodomo" -> {
+                listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.KODOMO);
+                inizializzaLista();
+            }
+            case "fil-cat-shoujo" -> {
+                listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SHOUJO);
+                inizializzaLista();
+            }
+            case "fil-cat-josei" -> {
+                listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.JOSEI);
+                inizializzaLista();
+            }
+            case "fil-cat-seinen" -> {
+                listaAnnunciBean = cp.estraiAnnunciPerCategoria(CategoriaAnnuncio.SEINEN);
+                inizializzaLista();
+            }
+
+            //avvio modalità filtro per testo
+            case "fil-tit" -> {
+                filtroPerTitolo = true;
+                outputText.appendText("Modalità filtro per titolo avviata.\nInserire un parametro di ricerca.\n\n");
+            }
+
+            //reset di tutti i filtri
+            case "reset" -> {
+                listaAnnunciBean = cp.rimuoviFiltri();
+                inizializzaLista();
+            }
+
+            //visualizza i comandi disponibili
+            case "cmd" -> {
+                outputText.appendText("\n" + SEPARATORE);
+                mostraComandi();
+            }
+            default -> {
+                AnnuncioBean annuncioBean = verificaAnnuncio(input);
+                if (annuncioBean != null) {
+                    startDettaglioAnnuncio(annuncioBean);
+                } else {
+                    outputText.appendText(SEPARATORE + "\nINPUT ERRATO, COMANDO NON RILEVATO.\n" + SEPARATORE);
+                }
+            }
+        }
+    }
+
 
     private void startDettaglioAnnuncio(AnnuncioBean annuncioBean) {
         try {
@@ -219,7 +275,7 @@ public class HomeCliController implements Initializable {
                         "\nCosto: " + annuncioBean.getCosto());
                 outputText.appendText("\n\n" + SEPARATORE);
             }
-            outputText.appendText(SEPARATORE + SEPARATORE);
+            outputText.appendText(SEPARATORE + SEPARATORE + "\n\n");
         }
     }
 }

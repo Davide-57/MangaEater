@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -29,19 +28,15 @@
                   </HBox>
                </children>
             </VBox>
-            <ScrollPane prefHeight="535.0" prefWidth="901.0" style="-fx-border-color: #FFD699; -fx-border-width: 2; -fx-background-color: #FFD699;">
-               <content>
-                  <VBox prefHeight="527.0" prefWidth="527.0">
-                     <children>
-                        <TextArea fx:id="outputText" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="814.0" VBox.vgrow="ALWAYS">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextArea>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
+            <VBox prefHeight="535.0" prefWidth="882.0">
+               <children>
+                  <TextArea fx:id="outputText" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="814.0" style="-fx-border-color: #ffd699; -fx-border-width: 2;" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
          </children>
       </HBox>
     <HBox id="HBox" alignment="CENTER" prefHeight="65.0" prefWidth="900.0" spacing="5.0" style="-fx-background-color: #FFD699;" VBox.vgrow="NEVER">
