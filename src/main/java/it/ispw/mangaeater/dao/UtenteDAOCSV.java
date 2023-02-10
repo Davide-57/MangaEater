@@ -85,11 +85,18 @@ public class UtenteDAOCSV implements UtenteDAO{
             try{
                 assert reader != null;
                 reader.close();
-                assert writer != null;
-                writer.close();
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
                 logger.log(Level.WARNING, "Errore durante chiusura stream su file CSV");
+            }
+            finally{
+                try{
+                    assert writer != null;
+                    writer.close();
+                } catch (IOException e) {
+                    Logger logger = Logger.getLogger(UtenteDAOCSV.class.getName());
+                    logger.log(Level.WARNING, "Errore durante chiusura stream su file CSV");
+                }
             }
 
         }
