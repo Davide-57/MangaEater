@@ -4,7 +4,6 @@ import it.ispw.mangaeater.entity.Annuncio;
 import it.ispw.mangaeater.myenum.CategoriaAnnuncio;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FiltroPerCategoriaDecorator extends Decorator{
 
@@ -27,7 +26,7 @@ public class FiltroPerCategoriaDecorator extends Decorator{
 
         return listaAnnunci.stream()
                 .filter(entry -> entry.getCategoria()==categoria)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

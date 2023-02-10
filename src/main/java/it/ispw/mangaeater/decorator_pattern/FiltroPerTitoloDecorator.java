@@ -3,7 +3,6 @@ package it.ispw.mangaeater.decorator_pattern;
 import it.ispw.mangaeater.entity.Annuncio;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FiltroPerTitoloDecorator extends Decorator{
 
@@ -25,7 +24,7 @@ public class FiltroPerTitoloDecorator extends Decorator{
 
         return listaAnnunci.stream()
                 .filter(entry -> entry.getTitolo().toUpperCase().contains(titolo.toUpperCase()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

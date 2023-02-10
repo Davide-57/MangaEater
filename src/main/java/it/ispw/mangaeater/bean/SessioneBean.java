@@ -3,14 +3,11 @@ package it.ispw.mangaeater.bean;
 import it.ispw.mangaeater.controller_grafici.HomeController;
 import it.ispw.mangaeater.observer_pattern.Observer;
 import it.ispw.mangaeater.observer_pattern.Subject;
-import it.ispw.mangaeater.sessione.Sessione;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SessioneBean implements Observer, Subject {
-
-    private UtenteBeanFromController utenteLoggatoBean;
 
     private final List<Observer> observers;
     private boolean changed;
@@ -24,7 +21,8 @@ public class SessioneBean implements Observer, Subject {
 
     @Override
     public void update() {
-        setUtenteLoggatoBean(((Sessione)sessione).getUtenteLoggatoBean());
+        this.changed=true;
+        notifyObservers();
     }
 
 
@@ -59,12 +57,6 @@ public class SessioneBean implements Observer, Subject {
         for (Observer obj : observersLocal) {
             obj.update();
         }
-    }
-
-    public void setUtenteLoggatoBean(UtenteBeanFromController utenteLoggatoBean) {
-        this.utenteLoggatoBean = utenteLoggatoBean;
-        this.changed=true;
-        notifyObservers();
     }
 
 }
