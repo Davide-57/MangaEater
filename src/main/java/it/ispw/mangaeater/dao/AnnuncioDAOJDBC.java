@@ -34,7 +34,14 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
                 case COSTO_DECRESCENTE -> rs = QueryAnnuncio.selectAllOrderByCostDecresc(stmt);
             }
 
-            rs.first();
+            try{
+                rs.first();
+            }
+            catch(NullPointerException e){
+                Logger logger = Logger.getLogger(AnnuncioDAOJDBC.class.getName());
+                logger.log(Level.WARNING, "Il result set è null");
+            }
+
             do{
                 int id = rs.getInt("idAnnuncio");
                 String titolo = rs.getString("titolo");
@@ -49,7 +56,7 @@ public class AnnuncioDAOJDBC implements AnnuncioDAO{
 
             }while(rs.next());
 
-        } catch (SQLException | NullPointerException e) {
+        } catch (SQLException e) {
             Logger logger = Logger.getLogger(AnnuncioDAOJDBC.class.getName());
             logger.log(Level.WARNING, "Errore durante query al DB");
         } finally {
