@@ -19,14 +19,14 @@ public class DbConnection {
 
     public static synchronized Connection getConnection() {
         if (conn == null) {
+            BufferedReader in = null;
             try{
-                BufferedReader in = new BufferedReader(new FileReader("src/main/resources/utenze/db.txt"));
+                in = new BufferedReader(new FileReader("src/main/resources/utenze/db.txt"));
                 String user;
                 String password;
                 String line;
                 String[] userPasswordArray;
                 line = in.readLine();
-                in.close();
                 userPasswordArray = line.split(" ");
                 user = userPasswordArray[0];
                 password = userPasswordArray[1];
@@ -38,6 +38,17 @@ public class DbConnection {
             catch (ClassNotFoundException | SQLException | IOException e) {
                 Logger logger = Logger.getLogger(DbConnection.class.getName());
                 logger.log(Level.WARNING, "Errore durante la connessione al DB");
+            }
+            finally {
+                try{
+                    assert in != null;
+                    in.close();
+                } catch (IOException e) {
+                    Logger logger = Logger.getLogger(DbConnection.class.getName());
+                    logger.log(Level.WARNING, "Errore durante la chiusura dello stream di input");
+                }
+
+
             }
         }
         return conn;
