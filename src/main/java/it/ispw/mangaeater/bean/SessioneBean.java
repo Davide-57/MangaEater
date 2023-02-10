@@ -12,8 +12,6 @@ public class SessioneBean implements Observer, Subject {
     private final List<Observer> observers;
     private boolean changed;
 
-    private Subject sessione;
-
     public SessioneBean(HomeController homeControllerGrafico) {
         this.observers = new ArrayList<>();
         this.register(homeControllerGrafico);
@@ -28,7 +26,7 @@ public class SessioneBean implements Observer, Subject {
 
     @Override
     public void setSubject(Subject sub) {
-        this.sessione = sub;
+        changed = false;
     }
 
     @Override
