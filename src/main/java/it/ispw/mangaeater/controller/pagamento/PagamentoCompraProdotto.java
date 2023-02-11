@@ -13,7 +13,6 @@ import it.ispw.mangaeater.exception.EmailNotFoundException;
 import it.ispw.mangaeater.exception.InsufficientCreditException;
 import it.ispw.mangaeater.exception.SQLUtenteException;
 import it.ispw.mangaeater.exception.UserNotLoggedException;
-import it.ispw.mangaeater.sessione.Sessione;
 
 import java.io.IOException;
 
@@ -45,9 +44,8 @@ public class PagamentoCompraProdotto implements Pagamento {
     }
 
     private void estraiInfoAcquirente() throws UserNotLoggedException {
-        Sessione sessione = cp.getSessione();
-        if(sessione.isLogged()){
-            acquirente = sessione.getUtenteLoggato();
+        if(cp.isLogged()){
+            acquirente = cp.getUtenteLoggato();
             saldoAcquirente = acquirente.getSaldo();
         }
         else{

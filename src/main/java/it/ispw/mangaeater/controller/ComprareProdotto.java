@@ -119,8 +119,8 @@ public class ComprareProdotto {
         return annuncioInDettaglio;
     }
 
-    public Sessione getSessione() {
-        return sessione;
+    public Utente getUtenteLoggato() {
+        return sessione.getUtenteLoggato();
     }
 
     public void concludiAcquisto(String titoloAnnuncio, String emailVenditore, String emailAcquirente) throws EmailNotFoundException {
