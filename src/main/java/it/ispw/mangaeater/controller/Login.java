@@ -16,12 +16,8 @@ public class Login {
     List<Utente> listaUtenti;
 
 
-    // questo costruttore viene richiamato solo quando è in corso il caso d'uso ComprareProdotto
     public Login(ComprareProdotto cp) {
         this.cp = cp;
-    }
-
-    public Login() {
     }
 
 
