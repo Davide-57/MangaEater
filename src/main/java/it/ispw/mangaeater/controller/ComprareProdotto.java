@@ -47,7 +47,6 @@ public class ComprareProdotto {
             filtroAnnunci = new FiltroStandard();
             listaAnnunci = filtroAnnunci.visualizzaAnnunci();
         }
-        int a;
         return AnnuncioBean.creaBeans(listaAnnunci);
     }
 
